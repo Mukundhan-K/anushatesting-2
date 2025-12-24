@@ -14,7 +14,7 @@ const dbconnection = require(path.join(__dirname,"config","db.js"));
 const connectCloudinary = require(path.join(__dirname,"config","cloudinary"));
 
 // app config ---------------------------------------------
-
+let connected = false;
 async function init() {
   if (!connected) {
     await dbconnection();
