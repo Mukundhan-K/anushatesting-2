@@ -15,9 +15,17 @@ const connectCloudinary = require(path.join(__dirname,"config","cloudinary"));
 
 // app config ---------------------------------------------
 
-dbconnection();
+async function init() {
+  if (!connected) {
+    await dbconnection();
+    connected = true;
+  }
+}
+init();
 connectCloudinary();
 // const port = process.env.PORT || 5000;
+
+
 
 // connection ---------------------------------------------
 
