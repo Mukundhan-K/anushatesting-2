@@ -17,7 +17,7 @@ const connectCloudinary = require(path.join(__dirname,"config","cloudinary"));
 
 dbconnection();
 connectCloudinary();
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
 
 // connection ---------------------------------------------
 

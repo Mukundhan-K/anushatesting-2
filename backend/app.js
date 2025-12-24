@@ -27,7 +27,7 @@ const allowedOrigins = [
 ].filter(Boolean); // 🔥 removes undefined values
 
 
-console.log("cleint url : ", process.env.CLIENT_URL,allowedOrigins);
+console.log("cleint url : ", process.env.CLIENT_URL,process.env.ADMIN_URL);
 
 // app middlewares *****************************************************
 
