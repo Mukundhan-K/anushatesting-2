@@ -14,14 +14,14 @@ const dbconnection = require(path.join(__dirname,"config","db.js"));
 const connectCloudinary = require(path.join(__dirname,"config","cloudinary"));
 
 // app config ---------------------------------------------
-let connected = false;
-async function init() {
-  if (!connected) {
-    await dbconnection();
-    connected = true;
-  }
-}
-init();
+// let connected = false;
+// async function init() {
+//   if (!connected) {
+    dbconnection();
+//     connected = true;
+//   }
+// }
+// init();
 connectCloudinary();
 // const port = process.env.PORT || 5000;
 
