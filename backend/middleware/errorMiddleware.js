@@ -24,14 +24,14 @@ const errorHandler = (err, req, res, next) => {
 
   // Development mode → show stack
   if (process.env.NODE_ENV === "development") {
-    response.stack = err.stack;
+    // response.stack = err.stack;
     response.environment = "development";
   }
 
   // Production mode → clean output
-  if (process.env.NODE_ENV === "production") {
-    response.environment = "production";
-  }
+  // if (process.env.NODE_ENV === "production") {
+    // response.environment = "production";
+  // }
 
   res.status(statusCode).json(response);
 };

@@ -30,14 +30,18 @@ async function createUser(req,res,next) {
         return throwError("user already exists with same email ", 400)
       };
 
-      const newUser = await userDb.create({userName, email, password});
+      const newUser = await userDb.create({userName, email, password, role: 'user'});
       console.log("new user : ", newUser);
       
       if (newUser) {
         return res.status(200).json({
                 success : true,
                 message: "user created",
-                data :  newUser
+                data :  {
+                  userName: newUser.userName,
+                  email: newUser.email,
+                  role: newUser.role
+                }
               });
       };
     } catch (error) {
@@ -61,11 +65,29 @@ async function loginUser(req, res, next) {
     };
 
     const userAvail = await userDb.findOne({email}).select("+password");
-    if (userAvail) {
+    if (!userAvail) {
+      return throwError("Invalid credentials", 401);
+    };
+
       const userVerif = await userAvail.comparePassword(password);
       console.log("user v : ", userVerif);
-      
-      if (userVerif) {
+      if (!userVerif) {
+        // ❌ Wrong password - brute force counter auto-increments
+        return throwError("Invalid credentials", 401);
+      };
+
+        // ✅ SUCCESS - Reset brute force counter for this email+IP
+        // This prevents legitimate users from being locked out
+        if (req.rateLimit && req.rateLimit.resetKey) {
+          try {
+            await req.rateLimit.resetKey();
+            console.log("✅ Brute force counter reset for:", email);
+          } catch (resetError) {
+            // Don't fail login if reset fails - just log it
+            console.error("⚠️ Failed to reset brute force counter:", resetError);
+          }
+        };
+
         console.log("user verified : ",userAvail);
         const tokenData = {
           id: userAvail._id,
@@ -90,12 +112,6 @@ async function loginUser(req, res, next) {
           user : tokenData,
           token
         });
-      }else{
-        return throwError("Password not Matched", 400);
-      };
-    }else{
-      return throwError("User not Found", 404);
-    }
   } catch (error) {
     next(error);
   };
@@ -158,7 +174,7 @@ async function forgotPassword(req, res, next){
     
     if (!user) {
       console.log("user error");
-      return throwError("User not found : ", 404);
+      return throwError("If this email exists, a reset link has been sent ", 401);
     }
 
     const resetToken = user.getResetPasswordToken();
@@ -216,12 +232,9 @@ async function forgotPassword(req, res, next){
 
 async function resetPassword (req, res, next) {
   try {
-
     const {main, confirm} = req.body.password;
-
     console.log("pass", req.body,  main, confirm );
     
-
     // Validate input
     if (!main) {
       return throwError("Password is required : ", 400);
@@ -230,7 +243,7 @@ async function resetPassword (req, res, next) {
       return throwError("Password must be at least 5 characters : ", 400);
     };
     // Optional: validate confirmPassword
-    if (confirm && main !== confirm) {
+    if (main !== confirm) {
       return throwError("Passwords do not match : ", 400);
     };
 
@@ -275,6 +288,17 @@ async function resetPassword (req, res, next) {
     //   }
     // );
 
+    // ✅ Reset any brute force counters for this user
+    // (in case they were locked out before resetting password)
+    if (req.rateLimit && req.rateLimit.resetKey) {
+      try {
+        await req.rateLimit.resetKey();
+        console.log("✅ Brute force counter reset after password reset");
+      } catch (resetError) {
+        console.error("⚠️ Failed to reset brute force counter:", resetError);
+      }
+    };
+    
     res.status(200).json({
       success: true,
       message: "Password reset successful"

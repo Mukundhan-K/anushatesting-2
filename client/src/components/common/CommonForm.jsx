@@ -302,6 +302,23 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
         }
       </div>
       <Button bttype={btntype}  btnonclick={btnonclick} outcls={btnclass} text={buttonText || "Submit"} btnHide={btnHide}></Button>
+            
+      {/* Honpot field*/}
+      <input
+        type="text"
+        name="website"
+        tabIndex="-1"
+        autoComplete="off"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          height: "1px !important",
+          width: "1px !important",
+          opacity: 0,
+        }}
+      />
+      <input type="hidden" name="formTime" value={Date.now()} />
+
     </form>
   );
 };
