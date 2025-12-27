@@ -3,7 +3,7 @@ const path = require("path");
 const { throwError } = require(path.join(__dirname, "..", "middleware", "errorMiddleware.js"));
 
 function isDisposableEmail(email) {
-  const domain = email.split("@")[1].toLowerCase();
+  const domain = email?.split("@")?.[1]?.toLowerCase();
   return disposableDomains.includes(domain);
 }
 

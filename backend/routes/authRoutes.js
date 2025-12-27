@@ -24,19 +24,19 @@ const {createUser, loginUser, logoutUser, authUser, forgotPassword, resetPasswor
 // create user
 // api - /api/auth/signup
 // 3 signups per hour per IP
-// router.post("/createuser", contactLimiter, signupLimiter, loginLimiter, blockDisposable, checkMxMiddleware, loginValidator, validate, createUser);
+// router.post("/createuser",  loginValidator, validate, contactLimiter, signupLimiter, loginLimiter, blockDisposable, checkMxMiddleware, createUser);
 // router.post("/createuser", createUser);
 
 // login user
 // api - /api/auth/login
 router.post("/login", 
-  // 1️⃣ Stop abuse ASAP
+  // 1️⃣ Validate request body 
+  loginValidator, validate,
+  // 2️⃣ Stop abuse ASAP
   // : Global API protection (5 requests/15min) | Brute force protection by email+IP (5 failed attempts/15min)
   contactLimiter, loginLimiter,
-  // 2️⃣ Block disposable / invalid emails (cheap checks first)
-  blockDisposable, checkMxMiddleware,
-  // 3️⃣ Validate request body
-  loginValidator, validate,
+  // 3️⃣ Block disposable / invalid emails (cheap checks first)
+  blockDisposable, checkMxMiddleware, 
   // 4️⃣ Controller (DB logic)
   loginUser
 );
@@ -52,15 +52,14 @@ router.get("/admin", contactLimiter, authMiddleware, authUser);
 // forgot password
 // api - /api/auth/forgotPassword
 router.post("/forgotPassword",
-  // 1️⃣ Stop abuse ASAP
-  // Stricter brute force (3 attempts/hour)
+  // 1️⃣ Validate request body 
+  loginValidator, validate,
+  // 2️⃣ Stricter brute force (3 attempts/hour)
   contactLimiter, forgotPasswordLimiter,
-  // 2️⃣ Block disposable / invalid emails (cheap checks first)
-  blockDisposable, checkMxMiddleware,
-  // 3️⃣ Validate request body
-   validate,
+  // 3️⃣ Block disposable / invalid emails (cheap checks first)
+  blockDisposable, checkMxMiddleware, 
   // 4️⃣ Controller (DB logic)
-  forgotPassword
+  forgotPassword  
 );
 
 // reset password
