@@ -105,15 +105,15 @@ const loginLimiter = (req, res, next) => {
   loginLimiterBase(req, res, () => {
     if (store && store.resetKey) {
       req.rateLimit = req.rateLimit || {};
-      req.rateLimit.resetKey = async () => {
+      req.rateLimit.resetKey = setImmediate(async () => {
         try {
-          const key = await store.resetKey(loginKeyGenerator(req));
-          console.log(`✅ Reset brute force counter for: ${key}`);
+          await store.resetKey(loginKeyGenerator(req));
+          console.log(`✅ Reset brute force counter`);
           return key;
         } catch (error) {
           console.error(`⚠️ Failed to reset key:`, error);
         }
-      };
+      });
     }
     next();
   });
@@ -148,14 +148,14 @@ const forgotPasswordLimiter = (req, res, next) => {
   forgotPasswordLimiterBase(req, res, () => {
     if (store && store.resetKey) {
       req.rateLimit = req.rateLimit || {};
-      req.rateLimit.resetKey = async () => {
+      req.rateLimit.resetKey = setImmediate(async () => {
         try {
           await store.resetKey(forgotKeyGenerator(req));
           console.log("✅ Forgot-password counter reset");
         } catch (error) {
           console.error(`⚠️ Failed to reset key:`, error);
         }
-      };
+      });
     }
     next();
   });
@@ -186,14 +186,14 @@ const resetPasswordLimiter = (req, res, next) => {
   resetPasswordLimiterBase(req, res, () => {
     if (store && store.resetKey) {
       req.rateLimit = req.rateLimit || {};
-      req.rateLimit.resetKey = async () => {
+      req.rateLimit.resetKey = setImmediate(async () => {
         try {
           await store.resetKey(resetKeyGenerator(req));
           console.log("✅ Reset-password counter reset");
         } catch (error) {
           console.error(`⚠️ Failed to reset key:`, error);
         }
-      };
+      });
     }
     next();
   });
