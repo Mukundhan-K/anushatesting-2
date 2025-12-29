@@ -14,7 +14,7 @@ const {
 } = require(path.join(__dirname,"..", "middleware", "bruteForce.js"));
 
 const validate = require(path.join(__dirname,"..", "validators", "validate.js"));
-const { loginValidator } = require(path.join(__dirname,"..", "validators", "auth.validator.js"));
+const { loginValidator, forgotPasswordValidator, resetPasswordValidator } = require(path.join(__dirname,"..", "validators", "auth.validator.js"));
 
 const blockDisposable = require(path.join(__dirname, "..", "utils", "blockDisposableMail.js"));
 const checkMxMiddleware = require(path.join(__dirname, "..", "utils", "verifyMxRecord.js"));
@@ -53,7 +53,7 @@ router.get("/admin", contactLimiter, authMiddleware, authUser);
 // api - /api/auth/forgotPassword
 router.post("/forgotPassword",
   // 1️⃣ Validate request body 
-  loginValidator, validate,
+  forgotPasswordValidator, validate,
   // 2️⃣ Stricter brute force (3 attempts/hour)
   contactLimiter, forgotPasswordLimiter,
   // 3️⃣ Block disposable / invalid emails (cheap checks first)
@@ -65,7 +65,9 @@ router.post("/forgotPassword",
 // reset password
 // api - /api/auth/resetPassword/:any
 router.put("/resetPassword/:token",
-  // 1️⃣ Stop abuse ASAP
+  // 1️⃣ validate
+  resetPasswordValidator, validate,
+  // 2️⃣ Stop abuse ASAP
   // Prevent token guessing (5 attempts/hour per token)
   contactLimiter, resetPasswordLimiter,
   // 3️⃣ Validate request body

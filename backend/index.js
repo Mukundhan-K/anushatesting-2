@@ -15,22 +15,15 @@ const dbconnection = require(path.join(__dirname,"config","db.js"));
 const connectCloudinary = require(path.join(__dirname,"config","cloudinary"));
 
 // app config ---------------------------------------------
-// let connected = false;
-// async function init() {
-//   if (!connected) {
     dbconnection();
-//     connected = true;
-//   }
-// }
-// init();
-connectCloudinary();
-const port = process.env.PORT || 5000;
+    connectCloudinary();
+// const port = process.env.PORT || 5000;
 
 // connection ---------------------------------------------
 
-const server = app.listen(port, ()=>{
-    console.log("server run @ port : ", port);
-});
+// const server = app.listen(port, ()=>{
+//     console.log("server run @ port : ", port);
+// });
 
 // ===============================
 // Graceful shutdown (NON-VERCEL)
