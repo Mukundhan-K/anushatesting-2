@@ -49,7 +49,7 @@ const ProjectView = () => {
 
     <section className='h-full w-full'>
 
-      <Banner hgt='mini' title={projData?.title} link1={"/home"} text1={"Home"} text2={projData?.title} />
+      <Banner hgt='mini' title={projData?.title} link1={"/projects"} text1={"Projects"} text2={projData?.title} />
       
       <div className='sm:container mx-auto px-4'>
 
