@@ -4,6 +4,7 @@ const {throwError} = require(path.join(__dirname, "..", "middleware", "errorMidd
 const generateToken = require(path.join(__dirname, "..","config","generateToken.js"));
 const crypto = require("crypto");
 const {sendNormalMail} = require(path.join(__dirname, "..", "utils", "mailService.js"));
+const { resetLoginLimit, resetPasswordLimit  } = require(path.join(__dirname, "..", "middleware", "bruteForce.js"));
 
 // =======================================================
 //  create user ===========================================
@@ -78,15 +79,16 @@ async function loginUser(req, res, next) {
 
         // ✅ SUCCESS - Reset brute force counter for this email+IP
         // This prevents legitimate users from being locked out
-        if (req.rateLimit && req.rateLimit.resetKey) {
-          try {
-            await req.rateLimit.resetKey();
-            console.log("✅ Brute force counter reset for:", email);
-          } catch (resetError) {
-            // Don't fail login if reset fails - just log it
-            console.error("⚠️ Failed to reset brute force counter:", resetError);
-          }
-        };
+          await resetLoginLimit(req);
+        // if (req.rateLimit && req.rateLimit.resetKey) {
+        //   try {
+        //     await req.rateLimit.resetKey();
+        //     console.log("✅ Brute force counter reset for:", email);
+        //   } catch (resetError) {
+        //     // Don't fail login if reset fails - just log it
+        //     console.error("⚠️ Failed to reset brute force counter:", resetError);
+        //   }
+        // };
 
         console.log("user verified : ",userAvail);
         const tokenData = {
@@ -290,14 +292,15 @@ async function resetPassword (req, res, next) {
 
     // ✅ Reset any brute force counters for this user
     // (in case they were locked out before resetting password)
-    if (req.rateLimit && req.rateLimit.resetKey) {
-      try {
-        await req.rateLimit.resetKey();
-        console.log("✅ Brute force counter reset after password reset");
-      } catch (resetError) {
-        console.error("⚠️ Failed to reset brute force counter:", resetError);
-      }
-    };
+      await resetPasswordLimit(req);
+    // if (req.rateLimit && req.rateLimit.resetKey) {
+    //   try {
+    //     await req.rateLimit.resetKey();
+    //     console.log("✅ Brute force counter reset after password reset");
+    //   } catch (resetError) {
+    //     console.error("⚠️ Failed to reset brute force counter:", resetError);
+    //   }
+    // };
     
     res.status(200).json({
       success: true,
