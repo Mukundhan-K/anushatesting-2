@@ -16,11 +16,11 @@ router.delete("/removeProject/:id", authMiddleware, upload.none(), removeProject
 
 // list project
 // api - /api/project/listProject
-router.get("/listProject", listProject);
+router.get("/listProject", authMiddleware, listProject);
 
 // single project
 // api - /api/project/listProject
-router.get("/singleProject/:id", singleProject);
+router.get("/singleProject/:id", authMiddleware, singleProject);
 
 // edit project
 // api - /api/project/editProject

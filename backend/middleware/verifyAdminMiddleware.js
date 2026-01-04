@@ -3,7 +3,7 @@
 
 function adminOnly(req, res, next) {
   try {
-    if (req.user.role !== "admin") {
+    if (!req?.user || req?.user?.role !== "admin") {
       return throwError("Admin access only", 403); 
     }
     next();

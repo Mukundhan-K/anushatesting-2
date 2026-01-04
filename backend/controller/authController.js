@@ -1,7 +1,7 @@
 const path = require("path");
 const userDb = require(path.join(__dirname, "..", "model", "user.js"));
 const {throwError} = require(path.join(__dirname, "..", "middleware", "errorMiddleware.js"))
-const generateToken = require(path.join(__dirname, "..","config","generateToken.js"));
+const {generateToken, createSignupToken, verifyToken} = require(path.join(__dirname, "..","config","generateToken.js"));
 const crypto = require("crypto");
 const {sendNormalMail} = require(path.join(__dirname, "..", "utils", "mailService.js"));
 const { resetLoginLimit, resetPasswordLimit  } = require(path.join(__dirname, "..", "middleware", "bruteForce.js"));
@@ -21,7 +21,7 @@ async function createUser(req,res,next) {
         return throwError("please fill all data : ", 400)
       };
 
-      if (password.length < 5) {
+      if (password?.length < 5) {
         return throwError("password lenght is lessthan 5", 400);
       }
 
@@ -31,23 +31,141 @@ async function createUser(req,res,next) {
         return throwError("user already exists with same email ", 400)
       };
 
-      const newUser = await userDb.create({userName, email, password, role: 'user'});
+      const newUser = await userDb.create({
+        userName, 
+        email, 
+        password, 
+        role: 'user',
+        isVerified: false
+      });
       console.log("new user : ", newUser);
-      
-      if (newUser) {
-        return res.status(200).json({
-                success : true,
-                message: "user created",
-                data :  {
-                  userName: newUser.userName,
-                  email: newUser.email,
-                  role: newUser.role
-                }
-              });
+
+      if (!newUser) {
+      return throwError("User creation Failed", 401);
       };
-    } catch (error) {
-        next(error);
+
+      const token = await createSignupToken({
+        id: newUser?._id,
+        email: newUser?.email
+      });
+
+      const verifyUrl = `${process.env?.ADMIN_URL}/verify-email/${token}`;
+      const message = `
+        <h3>User verification Mail</h3>
+        <p>Click the link below to verify your Email:</p>
+        <a href="${verifyUrl}" target="_blank">${verifyUrl}</a>
+        <p>This link expires in 15 minutes.</p>
+      `;
+
+    await sendNormalMail({
+      email : email,
+      subject: "User verification Mail",
+      html: message
+    });
+      
+    return res.status(200).json({
+            success : true,
+            message: "Verification email sent",
+            // data :  {
+            //   userName: newUser.userName,
+            //   email: newUser.email,
+            //   role: newUser.role
+            // }
+          });
+  } catch (error) {
+      next(error);
+  };
+};
+
+// =======================================================
+//  verify user by email / manual ===========================================
+
+// route -  patch - /api/verify/:token;
+// access - public ;
+
+async function verifyEmail (req,res,next) {
+  try {
+    const { token } = req?.params;
+    console.log("tok : ", token);
+
+    let tok = null;
+    if (!req.body?.via) {
+      data = await verifyToken(token);
+      tok = data?.id;
     };
+    
+    const userToken = ((req.body?.via == "admin") ? token : tok);
+
+    console.log("decoded : ",userToken);
+    
+    const user = await userDb.findByIdAndUpdate(
+      userToken,
+      {
+        isVerified: true,
+        verifiedAt: new Date(),
+      },
+      { new: true }
+    );
+
+    if (!user) {
+        return throwError("Invalid or expired token", 401);
+    };
+
+    return res.status(200).json({
+            success : true,
+            message: ((req.body?.via) ? "User Verified succesfully" : "Verification email sent"),
+          });
+  } catch (error) {
+      next(error);
+  };
+};
+
+// =======================================================
+//  change role of user ===========================================
+
+// route -  patch - /api/verify/:token;
+// access - public ;
+
+async function changeUserRole  (req,res,next) {
+  try {
+    const { id:userId, role } = req.body;
+    const userAvail = req.user;
+    console.log("user : ", userAvail);
+    console.log("role : ", userId, role);
+    
+    if (!["user", "admin", "editor"].includes(role)) {
+      return throwError("Invalid role", 400);
+    };
+
+    // 🔥 Fetch user first
+    const user = await userDb.findById(userId);
+    if (!user) {
+      return throwError("User not found", 404);
+    };
+    // 🔐 Only verified users can be promoted/demoted
+    if (!user?.isVerified) {
+      return throwError("User must be verified before role change", 403);
+    };
+    // 🚫 Prevent admin changing own role
+    if (userId == userAvail?._id) {
+      return throwError("You cannot change your own role", 400);
+    };
+
+    // ✅ Update role
+    user.role = role;
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "User role updated",
+      data: {
+        email: user.userName,
+        role: user.role
+      }
+    });
+  } catch (error) {
+      next(error);
+  };
 };
 
 // =======================================================
@@ -75,6 +193,10 @@ async function loginUser(req, res, next) {
       if (!userVerif) {
         // ❌ Wrong password - brute force counter auto-increments
         return throwError("Invalid credentials", 401);
+      };
+
+      if (!userAvail.isVerified) {
+        return throwError("Please verify your email first", 401);
       };
 
         // ✅ SUCCESS - Reset brute force counter for this email+IP
@@ -179,6 +301,10 @@ async function forgotPassword(req, res, next){
       return throwError("If this email exists, a reset link has been sent ", 401);
     }
 
+    if (!user?.isVerified) {
+      return throwError("Please verify your email first", 401);
+    };
+
     const resetToken = user.getResetPasswordToken();
 
     // Use updateOne instead of save to avoid pre-save hooks
@@ -265,6 +391,9 @@ async function resetPassword (req, res, next) {
     if (!user) {
       return throwError("Invalid or expired token", 404);
     };
+    if (!user?.isVerified) {
+      return throwError("Please verify your email first", 401);
+    };
 
     user.password = main;
     user.resetPasswordToken = undefined;
@@ -314,4 +443,91 @@ async function resetPassword (req, res, next) {
   }
 };
 
-module.exports = {createUser, loginUser, logoutUser, authUser, forgotPassword, resetPassword};
+// =======================================================
+//  get all users ===========================================
+
+// route -  get - api/auth/forgotPassword ;
+// access - public ;
+
+async function getAllUsers  (req, res, next) {
+  try {
+    const users = await userDb.find().select(
+      "email userName role isVerified verifiedAt createdAt"
+    );    
+    if (!users) {
+      return throwError("Data fetching failed : ", 400);
+    };
+    
+    res.status(200).json({
+      success: true,
+      message: "Data fetched successfully",
+      data: users
+    });
+
+  } catch (error) {
+    console.log(error);
+    
+    next(error);
+  }
+};
+
+// =======================================================
+//  delete user ===========================================
+
+// route -  delete - api/auth/deleteUser  ;
+// access - private ;
+
+async function deleteUser (req, res, next) {
+  try {
+    const { id } = req.params;
+    const user = req.user;
+    // 🚫 Prevent admin changing own role
+    if (id == user?._id) {
+      return throwError("You cannot delete your own id", 400);
+    };
+    if (!user?.isVerified) {
+      return throwError("Please verify your email first", 401);
+    };
+
+    const deletedUser = await userDb.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return throwError("User not found : ", 404);
+    };
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+// =======================================================
+//  delete un verified user ===========================================
+
+// route -  delete - api/auth/deleteUnverifiedUsers  ;
+// access - private ;
+
+async function deleteUnverifiedUsers (req, res, next) {
+  try {
+    console.log(req.body);
+    const result = await userDb.deleteMany({ isVerified: false });
+    if (!result) {
+      return throwError("Process Failed", 400);
+    };
+
+    res.status(200).json({
+      success: true,
+      message: "Unverified users deleted successfully",
+      deletedCount: result?.deletedCount,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {createUser, loginUser, logoutUser, authUser, forgotPassword,
+                   resetPassword, verifyEmail, changeUserRole, getAllUsers,
+                    deleteUser, deleteUnverifiedUsers
+                  };

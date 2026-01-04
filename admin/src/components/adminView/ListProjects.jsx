@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useCallback, useEffect, useRef} from 'react';
 import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,13 +12,13 @@ const List = () => {
 
   const {productList:prodList} = useSelector((state)=>(state.adminProductReducer));
 
-  async function fetchAllProds(){
+  const fetchAllProds = useCallback(async ()=>{
     try {
       let data = null;
 
       if (!prodList.length){
         data = await dispatch(fetchAllProjects()).unwrap();
-        // console.log("list all projs : ", data);
+        console.log("list all projs : ", data);
 
         if (data?.success) {
           toast.success(`${data ?.message}`);
@@ -39,7 +39,7 @@ const List = () => {
         });
         return { success: false };
     };
-  };
+  }, [dispatch, prodList?.length]);
   
  useEffect(() => {
   if (fetchedRef.current) return;
@@ -53,12 +53,13 @@ const List = () => {
 
       <h1 className='capitalize text-xl font-medium text-a-royalsafforn mb-3'>all products list</h1>
 
-      <div className='flex flex-col gap-2'>
+      <div className='grid grid-cols-1 xs:grid-cols-2 md:flex flex-col gap-2'>
        
         {/* table heading */}
-        <div className='hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border border-slate-200 bg-gray-100 text-sm capitalize'>
+        <div className='hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr_1fr] items-center py-1 px-2 border border-slate-200 bg-gray-100 text-sm capitalize'>
           <b>image</b>
           <b>name</b>
+          <b>status</b>
           <b>category</b>
           <b>Location</b>
           <b className='text-center'>action</b>
@@ -66,9 +67,10 @@ const List = () => {
 
         {/* table body */}
         { prodList.map((item, index)=>(
-          <div className='grid grid-cols-[1fr-3fr-1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border border-slate-200 text-sm capitalize' key={index}>
-            <img src={item?.images[0]} className='max-w-12' alt="" />
+          <div className='grid grid-cols-[1fr-3fr-1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr_1fr] items-center justify-center md:justify-start gap-2 md:gap-0 text-center md:text-start py-1 px-2 border border-slate-200 text-sm capitalize' key={index}>
+            <img src={item?.images[0]} className='max-w-12 justify-self-center md:justify-self-start' alt="" />
             <p>{item?.title}</p>
+            <p>{item?.status}</p>
             <p>{item?.projectType}</p>
             <p>{item?.location}</p>
             {/* <p>{item?.location} |  {item?.priceRange}</p> */}

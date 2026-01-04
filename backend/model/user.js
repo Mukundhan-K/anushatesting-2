@@ -5,12 +5,17 @@ const crypto = require("crypto");
 const userSchema = mongoose.Schema({
     userName : {
         type : String,
-        required : [true, "user name required"]
+        required : [true, "user name required"],
+        trim: true,
+        minlength: 2,
+        maxlength: 20
     },
     email : {
         type : String,
         required : [true, "email required"],
-        unique: [true,"email address should be unique"]
+        unique: [true,"email address should be unique"],
+        lowercase: true,
+        trim: true
     },
     password : {
         type : String,
@@ -20,6 +25,15 @@ const userSchema = mongoose.Schema({
     },
     role : {
         type : String,
+        enum: ["user", "editor", "admin"],
+    },
+    isVerified: {
+      type: Boolean,
+      default: false, // 🔥 IMPORTANT
+      index: true
+    },
+    verifiedAt: {
+      type: Date
     },
     resetPasswordToken: {
         type: String,

@@ -76,7 +76,7 @@ async function sendMail({ name, email, subject, phone, message}) {
   }
 }
 
-async function sendNormalMail({ email, subject, html}) {
+async function sendNormalMail({ email, subject="Password Reset Email", html}) {
   console.log("ins mail : ",  email, subject, html);
 
   try {
@@ -88,7 +88,7 @@ async function sendNormalMail({ email, subject, html}) {
     await transporter.sendMail({
       from: `"Anusha Structures" <${process.env.MAIL_USER}>`,
       to: email,
-      subject: subject || "Password Reset Email",
+      subject: subject,
       html: html,
     });
 

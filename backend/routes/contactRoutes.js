@@ -7,12 +7,19 @@ const {loginLimiter} = require(path.join(__dirname,"..", "middleware", "slowDown
 const validate = require(path.join(__dirname,"..", "validators", "validate.js"));
 const { contactValidator } = require(path.join(__dirname,"..", "validators", "contact.validator.js"));
 const blockDisposable = require(path.join(__dirname,"..", "utils", "blockDisposableMail.js"));
+const checkMxMiddleware = require(path.join(__dirname, "..", "utils", "verifyMxRecord.js"));
 
 const {contactUs} = require(path.join(__dirname,"..", "controller", "contactController.js"));
 
 // send mail
 // api - /api/contact/sendMail
 
-router.post("/sendMail", contactLimiter, loginLimiter, blockDisposable, contactValidator, validate, contactUs);
+router.post("/sendMail", 
+    contactValidator, validate,
+    contactLimiter, loginLimiter, 
+    blockDisposable, checkMxMiddleware,
+    
+    contactUs
+);
 
 module.exports = router;

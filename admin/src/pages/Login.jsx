@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { toast } from 'sonner';
 
 import { getImagewebp } from '../utility/getImage';
-import { loginFormControl, registeredFormControl } from "../data/formData.js";
+import { loginFormControl } from "../data/formData.js";
 import CommonForm from '../components/common/CommonForm.jsx';
 
-import { addUser, loginUser } from '../redux/authSlice.js';
+import { loginUser } from '../redux/authSlice.js';
 
 function Login() {
 
@@ -15,26 +15,6 @@ function Login() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
-
-  async function createUser(e) {
-    dispatch(addUser(formData))
-    .then((data)=>{
-      console.log("log data : ", data);
-      if (data?.payload?.success) {
-        toast.success("success", {
-          description: `User added : ${data?.payload.data?.userName}`,
-        })
-      }else{
-        console.log(data.payload);
-        toast.error('Failed', {
-          description: `${(data?.payload?.message) ? (data?.payload?.message) : (data.error?.message)}`,
-        });
-      };
-    })
-    .catch((error)=>{
-      console.error(error);
-    })
-  };
 
   async function logUser() {
     try {

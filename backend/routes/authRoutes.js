@@ -2,8 +2,9 @@ const path = require("path");
 const router = require("express").Router();
 
 const authMiddleware = require(path.join(__dirname,"..","middleware","authMiddleware.js"));
+const verifyAdminUser = require(path.join(__dirname,"..","middleware","verifyAdminMiddleware.js"));
 
-// const {loginLimiter} = require(path.join(__dirname,"..", "middleware", "slowDownLimiter.js"));
+const {loginLimiter:slowDownLimiter} = require(path.join(__dirname,"..", "middleware", "slowDownLimiter.js"));
 const {contactLimiter} = require(path.join(__dirname,"..", "middleware", "contactLimiter.js"));
 
 const { 
@@ -18,14 +19,39 @@ const { loginValidator, forgotPasswordValidator, resetPasswordValidator } = requ
 
 const blockDisposable = require(path.join(__dirname, "..", "utils", "blockDisposableMail.js"));
 const checkMxMiddleware = require(path.join(__dirname, "..", "utils", "verifyMxRecord.js"));
+const emailPolicy = require(path.join(__dirname, "..", "utils", "emailPolicy.js"));
 
-const {createUser, loginUser, logoutUser, authUser, forgotPassword, resetPassword} = require(path.join(__dirname,"..", "controller", "authController.js"));
+const {createUser, verifyEmail, loginUser, logoutUser,
+       authUser, forgotPassword, resetPassword, changeUserRole,
+        getAllUsers, deleteUser, deleteUnverifiedUsers} = require(path.join(__dirname,"..", "controller", "authController.js"));
+
+// create user
+// api - /api/auth/allusers
+router.get("/allusers", authMiddleware, verifyAdminUser, getAllUsers);
 
 // create user
 // api - /api/auth/signup
 // 3 signups per hour per IP
-// router.post("/createuser",  loginValidator, validate, contactLimiter, signupLimiter, loginLimiter, blockDisposable, checkMxMiddleware, createUser);
-// router.post("/createuser", createUser);
+router.post("/createuser",
+  // emailPolicy,
+  loginValidator, validate,
+  contactLimiter, signupLimiter,
+  blockDisposable, checkMxMiddleware,
+  createUser
+);
+
+// verify user
+// api - /api/verify/:token
+// 3 signups per hour per IP
+router.get("/verifybyemail/:token", contactLimiter, slowDownLimiter, verifyEmail);
+
+// verify user
+// api - /api/verify/:token
+router.patch("/verifybyadmin/:token", contactLimiter, slowDownLimiter, authMiddleware, verifyAdminUser, verifyEmail);
+
+// Change user role
+// api - /api/verify/:token
+router.patch("/changerole", contactLimiter, slowDownLimiter, authMiddleware, verifyAdminUser, changeUserRole);
 
 // login user
 // api - /api/auth/login
@@ -44,6 +70,14 @@ router.post("/login",
 // logout user
 // api - /api/auth/logout
 router.get("/logout", logoutUser);
+
+// logout user
+// api - /api/auth/deleteUser
+router.delete("/deleteUser/:id", contactLimiter, slowDownLimiter, authMiddleware, verifyAdminUser, deleteUser);
+
+// logout user
+// api - /api/auth/deleteUser
+router.delete("/delete-unverified-users", contactLimiter, slowDownLimiter, authMiddleware, verifyAdminUser, deleteUnverifiedUsers);
 
 // auth user
 // api - /api/auth/auth

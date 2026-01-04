@@ -15,11 +15,13 @@ import AdminDashBoard from "./components/adminView/DashBoard";
 import AddProjects from "./components/adminView/AddProjects";
 import ViewProjects from "./components/adminView/ViewProjects";
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 import { checkUser } from './redux/authSlice';
 import Loader from "./components/common/Loader";
 import ChangeMyPass from './pages/ChangeMyPass';
 import ResetPassword  from './pages/ResetPassword';
+import VerifyEmail from './pages/VerifyEmail';
 
 const AdminView = lazy(() => import("./pages/AdminView"));
 
@@ -68,6 +70,12 @@ function App() {
               <CheckAuth loading1={isLoading} loading2={loading}>
               <Login />
             </CheckAuth>}></Route>
+
+            <Route path='createuser' element={
+              <CheckAuth loading1={isLoading} loading2={loading}>
+                <Signup />
+            </CheckAuth>}></Route>
+            <Route path="verify-email/:token" element={<VerifyEmail />} />
           </Route>
 
           {/* <Route path='/login' element={

@@ -95,7 +95,7 @@ app.use(cors({
     // ❌ DO NOT throw error (causes deployment/runtime issues)
     return callback(null, false);
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: [
     "Content-Type",
     "Authorization",

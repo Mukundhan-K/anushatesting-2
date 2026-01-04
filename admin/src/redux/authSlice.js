@@ -13,7 +13,7 @@ const initialState = {
 // -----------------------------------
 // signup user
 
-export const addUser = createAsyncThunk("signup",
+export const addUser = createAsyncThunk("createuser",
     async (formData, thunkAPI) => {
         try {
             const response = await Api.post(
@@ -118,7 +118,15 @@ const authSlice = createSlice({
                     state.user = null;
                     state.isAuthenticated = false;
                     state.authChecked = true;
-                });
+                })
+                
+                .addCase(addUser.pending, (state)=>{
+                    state.isLoading = true;
+                }).addCase(addUser.fulfilled, (state, action)=>{
+                    state.isLoading = false
+                }).addCase(addUser.rejected, (state)=>{
+                    state.isLoading = false
+                })
     }
 });
 

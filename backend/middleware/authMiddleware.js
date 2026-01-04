@@ -39,6 +39,10 @@
         if (!userAvail) {
             return throwError("Session expired..Please Login again", 401); 
         };
+        if (!userAvail?.isVerified) {
+            return throwError("Please verify your email first", 401);
+        };
+
         req.user = userAvail;
         next();
 

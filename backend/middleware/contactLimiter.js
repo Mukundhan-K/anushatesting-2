@@ -4,7 +4,7 @@ const {throwError} = require(path.join(__dirname, "errorMiddleware.js"));
 
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // max 5 requests
+  max: 55, // max 55 requests
   standardHeaders: true,
   legacyHeaders: false,
   message: {

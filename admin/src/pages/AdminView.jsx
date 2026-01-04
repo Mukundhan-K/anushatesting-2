@@ -47,7 +47,7 @@ console.log(user,isAuthenticated);
       <div className='bg-white fixed top-0 left-0 right-0 w-full z-50'>
         <div className=' w-full px-10 py-3 flex justify-between bg-a-royalsafforn/25'>
 
-        <div className='flex items-center gap-10'>
+        <div className='flex items-center gap-4 md:gap-10'>
 
           <div className='p-2 cursor-pointer grid lg:hidden place-items-center border rounded-2xl' onClick={()=>setOpenAdminSidebar((prev)=>{
             // console.log(prev);
@@ -59,7 +59,7 @@ console.log(user,isAuthenticated);
           <span className='text-2xl'>Admin Panel</span>
         </div>
           
-          <div className='flex gap-8 justify-center items-center'>
+          <div className='flex gap-4 md:gap-8 justify-center items-center'>
 
             <div className=' relative'>
 
