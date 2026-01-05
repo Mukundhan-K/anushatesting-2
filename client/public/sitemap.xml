@@ -9,7 +9,7 @@
   <!-- Home Page -->
   <url>
     <loc>https://www.buildrightconstruction.com/</loc>
-    <lastmod>2025-10-29</lastmod>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -17,70 +17,71 @@
   <!-- About Us -->
   <url>
     <loc>https://www.buildrightconstruction.com/about</loc>
-    <lastmod>2025-10-29</lastmod>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Our Projects -->
   <url>
-    <loc>https://www.buildrightconstruction.com/projects</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://www.anushastructures.in/projects</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
 
   <!-- Individual Project Pages (Examples) -->
   <url>
-    <loc>https://www.buildrightconstruction.com/projects/luxury-villa</loc>
-    <lastmod>2025-10-20</lastmod>
+    <loc>https://www.anushastructures.in/projects/luxury-villa</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- blogs -->
   <url>
-    <loc>https://www.buildrightconstruction.com/projects/commercial-complex</loc>
-    <lastmod>2025-10-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.anushastructures.in/blogs</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <!-- Services -->
   <url>
-    <loc>https://www.buildrightconstruction.com/services</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://www.anushastructures.in/services</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
   </url>
 
   <!-- Cost Estimator -->
   <url>
-    <loc>https://www.buildrightconstruction.com/estimator</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://www.anushastructures.in/estimator</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
   <!-- Contact Us -->
   <url>
-    <loc>https://www.buildrightconstruction.com/contact</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://www.anushastructures.in/contact</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Privacy Policy -->
   <url>
-    <loc>https://www.buildrightconstruction.com/privacy-policy</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://www.anushastructures.in/privacy-policy</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Terms and Conditions -->
   <url>
-    <loc>https://www.buildrightconstruction.com/terms-and-conditions</loc>
-    <lastmod>2025-10-29</lastmod>
+    <loc>https://www.anushastructures.in/terms-and-conditions</loc>
+    <lastmod>2026-01-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

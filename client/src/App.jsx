@@ -104,8 +104,10 @@ function App() {
             <Route path='projects/:projId' element={<ProjectView />}></Route>
             <Route path='estimator' element={<Estimator setOpenPop={setOpenPop} />}></Route>
             <Route path='contact' element={<Contact setOpenPop={setOpenPop} />}></Route>
+            <Route path='blogs' element={<Contact setOpenPop={setOpenPop} />}></Route>
 
             <Route path='privacy-policy' element={<PrivacyPolicy />}></Route>
+            <Route path='terms-and-conditions' element={<PrivacyPolicy />}></Route>
           </Route>
 
           <Route path='*' element={<PagenotFound />}></Route>
