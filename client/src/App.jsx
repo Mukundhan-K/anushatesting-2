@@ -64,7 +64,7 @@ function App() {
     if ((domlocation.pathname == "/") || (domlocation.pathname.includes("/home"))) {
       const timer = setTimeout(() => {
         setShowPopup(true);
-      }, 5000);
+      }, 9000);
       return () => clearTimeout(timer);
     }
   }, []);
