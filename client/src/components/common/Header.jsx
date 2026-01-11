@@ -75,7 +75,11 @@ const Header = () => {
           <div className='f-c-5 w-fit'>
             <div id='logoContainer'>
               <Link to={"/"}>
-                <img src={getImagewebp("logo")} loading='eager' alt="logo"  title="logo of anusha structures" id="logo" className='w-36 h-auto' />
+                <img src={getImagewebp("logo")} loading='eager' alt="logo"  
+                  title="logo of anusha structures" id="logo" className='w-36 h-auto' 
+                  onContextMenu={(e) => e.preventDefault()}
+                  draggable={false}
+                />
               </Link>
             </div>
 
@@ -100,7 +104,12 @@ const Header = () => {
             {/* menubar */}
             <div className='p-4 cursor-pointer grid  place-items-center border rounded-3xl' onClick={()=>setOpenNavDrawer(()=>true)}>
               <button className='cursor-pointer'>
-                <img src={getImageSvg("menubar")} className="size-6 object-contain rotate-z-90" loading='lazy' alt={`menubar icon`} title={`menubar icon for side bar`}  />
+                <img src={getImageSvg("menubar")} className="size-6 object-contain rotate-z-90" 
+                  loading='lazy' alt={`menubar icon`} 
+                  title={`menubar icon for side bar`}
+                  onContextMenu={(e) => e.preventDefault()}
+                  draggable={false}
+                />
               </button>
             </div>
           </div>

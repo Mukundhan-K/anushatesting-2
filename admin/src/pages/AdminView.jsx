@@ -18,9 +18,11 @@ console.log(user,isAuthenticated);
 
   const adminBarContent = [
     {name : "Dashboard", link:"/admin/dashboard"},
+    {name : "View Projects", link:"/admin/viewprojects"},
     {name : "Add Project", link:"/admin/addproject"},
-    // {name : "View Project", link:"/admin/viewprojects"},
-    {name : "Add User", link:"/admin/adduser"}
+    {name : "Add User", link:"/admin/adduser"},
+    {name : "User List", link:"/admin/listuser"},
+    {name : "User Log", link:"/admin/loguser"}
   ];
 
   const [openAdminSidebar, setOpenAdminSidebar] = useState(false);
@@ -44,6 +46,7 @@ console.log(user,isAuthenticated);
     <>
     <div className=''>
 
+    {/* admin header */}
       <div className='bg-white fixed top-0 left-0 right-0 w-full z-50'>
         <div className=' w-full px-10 py-3 flex justify-between bg-a-royalsafforn/25'>
 

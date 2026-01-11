@@ -32,13 +32,14 @@ router.get("/allusers", authMiddleware, verifyAdminUser, getAllUsers);
 // create user
 // api - /api/auth/signup
 // 3 signups per hour per IP
-router.post("/createuser",
-  // emailPolicy,
-  loginValidator, validate,
-  contactLimiter, signupLimiter,
-  blockDisposable, checkMxMiddleware,
-  createUser
-);
+// router.post("/createuser",
+//   emailPolicy,
+//   loginValidator, validate,
+//   contactLimiter, signupLimiter,
+//   blockDisposable, checkMxMiddleware,
+//  authMiddleware, verifyAdminUser // use if needed otherwise uncomment it
+//   createUser
+// );
 
 // verify user
 // api - /api/verify/:token

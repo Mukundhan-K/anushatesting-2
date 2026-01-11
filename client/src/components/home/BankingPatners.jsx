@@ -27,7 +27,11 @@ const BankingPatners = () => {
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5'>
             {image.map(({img}, i)=>(
                 <div key={i} className='border border-gray-400 rounded-3xl overflow-hidden'>
-                    <img src={getImagewebp(`banks/${img}`)} className='block w-full h-full'loading='lazy' alt={`${img} icon`} title={`icon of ${img}`} />
+                    <img src={getImagewebp(`banks/${img}`)} className='block w-full h-full' loading='lazy'
+                      alt={`${img} icon`} title={`icon of ${img}`}
+                      onContextMenu={(e) => e.preventDefault()}
+                      draggable={false}
+                    />
                 </div>
               )
             )}

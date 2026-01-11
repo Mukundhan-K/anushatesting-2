@@ -13,17 +13,18 @@ const app = require(path.join(__dirname, "app.js"));
 
 const dbconnection = require(path.join(__dirname,"config","db.js"));
 const connectCloudinary = require(path.join(__dirname,"config","cloudinary"));
+require(path.join(__dirname,"cron","loginLogCleanup"));
 
 // app config ---------------------------------------------
     dbconnection();
     connectCloudinary();
-// const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 // connection ---------------------------------------------
 
-// const server = app.listen(port, ()=>{
-//     console.log("server run @ port : ", port);
-// });
+const server = app.listen(port, ()=>{
+    console.log("server run @ port : ", port);
+});
 
 // ===============================
 // Graceful shutdown (NON-VERCEL)

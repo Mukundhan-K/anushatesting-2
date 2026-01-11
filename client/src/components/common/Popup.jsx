@@ -97,7 +97,11 @@ const Popup = ({ isOpen, onClose, title, children, otrcss, width }) => {
 
             <div className="pt-8 grid grid-cols-3 gap-5 justify-between">
                 <div className="text-center">
-                  <img src={getImageSvg("builder_3")}  className='size-20 justify-self-center' loading='lazy' alt={`building icon`} title={`icon of building`} />
+                  <img src={getImageSvg("builder_3")}  className='size-20 justify-self-center' 
+                       loading='lazy' alt={`building icon`} title={`icon of building`}
+                       onContextMenu={(e) => e.preventDefault()}
+                       draggable={false}
+                  />
                   <div className="">
                     <span className="font-semibold">100+</span>
                     <span> Built</span>

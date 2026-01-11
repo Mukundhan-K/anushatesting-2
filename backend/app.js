@@ -13,6 +13,7 @@ const authRoutes = require(path.join(__dirname,"routes","authRoutes"));
 const projectRoutes = require(path.join(__dirname,"routes","projectRoutes"));
 const shopRoutes = require(path.join(__dirname,"routes","shopRoutes"));
 const contactRoutes = require(path.join(__dirname,"routes","contactRoutes"));
+const adminRoutes = require(path.join(__dirname,"routes","adminRoutes"));
 
 const {errorHandler, throwError} = require(path.join(__dirname,"middleware","errorMiddleware.js"));
 
@@ -197,14 +198,18 @@ app.use((req, res, next) => {
     //  auth ---------------------------------
     app.use("/api/auth", authRoutes);
 
-    //  project ---------------------------------
-    app.use("/api/project", projectRoutes);
-
     //  shop ---------------------------------
     app.use("/api/shop", shopRoutes);
 
     //  mail ---------------------------------
     app.use("/api/contact", contactRoutes);
+
+    //  project ---------------------------------
+    app.use("/api/project", projectRoutes);
+
+    //  analytics ---------------------------------
+    app.use("/api/analytics", adminRoutes);
+
 
     //  Cache-Control ---------------------------------
     app.use((req, res, next) => {

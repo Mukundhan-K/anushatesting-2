@@ -70,13 +70,22 @@ const Hero = () => {
 
                       <div className='flex items-center gap-5'>
                           <div className="img-pill border border-white">
-                              <img src={getImagewebp("hero-pill-1")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`}  />
+                              <img src={getImagewebp("hero-pill-1")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`} 
+                                onContextMenu={(e) => e.preventDefault()}
+                                draggable={false}
+                              />
                           </div>
                           <div className="img-pill hidden sm:inline-block border border-white">
-                              <img src={getImagewebp("hero-pill-2")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`}  />
+                              <img src={getImagewebp("hero-pill-2")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`} 
+                                onContextMenu={(e) => e.preventDefault()}
+                                draggable={false}
+                              />
                           </div>
                           <div className="img-pill hidden sm:inline-block border border-white">  
-                              <img src={getImagewebp("hero-pill-3")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`}  />
+                              <img src={getImagewebp("hero-pill-3")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`} 
+                                onContextMenu={(e) => e.preventDefault()}
+                                draggable={false}
+                              />
                           </div>
                       </div>
                   </div>

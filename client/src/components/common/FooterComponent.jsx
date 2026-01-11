@@ -16,7 +16,11 @@ const FooterComponent = () => {
 
             <div className='col-span-12 xl:col-span-3 w-full xl:pr-4 pb-4 mb-4 md:pb-8 md:mb-8 xl:pb-0 xl:mb-0 border-b border-b-gray-300 xl:border-b-0 xl:border-r xl:border-r-gray-300  flex flex-col justify-between gap-5'>
                 <div className='w-50 xl:w-4/5'>
-                    <img src={getImagewebp("logo")} className='' loading='lazy' alt={`anusha structures logo`} title={`logo of anusha structures`} />
+                    <img src={getImagewebp("logo")} className='' loading='lazy' alt={`anusha structures logo`}
+                     title={`logo of anusha structures`}
+                     onContextMenu={(e) => e.preventDefault()}
+                     draggable={false}
+                    />
                 </div>
 
                 <p className='text-xl text-gray-500 leading-8'>Every brick we lay is a promise of trust, quality, and a future built to last. Because Your vision is our blueprint. Your trust is our foundation</p>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers, changeRole, verifyUser, deleteUser, deleteUnverifiedUser } from "../../redux/adminuserSlice";
 import { toast } from "sonner";
 
-export default function AdminUsers({setViewAdminUsers}) {
+export default function AdminUsers() {
   // const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(true);
   const fetchedRef = useRef(false);
@@ -24,7 +24,7 @@ export default function AdminUsers({setViewAdminUsers}) {
         }
         if (data?.success) {
           setLoading(false);
-          toast.success(`${data ?.message}`);
+          toast.success(`${data?.message}`);
           return { success: true };
         };
         setLoading(false);
@@ -170,18 +170,12 @@ export default function AdminUsers({setViewAdminUsers}) {
       <h1 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 flex justify-between">
         User Management
 
-        <div className="flex gap-5">
           <button
             className="px-4 py-1 bg-red-600 text-base! text-white rounded-lg"
             onClick={unverifiedUserDelete}
             >
             Delete unverified Users
           </button>
-
-          <button onClick={()=>setViewAdminUsers(()=>false)}>
-              <img src={getImageSvg("cancel")} className='size-7' loading='lazy' alt={`cancel icon`} title={`cancel icon`}  />
-          </button>
-        </div>
       </h1>
 
       {/* ================= DESKTOP TABLE ================= */}

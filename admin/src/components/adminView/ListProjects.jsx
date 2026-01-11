@@ -21,7 +21,7 @@ const List = () => {
         console.log("list all projs : ", data);
 
         if (data?.success) {
-          toast.success(`${data ?.message}`);
+          toast.success(`${data?.message}`);
           return { success: true };
         };
 

@@ -1,5 +1,6 @@
 const path = require("path");
 const userDb = require(path.join(__dirname, "..", "model", "user.js"));
+const loginLog = require(path.join(__dirname, "..", "model", "loginLog.js"));
 const {throwError} = require(path.join(__dirname, "..", "middleware", "errorMiddleware.js"))
 const {generateToken, createSignupToken, verifyToken} = require(path.join(__dirname, "..","config","generateToken.js"));
 const crypto = require("crypto");
@@ -198,6 +199,14 @@ async function loginUser(req, res, next) {
       if (!userAvail.isVerified) {
         return throwError("Please verify your email first", 401);
       };
+
+      // AFTER successful login
+      await loginLog.create({
+        userId: userAvail._id,
+        email: userAvail.email,
+        ip: req.ip,
+        userAgent: req.headers["user-agent"]
+      });
 
         // ✅ SUCCESS - Reset brute force counter for this email+IP
         // This prevents legitimate users from being locked out

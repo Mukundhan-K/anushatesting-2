@@ -50,7 +50,11 @@ const AboutUs = ({setOpenPop}) => {
           <div className='border border-gray-400 rounded-3xl p-8 flex flex-col gap-5'>
             <div className='border-b-2 border-gray-300 pb-5'>
                 <div className='size-24 aspect-square bg-gray-300 rounded-full grid place-items-center'>
-                    <img src={getImageSvg("quality")}className='size-16' loading='lazy' alt={`quality icon`} title={`icon of quality`} />
+                    <img src={getImageSvg("quality")}className='size-16' loading='lazy' alt={`quality icon`}
+                     title={`icon of quality`}
+                     onContextMenu={(e) => e.preventDefault()}
+                      draggable={false}
+                    />
                 </div>
             </div>
             <h3 className='text-3xl'>High quality</h3>
@@ -60,7 +64,11 @@ const AboutUs = ({setOpenPop}) => {
           <div className='border border-gray-400 rounded-3xl p-8 flex flex-col gap-5'>
             <div className='border-b-2 border-gray-300 pb-5'>
                 <div className='size-24 aspect-square bg-gray-300 rounded-full grid place-items-center'>
-                    <img src={getImageSvg("quality")} className='size-16' loading="lazy"  alt={`quality icon`} title={`icon of quality`} />
+                    <img src={getImageSvg("quality")} className='size-16' loading="lazy" alt={`quality icon`}
+                     title={`icon of quality`}
+                     onContextMenu={(e) => e.preventDefault()}
+                      draggable={false}
+                    />
                 </div>
             </div>
             <h3 className='text-3xl'>Innovation</h3>
@@ -70,7 +78,11 @@ const AboutUs = ({setOpenPop}) => {
           <div className='border border-gray-400 rounded-3xl p-8 flex flex-col gap-5'>
             <div className='border-b-2 border-gray-300 pb-5'>
                 <div className='size-24 aspect-square bg-gray-300 rounded-full grid place-items-center'>
-                    <img src={getImageSvg("quality")} className='size-16' loading="lazy" alt={`quality icon`} title={`icon of quality`} />
+                    <img src={getImageSvg("quality")} className='size-16' loading="lazy" alt={`quality icon`}
+                     title={`icon of quality`}
+                      onContextMenu={(e) => e.preventDefault()}
+                      draggable={false}
+                    />
                 </div>
             </div>
             <h3 className='text-3xl'>Free Consultation</h3>
@@ -80,7 +92,11 @@ const AboutUs = ({setOpenPop}) => {
           <div className='border border-gray-400 rounded-3xl p-8 flex flex-col gap-5'>
             <div className='border-b-2 border-gray-300 pb-5'>
                 <div className='size-24 aspect-square bg-gray-300 rounded-full grid place-items-center'>
-                    <img src={getImageSvg("quality")} className='size-16' loading="lazy" alt={`quality icon`} title={`icon of quality`} />
+                    <img src={getImageSvg("quality")} className='size-16' loading="lazy" alt={`quality icon`}
+                     title={`icon of quality`}
+                      onContextMenu={(e) => e.preventDefault()}
+                      draggable={false}
+                    />
                 </div>
             </div>
             <h3 className='text-3xl'>Timeline</h3>

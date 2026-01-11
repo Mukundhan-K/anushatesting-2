@@ -14,9 +14,12 @@ import CheckAuth from './components/common/CheckAuth';
 import AdminDashBoard from "./components/adminView/DashBoard";
 import AddProjects from "./components/adminView/AddProjects";
 import ViewProjects from "./components/adminView/ViewProjects";
+import ListProjects from "./components/adminView/ListProjects";
+import AdminUsers from './components/adminView/AdminUsers';
+import AdminLogUsers from './components/adminView/AdminLogUsers';
+
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
 import { checkUser } from './redux/authSlice';
 import Loader from "./components/common/Loader";
 import ChangeMyPass from './pages/ChangeMyPass';
@@ -104,8 +107,11 @@ function App() {
             <Route index element={<AdminDashBoard />}></Route>
             <Route path='dashboard' element={<AdminDashBoard />}></Route>
             <Route path='addproject' element={<AddProjects />}></Route>
+            <Route path='viewprojects' element={<ListProjects />}></Route>
             <Route path='viewprojects/:id' element={<ViewProjects />}></Route>
             <Route path='adduser' element={<AdminDashBoard />}></Route>
+            <Route path='listuser' element={<AdminUsers />}></Route>
+            <Route path='loguser' element={<AdminLogUsers />}></Route>
           </Route>
 
 
