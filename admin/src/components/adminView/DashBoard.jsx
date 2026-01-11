@@ -4,18 +4,13 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchAllProjects } from "../../redux/adminSlice";
-import UserLog from '../charts/UserLog';
-import ProjectLog from '../charts/ProjectLog';
+import UserLog from '../charts/UserLog.jsx';
+import ProjectLog from '../charts/ProjectLog.jsx';
 import RoleLog from '../charts/RoleLog';
 
 const DashBoard = () => {
 
   const navigate = useNavigate();
-
-  const {userList:users} = useSelector((state)=>(state.adminUserReducer));
-  const {productList:projList} = useSelector((state)=>(state.adminProductReducer));
-
 
   return (
     <div>
