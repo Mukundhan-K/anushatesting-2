@@ -45,14 +45,16 @@ function ProjectLog() {
 
   return (<>
     <BarChart
-        labels={["Total", "Completed", "Under Cons"]}
-        values={[totalProjects, completedProjects, underConstruction]}
-        label="Project Stats"
-        backgroundColors={[
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(255, 99, 132, 0.7)",
-            "rgba(120, 139, 132, 0.7)",
-          ]}    />
+      chartId="chart2" 
+      labels={["Total", "Completed", "Under Cons"]}
+      values={[totalProjects, completedProjects, underConstruction]}
+      label="Project Stats"
+      backgroundColors={[
+          "rgba(75, 192, 192, 0.7)",
+          "rgba(255, 99, 132, 0.7)",
+          "rgba(120, 139, 132, 0.7)",
+        ]}
+    />
   </>);
 };
 

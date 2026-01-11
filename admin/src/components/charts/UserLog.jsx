@@ -45,13 +45,15 @@ function UserLog() {
 
   return (<>
     <BarChart
-        labels={["Total Logins", "Unique Users"]}
-        values={[totalLogins, uniqueUserCount]}
-        label="Login Stats"
-        backgroundColors={[
-            "rgba(75, 192, 192, 0.7)",
-            "rgba(255, 99, 132, 0.7)",
-          ]}    />
+      chartId="chart2" 
+      labels={["Total Logins", "Unique Users"]}
+      values={[totalLogins, uniqueUserCount]}
+      label="Login Stats"
+      backgroundColors={[
+        "rgba(75, 192, 192, 0.7)",
+        "rgba(255, 99, 132, 0.7)",
+      ]}
+    />
   </>);
 };
 

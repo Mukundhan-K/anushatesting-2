@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useMemo} from "react";
+import { pickOneFromEachPalette, applyGradients} from "../charts/theme"
 
 import {
   Chart as ChartJS,
@@ -7,7 +8,7 @@ import {
   LinearScale,
   Tooltip,
   Legend
-} from "chart.js/auto";
+} from "chart.js";
 
 import { Bar } from "react-chartjs-2";
 
@@ -20,25 +21,32 @@ ChartJS.register(
 );
 
 function BarChart({
-  labels,
-  values,
+  labels = [],
+  values = [],
   label = "Data",
   backgroundColors = [],
   borderRadius = 8,
   barThickness = 40
 }) {
 
+  const colors = useMemo(
+    () => pickOneFromEachPalette(values.length),
+    [values.length]
+  );
+  console.log("col : ", colors);
+
   const data = {
     labels,
     datasets: [
       {
-        label,
         data: values,
-        backgroundColor:
-          backgroundColors.length ? backgroundColors : "rgba(54,162,235,0.6)",
-        borderWidth: 1,
-        borderRadius,
-        barThickness,
+        backgroundColor: colors, // temporary, replaced by gradients
+        borderRadius: 12,
+        barThickness: 44,
+        label,
+      // backgroundColor:
+      //   backgroundColors.length ? backgroundColors : "rgba(54,162,235,0.6)",
+      // borderWidth: 1,
       },
     ],
   };
@@ -47,6 +55,15 @@ function BarChart({
     responsive: true,
     plugins: {
       // legend: { display: false },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { stepSize: 1, precision: 0 },
+      },
+    },
+    onResize: (chart) => {
+      applyGradients(chart, colors);
     },
   };
 

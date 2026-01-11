@@ -22,7 +22,7 @@ const List = ({data}) => {
               </div>
             </>)
             : (data.map(({_id:id,images, location, title, status}) => (
-                <ProjectCard id={id} images={images[0]} location={location} title={title} status={status}  />
+                <ProjectCard key={id} id={id} images={images[0]} location={location} title={title} status={status}  />
             )))
             }
 
