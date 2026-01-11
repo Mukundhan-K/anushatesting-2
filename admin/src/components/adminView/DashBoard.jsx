@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchAllProjects } from "../../redux/adminSlice";
-import UserLog from '../charts/userLog';
+import UserLog from '../charts/UserLog';
 import ProjectLog from '../charts/ProjectLog';
 import RoleLog from '../charts/RoleLog';
 
