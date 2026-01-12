@@ -33,6 +33,8 @@ function App() {
   const dispatch = useDispatch();
   const {isLoading} = useSelector((state)=>state.adminProductReducer);
   const {authChecked, isLoading:loading, isAuthenticated, user} = useSelector((state)=>state.authReducer);
+  const {isLoading:isLoad1} = useSelector((state)=>state.adminUserReducer);
+  const {isLoading:isLoad2} = useSelector((state)=>state.analyticReducer);
 
   console.log("user : ", isAuthenticated, user);
 
@@ -54,7 +56,7 @@ function App() {
 
 
   // ⏳ loader......
-    if (isLoading || loading) return <Loader />;
+    if (isLoading || loading || isLoad1 || isLoad2) return <Loader />;
 
   return (
     <>

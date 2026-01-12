@@ -127,7 +127,7 @@ const adminUserSlice = createSlice({
 
         .addCase(changeRole.pending, (state)=>{
             state.isLoading = true;
-        }).addCase(changeRole.fulfilled, (state, action)=>{
+        }).addCase(changeRole.fulfilled, (state)=>{
             state.isLoading = false;
         }).addCase(changeRole.rejected, (state)=>{
             state.isLoading = false;
@@ -135,15 +135,23 @@ const adminUserSlice = createSlice({
 
         .addCase(verifyUser.pending, (state)=>{
             state.isLoading = true;
-        }).addCase(verifyUser.fulfilled, (state, action)=>{
+        }).addCase(verifyUser.fulfilled, (state)=>{
             state.isLoading = false;
         }).addCase(verifyUser.rejected, (state)=>{
             state.isLoading = false;
         })
 
+        .addCase(deleteUser.pending, (state)=>{
+            state.isLoading = true;
+        }).addCase(deleteUser.fulfilled, (state)=>{
+            state.isLoading = false;
+        }).addCase(deleteUser.rejected, (state)=>{
+            state.isLoading = false;
+        })
+
         .addCase(deleteUnverifiedUser.pending, (state)=>{
             state.isLoading = true;
-        }).addCase(deleteUnverifiedUser.fulfilled, (state, action)=>{
+        }).addCase(deleteUnverifiedUser.fulfilled, (state)=>{
             state.isLoading = false;
         }).addCase(deleteUnverifiedUser.rejected, (state)=>{
             state.isLoading = false;

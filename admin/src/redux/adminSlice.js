@@ -142,6 +142,14 @@ const adminProductSlice = createSlice({
             state.isLoading = false;
         })
 
+        .addCase(editProject.pending, (state)=>{
+            state.isLoading = true;
+        }).addCase(editProject.fulfilled, (state)=>{
+            state.isLoading = false;
+        }).addCase(editProject.rejected, (state)=>{
+            state.isLoading = false;
+        })
+
     }
 });
 
