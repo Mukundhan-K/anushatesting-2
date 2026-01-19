@@ -53,13 +53,13 @@ async function createUser(req,res,next) {
       const verifyUrl = `${process.env?.ADMIN_URL}/verify-email/${token}`;
       const message = `
         <h3>User verification Mail</h3>
-        <p>Click the link below to verify your Email:</p>
+        <p>Click the link below to verify the user via Email:</p>
         <a href="${verifyUrl}" target="_blank">${verifyUrl}</a>
         <p>This link expires in 15 minutes.</p>
       `;
 
     await sendNormalMail({
-      email : email,
+      email : process.env.MAIL_USER,
       subject: "User verification Mail",
       html: message
     });
