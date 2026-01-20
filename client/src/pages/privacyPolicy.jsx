@@ -2,8 +2,8 @@ import React from 'react';
 
 const PrivacyPolicy = () => {
   const lastUpdated = "October 26, 2025"; // **IMPORTANT: Update the date**
-  const companyName = "Anusha Structures";
-  const companyAddress = "No:58 A,Madison Street,El paso, texus, USA"; // **IMPORTANT: Update address**
+  const companyName = "Anusha Structures pvt ltd.";
+  const companyAddress = "Chennai, India"; // **IMPORTANT: Update address**
   const contactEmail = "anushastructures02@gmail.com"; // **IMPORTANT: Update email**
 
   const PolicySection = ({ title, children, id }) => (
