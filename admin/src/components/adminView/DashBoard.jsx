@@ -11,13 +11,14 @@ import RoleLog from '../charts/RoleLog';
 const DashBoard = () => {
 
   const navigate = useNavigate();
+  const {user} = useSelector((state)=>(state.authReducer));
 
   return (
     <div>
       <div className='py-10'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
 
-          <div className='border rounded-xl p-5 flex flex-col gap-4'>
+          {(user?.role == "admin") && <div className='border rounded-xl p-5 flex flex-col gap-4'>
 
             <RoleLog />
             <div>
@@ -27,7 +28,7 @@ const DashBoard = () => {
                 View All
               </button>
             </div>
-          </div>
+          </div>}
 
           <div className='border rounded-xl p-5 flex flex-col justify-center gap-4'>
             

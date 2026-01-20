@@ -21,11 +21,11 @@ export default function AdminUsers() {
         if (!users?.length) {
           setLoading(true);
           data = await dispatch(fetchAllUsers()).unwrap();
-        }
-        if (data?.success) {
-          setLoading(false);
-          toast.success(`${data?.message}`);
-          return { success: true };
+          if (data?.success) {
+            setLoading(false);
+            toast.success(`${data?.message}`);
+            return { success: true };
+          };
         };
         setLoading(false);
         toast.error("Failed", {
@@ -47,9 +47,9 @@ export default function AdminUsers() {
   const changeUserRole = async (id, role)=>{
     try {
       const data = await dispatch(changeRole({id,role})).unwrap();
-      console.log("list all projs : ", data);
+      console.log("list all projs : ", data, data.success);
       if (data?.success) {
-        toast.success(`${data ?.message}`);
+        toast.success(`${data?.message}`);
         dispatch(fetchAllUsers()).unwrap()
         return { success: true };
       };
@@ -70,11 +70,16 @@ export default function AdminUsers() {
   
   const userVerification = async (id)=>{
     try {
+       const confirmed = window.confirm(
+        'Are you sure to verify this user?'
+      );
+      if (!confirmed) return;
+
       const data = await dispatch(verifyUser(id)).unwrap();
       console.log("list all projs : ", data);
 
       if (data?.success) {
-        toast.success(`${data ?.message}`);
+        toast.success(`${data?.message}`);
         dispatch(fetchAllUsers()).unwrap()
         return { success: true };
       };
@@ -105,7 +110,7 @@ export default function AdminUsers() {
       console.log("list all projs : ", data);
 
       if (data?.success) {
-        toast.success(`${data ?.message}`);
+        toast.success(`${data?.message}`);
         dispatch(fetchAllUsers()).unwrap()
         return { success: true };
       };
@@ -136,7 +141,7 @@ export default function AdminUsers() {
       console.log("list all projs : ", data);
 
       if (data?.success) {
-        toast.success(`${data ?.message}`);
+        toast.success(`${data?.message}`);
         dispatch(fetchAllUsers()).unwrap()
         return { success: true };
       };

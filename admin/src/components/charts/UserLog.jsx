@@ -14,17 +14,20 @@ function UserLog() {
 
   const fetchLoginLog = useCallback(async ()=>{
     try {
-      const data = await dispatch(fetchLoginLogs()).unwrap();
-      // console.log("list logged users : ", data);
-      if (data?.success) {
-        toast.success(`${data?.message}`);
-        return { success: true };
-      };
-      toast.error("Failed", {
-        description: data?.message || "Something went wrong",
-      });
+      let data = null;
+      if (uniqueUserCount === null || totalLogins === null) {
+        data = await dispatch(fetchLoginLogs()).unwrap();
+        // console.log("list logged users : ", data);
+        if (data?.success) {
+          toast.success(`${data?.message}`);
+          return { success: true };
+        };
+        toast.error("Failed", {
+          description: data?.message || "Something went wrong",
+        });
+      }
+     
       return { success: false };
-      
     } catch (error) {
         console.error(error.message);
         toast.error("Failed", {
@@ -33,7 +36,6 @@ function UserLog() {
         return { success: false };
     };
   }, [dispatch]);
-  // }, [dispatch, prodList?.length]);
 
   useEffect(() => {
     if (fetchLoginLogRef.current) return;

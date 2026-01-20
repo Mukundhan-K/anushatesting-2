@@ -80,10 +80,7 @@ function LineChart({
         ticks: { stepSize: 1, precision: 0 },
         grid: { color: "#e5e7eb" }
       },
-    },
-    onResize: (chart) => {
-      applyGradients(chart, mainLineColor);
-    },
+    }
   };
 
   return <Line data={data}  options={options} />;

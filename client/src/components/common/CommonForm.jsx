@@ -78,7 +78,7 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
       );
       console.log(response);
       if (response?.data?.success) {
-        toast.success(`${response?.data ?.message}`);
+        toast.success(`${response?.data?.message}`);
 
         setResult(response?.data.success ? "Success" : "Error");
         setTimeout(() => {

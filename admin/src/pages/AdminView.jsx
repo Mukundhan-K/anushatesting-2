@@ -21,7 +21,7 @@ console.log(user,isAuthenticated);
     {name : "View Projects", link:"/admin/viewprojects"},
     {name : "Add Project", link:"/admin/addproject"},
     {name : "Add User", link:"/admin/adduser"},
-    {name : "User List", link:"/admin/listuser"},
+    {name : "User List", link:"/admin/listuser", role:"admin"},
     {name : "User Log", link:"/admin/loguser"}
   ];
 
@@ -98,14 +98,23 @@ console.log(user,isAuthenticated);
           <div className='h-full w-[200px] border-r border-gray-500'>
 
             <div className='py-5 grid'>
-              {adminBarContent.map((link)=>(
-                <NavLink key={link.name} to={link.link} 
+              {adminBarContent.map((link)=>{                
+                if ((link?.role) && (link?.role != user?.role)) {
+                  return <NavLink key={link.name} 
+                    className={`capitalize px-10 py-3 border-b border-gray-500 self-center`}
+                    onClick={()=>toast.error("admin access only")}
+                  >
+                    <span>❌ </span><button>{link.name}</button>
+                  </NavLink>
+                }
+                return (<NavLink key={link.name} to={link.link} 
                   className={`capitalize px-10 py-3 border-b border-gray-500 self-center`}
                   onClick={()=>setOpenAdminSidebar(()=>false)}
                 >
                   <button>{link.name}</button>
-                </NavLink>
-              ))}
+                </NavLink>)
+              }
+              )}
             </div>
 
           </div>

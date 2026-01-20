@@ -17,8 +17,8 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
 
   function formDataHandler(e) {
     const {name, value} = e.target;
-    console.log(name , value);
-    console.log(formData);
+    // console.log(name , value);
+    // console.log(formData);
     setFormData((prevData)=>(
       {...prevData, [name] : value}
     ));
@@ -50,7 +50,7 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
       );
       console.log(response);
       if (response?.data?.success) {
-        toast.success(`${response?.data ?.message}`);
+        toast.success(`${response?.data?.message}`);
 
         setResult(response?.data.success ? "Success" : "Error");
         setTimeout(() => {

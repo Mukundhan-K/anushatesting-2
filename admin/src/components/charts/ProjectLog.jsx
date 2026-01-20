@@ -14,15 +14,18 @@ function ProjectLog() {
 
   const fetchLoginLog = useCallback(async ()=>{
     try {
-      const data = await dispatch(fetchProjectStats()).unwrap();
-      // console.log("list logged users : ", data);
-      if (data?.success) {
-        toast.success(`${data?.message}`);
-        return { success: true };
+      let data = null;
+      if (completedProjects === null || totalProjects === null) {
+        data = await dispatch(fetchProjectStats()).unwrap();
+        // console.log("list logged users : ", data);
+        if (data?.success) {
+          toast.success(`${data?.message}`);
+          return { success: true };
+        };
+        toast.error("Failed", {
+          description: data?.message || "Something went wrong",
+        });
       };
-      toast.error("Failed", {
-        description: data?.message || "Something went wrong",
-      });
       return { success: false };
       
     } catch (error) {

@@ -14,15 +14,18 @@ function RoleLog() {
 
   const fetchLoginLog = useCallback(async ()=>{
     try {
-      const data = await dispatch(fetchUSerStats()).unwrap();
-      // console.log("list logged users : ", data);
-      if (data?.success) {
-        toast.success(`${data?.message}`);
-        return { success: true };
+      let data = null;
+      if (totalUsers === null || adminsNo === null || verifiedUsers === null) {
+        data = await dispatch(fetchUSerStats()).unwrap();
+        // console.log("list logged users : ", data);
+        if (data?.success) {
+          toast.success(`${data?.message}`);
+          return { success: true };
+        };
+        toast.error("Failed", {
+          description: data?.message || "Something went wrong",
+        });
       };
-      toast.error("Failed", {
-        description: data?.message || "Something went wrong",
-      });
       return { success: false };
       
     } catch (error) {

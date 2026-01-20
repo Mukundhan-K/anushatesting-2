@@ -27,7 +27,7 @@ export const PALETTES = [
 
 function shuffle(arr) {
   const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
+  for (let i = a?.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
   }
@@ -36,7 +36,7 @@ function shuffle(arr) {
 
 export function pickOneFromEachPalette(count) {
   const shuffledPalettes = shuffle(PALETTES);
-  return shuffledPalettes.slice(0, count).map(p => {
+  return shuffledPalettes?.slice(0, count).map(p => {
     return p[Math.floor(Math.random() * p.length)];
   });
 }
@@ -46,7 +46,7 @@ export function applyGradients(chart, colors) {
   if (!chartArea) return;
 
   const gradients = colors?.map(color => {
-    const g = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+    const g = ctx.createLinearGradient(0, chartArea?.top, 0, chartArea?.bottom);
     g.addColorStop(0, color + "DD");
     g.addColorStop(1, color + "22");
     return g;

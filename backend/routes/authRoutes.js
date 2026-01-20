@@ -74,15 +74,15 @@ router.get("/logout", logoutUser);
 
 // logout user
 // api - /api/auth/deleteUser
-router.delete("/deleteUser/:id", contactLimiter, slowDownLimiter, authMiddleware, verifyAdminUser, deleteUser);
+router.delete("/deleteUser/:id", slowDownLimiter, authMiddleware, contactLimiter, verifyAdminUser, deleteUser);
 
 // logout user
 // api - /api/auth/deleteUser
-router.delete("/delete-unverified-users", contactLimiter, slowDownLimiter, authMiddleware, verifyAdminUser, deleteUnverifiedUsers);
+router.delete("/delete-unverified-users", slowDownLimiter, authMiddleware, contactLimiter, verifyAdminUser, deleteUnverifiedUsers);
 
 // auth user
 // api - /api/auth/auth
-router.get("/admin", contactLimiter, authMiddleware, authUser);
+router.get("/admin", authMiddleware, contactLimiter, authUser);
 
 // forgot password
 // api - /api/auth/forgotPassword

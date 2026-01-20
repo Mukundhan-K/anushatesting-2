@@ -3,17 +3,17 @@ import Api from "../utility/index";
 
 const initialState = {
     isLoading : false,
-    totalLogins : 0,
-    uniqueUserCount : 0,
-    underConstruction : 0,
-    completedProjects : 0,
-    totalProjects : 0,
-    totalUsers : 0,
-    adminsNo : 0,
-    normalUsers : 0,
-    editorUsers : 0,
-    verifiedUsers : 0,
-    unverifiedUsers : 0,
+    totalLogins : null,
+    uniqueUserCount : null,
+    underConstruction : null,
+    completedProjects : null,
+    totalProjects : null,
+    totalUsers : null,
+    adminsNo : null,
+    normalUsers : null,
+    editorUsers : null,
+    verifiedUsers : null,
+    unverifiedUsers : null,
     logUserList : []
 };
 
