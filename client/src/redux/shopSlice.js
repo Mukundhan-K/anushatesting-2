@@ -70,12 +70,12 @@ const shopProductSlice = createSlice({
         })
 
         .addCase(viewProject.pending, (state)=>{
-            state.isLoading = true;
+            // state.isLoading = true;
         }).addCase(viewProject.fulfilled, (state, action)=>{
-            state.isLoading = false;
+            // state.isLoading = false;
             state.projectDetail = (action?.payload?.success) ? action.payload?.project : null;
         }).addCase(viewProject.rejected, (state)=>{
-            state.isLoading = false;
+            // state.isLoading = false;
             state.projectDetail = null;
         })
     }

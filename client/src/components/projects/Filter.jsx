@@ -28,6 +28,9 @@ const Filter = ({selcValue, setSelcValue}) => {
             {val:'Industrial', text: "Industrial"},
             {val:'Office', text: "Office"},
             {val:'Residential', text: "Residential"},
+            {val:'Hospital', text: "Hospital"},
+            {val:'Commercial', text: "Commercial"},
+            {val:'Institutional', text: "Institutional"},
             {val:'Villa', text: "Villa"},
         ],
       },
@@ -150,7 +153,7 @@ const Filter = ({selcValue, setSelcValue}) => {
               className='w-full border border-gray-400 px-4 py-2.5 bg-white rounded-2xl focus-within:border-blue-500 focus-within:bg-blue-50'>
                 {(control?.options && control.options.length > 0) ?
                   control.options.map((option)=>(
-                  <option key={option.val} value={option.val}>{option.text}</option>)
+                  <option key={option.text} value={option.val}>{option.text}</option>)
                 )
                 : null
               }

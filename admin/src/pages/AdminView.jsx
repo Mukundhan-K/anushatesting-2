@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Outlet } from "react-router-dom";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 import { getImageSvg, getImagewebp } from '../utility/getImage';
@@ -10,10 +10,11 @@ import Api from '../utility';
 import { toast } from 'sonner';
 
 const AdminView = ({}) => {
-
+  
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {user,isAuthenticated } = useSelector((state)=>state.authReducer);
-console.log(user,isAuthenticated);
+  console.log(user,isAuthenticated);
 
 
   const adminBarContent = [
@@ -76,6 +77,9 @@ console.log(user,isAuthenticated);
                 </div>
                   <div>Name : {user.userName}</div>
                   <div>Role : {user.role}</div>
+                  <div className='text-red-600 cursor-pointer' onClick={()=>navigate("/changemypass")}>
+                    Change Password
+                  </div>
                   <div className='pt-5 flex justify-center'>
                     <Button text='Logout' btnonclick={handleLogout} />
                   </div>

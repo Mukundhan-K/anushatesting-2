@@ -108,6 +108,9 @@ export const addProductFormElements = [
       {id:'Industrial', name: "Industrial"},
       {id:'Office', name: "Office"},
       {id:'Residential', name: "Residential"},
+      {id:'Hospital', name: "Hospital"},
+      {id:'Commercial', name: "Commercial"},
+      {id:'Institutional', name: "Institutional"},
       {id:'Villa', name: "Villa"}
     ],
   },

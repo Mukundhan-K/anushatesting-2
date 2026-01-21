@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -17,23 +17,38 @@ const ProjectView = () => {
   const {projectDetail:projData, loading} = useSelector((state)=>state.shopProductReducer);
 
   const [prodImg, setProdImg] = useState("");
+  const fetchedRef = useRef(false);
 
+   const getProject = useCallback(async() => {
+     try {
+      const data = await dispatch(viewProject(projId)).unwrap();
+      if (data?.success  && data?.project?.images?.length) {
+        setProdImg(data.project.images?.[0] || ""); // first image
+        console.log("proj cr : ",data);
+        return { success: true };
+      };
+
+      toast.error("Failed", {
+        description: data?.message || "Something went wrong",
+      });
+      return { success: false };
+      } catch (error) {
+          console.error(error);
+          toast.error("Failed", {
+            description: error?.message || "Network error",
+          });
+          return { success: false };
+      };
+   }
+   ,[projId])
 
   useEffect(() => {
-    if (!projId) return;
-    
-    dispatch(viewProject(projId)).unwrap()
-      .then((res) => {
-        console.log("ersp : ",res);
-        
-        if (res?.success && res?.project?.images?.length) {
-          setProdImg(res.project.images?.[0] || ""); // first image
-        }
-      })
-      .catch((err) => {
-        toast.error("Failed to load project");
-        console.error(err);
-      });
+    if (!projId || fetchedRef.current) return;
+     fetchedRef.current = true;
+
+     console.log("called", projId);
+     getProject();
+     
   }, [projId, dispatch]);
 
   if (loading || !projData?._id) {
@@ -124,7 +139,7 @@ const ProjectView = () => {
           </div>
 
           <div className='h-[330px] md:h-[630px] overflow-hidden w-full'>
-            <img src={prodImg} className="h-full w-full object-cover object-center block rounded-3xl"  loading='lazy' alt={`Main project image - anusha structures`} title={`Main project image - anusha structures`}  />
+            {prodImg && <img src={prodImg} className="h-full w-full object-cover object-center block rounded-3xl"  loading='lazy' alt={`Main project image - anusha structures`} title={`Main project image - anusha structures`}  />}
           </div>
         </div>
 
