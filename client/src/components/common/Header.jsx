@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // utils
@@ -48,7 +48,7 @@ const Header = () => {
         {/* RIGHT SIDE — Social Icons + Logo */}
         <div className="flex items-center gap-2">
           {/* Social Icons */}
-          <a href="#" target='_blank' className="group" aria-label="facebook">
+          <a href="https://www.facebook.com/profile.php?id=61586192982422" target='_blank' className="group" aria-label="facebook">
             <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24" className='group-hover:fill-a-royalsafforn'>
               <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0022 12z"/>
             </svg>
@@ -123,4 +123,4 @@ const Header = () => {
   </>);
 };
 
-export default Header;
+export default memo(Header);

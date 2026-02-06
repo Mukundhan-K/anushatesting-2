@@ -19,3 +19,8 @@ export const getImageSvg = (pathURL) => {
   const cleanPath = pathURL.replace(/^\/+/, '');
   return `/svg/${cleanPath}.svg`;
 };
+
+export const getPDF = (pathURL) => {
+  const cleanPath = pathURL.replace(/^\/+/, '');
+  return `/src/assets/docs-pdf/${cleanPath}`;
+};

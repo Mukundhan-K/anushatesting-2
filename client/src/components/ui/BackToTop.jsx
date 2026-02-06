@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Popup from '../common/Popup';
 import { getImageSvg } from '../../utility/getImage';
@@ -18,17 +18,21 @@ const BackToTopButton = ({openPop, setOpenPop}) => {
     }
   };
 
-  // Scroll to top function
-  const scrollToTop = () => {
+   // Scroll to top function
+  const scrollToTop = useCallback(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-  };
+  }, []);
 
-   const handleButtonClick = () => {
-    window.location.href = 'https://api.whatsapp.com/send?phone=7695950724&text=Hi!%20Can%20I%20get%20more%20information%20on%20Construction'; // Redirect to an external URL
-  };
+  const handleButtonClick = useCallback(() => {
+    window.open( // Redirect to an external URL
+      'https://api.whatsapp.com/send?phone=7695950724&text=Hi!%20Can%20I%20get%20more%20information%20on%20Construction', 
+      '_blank', 
+      'noopener,noreferrer'
+    )
+  }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', toggleVisibility);

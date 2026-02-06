@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {memo} from 'react';
 import FooterComponent from './FooterComponent';
 
 import { useLocation } from "react-router-dom";
+import { getPDF } from '../../utility/getImage';
 
 const Footer = () => {
   
   const location = useLocation();
-  
 
   return (<>
 
@@ -22,10 +22,14 @@ const Footer = () => {
           <p className="lg:max-w-2xl pb-2 text-center text-2xl leading-8 text-white">We don’t just construct spaces 🏠. we create destinations where dreams live 👨‍👩‍👧‍👦.</p>
         </div>
 
-        <div className='flex justify-center lg:-mb-42'>
-          <div className='bg-a-royalsafforn size-40 lg:size-52 p-8 text-center aspect-square rounded-full text-2xl lg:text-3xl text-white font-bold grid place-items-center'>
-            Get your free Quote
-          </div>
+        <div className='flex justify-center lg:-mb-42 relative z-[5]'>
+
+          <a href={getPDF("anusha-broucher-demo.pdf")} target='_blank'
+            className='bg-a-royalsafforn size-40 lg:size-52 p-4 text-center aspect-square rounded-full text-2xl lg:text-3xl text-white font-bold grid place-items-center'
+          >
+            Download our brochure
+          </a>
+
         </div>
 
         <div className='text-center overflow-hidden -mb-5 xsl:-mb-12 lg:-mb-28'>
@@ -40,4 +44,4 @@ const Footer = () => {
   </>);
 };
 
-export default Footer;
+export default memo(Footer);

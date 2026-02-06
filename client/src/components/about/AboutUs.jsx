@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 import ButtonArrow from "../ui/ButtonArrow";
 import Marquee from "../ui/marquee";
@@ -116,4 +116,4 @@ const AboutUs = ({setOpenPop}) => {
   </>);
 };
 
-export default AboutUs;
+export default memo(AboutUs);
