@@ -1,6 +1,5 @@
 import { useState, useEffect, Suspense, lazy} from 'react';
 import './App.css';
-import 'react-photo-view/dist/react-photo-view.css';
 
 // packages
 import { toast, Toaster } from 'sonner';
@@ -8,25 +7,21 @@ import {Routes, Route, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 // pages
-import PagenotFound from "./pages/common/404";
 import Layout from "./components/common/Layout";
-
-// import Home from './pages/home';
-import Service from './pages/service';
-import About from './pages/about';
-// import Projects from './pages/Projects';
-import ProjectView from './components/projects/projectView';
-import Estimator from './pages/estimator';
-import Contact from "./pages/contact";
-import BackToTopButton from './components/ui/BackToTop';
-import PrivacyPolicy from './pages/privacyPolicy';
-import Popup from './components/common/Popup';
-import OpeningPopup from './components/about/OpeningPopup';
-
 import Loader from "./components/common/Loader";
-
-const Home = lazy(() => import("./pages/home"));
+import Home from './pages/home';
+import CursorFollower from './components/ui/CursorFollower';
 const Projects = lazy(() => import("./pages/Projects"));
+const About = lazy(() => import("./pages/about"));
+const Service = lazy(() => import("./pages/service"));
+const ProjectView = lazy(() => import("./components/projects/projectView"));
+const Estimator = lazy(() => import("./pages/estimator"));
+const Contact = lazy(() => import("./pages/contact"));
+const BackToTopButton = lazy(() => import("./components/ui/BackToTop"));
+const PrivacyPolicy = lazy(() => import("./pages/privacyPolicy"));
+const Popup = lazy(() => import("./components/common/Popup"));
+const OpeningPopup = lazy(() => import("./components/about/OpeningPopup"));
+const PagenotFound = lazy(() => import("./pages/common/404"));
 
 function App() {
 
@@ -64,7 +59,7 @@ function App() {
     if ((domlocation.pathname == "/") || (domlocation.pathname.includes("/home"))) {
       const timer = setTimeout(() => {
         setShowPopup(true);
-      }, 9000);
+      }, 15000);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -82,19 +77,21 @@ function App() {
           </Popup>
         </>}
 
-          <Popup
-            isOpen={showPopup}
-            onClose={() => setShowPopup(false)}
-            width={"max-w-[700px]"}
-            otrcss={"p-8"}
-          >
-            <OpeningPopup />
-          </Popup>
+        <Popup
+          isOpen={showPopup}
+          onClose={() => setShowPopup(false)}
+          width={"max-w-[700px]"}
+          otrcss={"p-8"}
+        >
+          <OpeningPopup />
+        </Popup>
+
+        <CursorFollower />
         
       <Suspense fallback={<Loader />}>
         <Routes>
 
-          <Route path='/' element={<Layout />}>
+          <Route path='/' element={<Layout setOpenPop={setOpenPop} />}>
             <Route index element={<Home setOpenPop={setOpenPop} />}></Route>
             <Route path='home' element={<Home setOpenPop={setOpenPop} />}></Route>
             <Route path='services' element={<Service setOpenPop={setOpenPop} />}></Route>

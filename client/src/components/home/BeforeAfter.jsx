@@ -11,7 +11,7 @@ const BeforeAfter = () => {
       <div className='sm:container mx-auto px-4 '>
         <div className='pb-5 lg:pb-16 flex flex-col justify-center items-center'>
           <Marquee quotes={"Live Magic"} />
-          <div className='pt-10'></div>
+          <div className='pt-5 md:pt-8'></div>
           <Heading text={"From Dream to Reality"} />
         </div>
 
@@ -50,12 +50,12 @@ const BeforeAfter = () => {
               `}</style>
 
               <figure slot="first" className="before">
-                <img src={getImagewebp("before-after-1")} width="100%" loading='lazy' alt="Before construction - anusha structures"  title="picture of Before construction of anusha structures" />
+                <img src={"https://res.cloudinary.com/djw3rcz4j/image/upload/v1771937197/before-after-1_x1wqnn.webp"} width="100%" loading='lazy' alt="Before construction - anusha structures"  title="picture of Before construction of anusha structures" />
                 <figcaption>Before</figcaption>
               </figure>
 
               <figure slot="second" className="after">
-                <img src={getImagewebp("before-after-2")} width="100%" loading='lazy' alt="After construction - anusha structures"  title="picture of After construction of anusha structures" />
+                <img src={"https://res.cloudinary.com/djw3rcz4j/image/upload/v1771933187/before-after-2_zplfqb.webp"} width="100%" loading='lazy' alt="After construction - anusha structures"  title="picture of After construction of anusha structures" />
                 <figcaption>After</figcaption>
               </figure>
 

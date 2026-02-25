@@ -13,10 +13,9 @@ import { fetchAllProjects } from "../redux/shopSlice";
 const Projects = () => {
 
   const dispatch = useDispatch();
-  const {productList} = useSelector((state)=>(state.shopProductReducer));
+  const {productList, isLoading, error} = useSelector((state)=>(state.shopProductReducer));
   const [selcValue, setSelcValue] = useState({});
   
-
   async function fetchAllProds(){
     try {
       let data = null;
@@ -35,7 +34,7 @@ const Projects = () => {
       return { success: false };
       
     } catch (error) {
-        console.error(error.message);
+        console.error(error?.message);
         toast.error("Failed", {
             description: error?.message || "Network error",
         });
@@ -44,8 +43,9 @@ const Projects = () => {
   };
 
   useEffect(() => {
-    fetchAllProds();
-  }, []);
+    if (!productList.length && !isLoading && !error)
+      fetchAllProds();
+  }, [productList.length, isLoading, error]);
 
   // console.log("proj data  : ", data);
 

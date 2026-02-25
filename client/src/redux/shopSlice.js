@@ -4,7 +4,8 @@ import Api from "../utility/index";
 const initialState = {
     isLoading : false,
     productList : [],
-    projectDetail : null
+    projectDetail : null,
+    error: null
 };
 
 // -----------------------------------
@@ -24,7 +25,13 @@ export const fetchAllProjects = createAsyncThunk("shop/fetchAllProjects",
           return  response.data;
         } catch (error) {
             console.error(error);
-            return thunkAPI.rejectWithValue(error.response.data);
+            if (!error.response) {
+                return thunkAPI.rejectWithValue("Server unavailable");
+            }
+
+            return thunkAPI.rejectWithValue(
+                error.response?.data?.message || "Something went wrong"
+            );
         }
     }
 );
@@ -60,6 +67,7 @@ const shopProductSlice = createSlice({
     extraReducers : (builder)=>{
         builder.addCase(fetchAllProjects.pending, (state)=>{
             state.isLoading = true;
+            state.error = null;
         }).addCase(fetchAllProjects.fulfilled, (state, action)=>{
             state.isLoading = false;
             // console.log("list all proj shop : " ,action.payload);
@@ -67,6 +75,7 @@ const shopProductSlice = createSlice({
         }).addCase(fetchAllProjects.rejected, (state)=>{
             state.isLoading = false;
             state.productList = [];
+            state.error = action.error.message;
         })
 
         .addCase(viewProject.pending, (state)=>{

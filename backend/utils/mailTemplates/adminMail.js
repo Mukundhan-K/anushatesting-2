@@ -55,7 +55,7 @@ function adminEmailTemplate({ name, email, subject, phone, message }) {
         <table width="100%">
           <tr>
             <td>
-              <img src="https://www.anushastructures.in/logo_construction2.png" height="48" alt="Logo" style="display: block;">
+              <img src="https://www.anushastructures.in/src/assets/logo.webp" height="48" alt="Logo" style="display: block;">
             </td>
             <td align="right">
               <span style="

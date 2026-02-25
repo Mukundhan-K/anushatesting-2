@@ -59,51 +59,6 @@ const Filter = ({selcValue, setSelcValue}) => {
       // },
     ];
 
-    // function handleFilter(){
-    //   let dummyProds = [...projList];
-
-    //   console.log(selcValue);
-      
-      
-    //   if (selcValue.status == "Completed") {
-    //     dummyProds = dummyProds.filter((data)=>(data.status == "Completed"));
-    //   }else if (selcValue.status == "Under Construction") {
-    //     dummyProds = dummyProds.filter((data)=>(data.status == "Under Construction"));
-    //   };
-      
-    //   if (selcValue.type == "Apartment") {
-    //     dummyProds = dummyProds.filter((data)=>{
-    //       return (data.keyDetails['Project Type'] == "Apartment")
-    //     });
-    //   }else if (selcValue.type == "Building") {
-    //     dummyProds = dummyProds.filter((data)=>(data.keyDetails['Project Type'] == "Building"));
-    //   }else if (selcValue.type == "Industrial") {
-    //     dummyProds = dummyProds.filter((data)=>(data.keyDetails['Project Type'] == "Industrial"));
-    //   }else if (selcValue.type == "Office") {
-    //     dummyProds = dummyProds.filter((data)=>(data.keyDetails['Project Type'] == "Office"));
-    //   }else if (selcValue.type == "Residential") {
-    //     dummyProds = dummyProds.filter((data)=>(data.keyDetails['Project Type'] == "Residential"));
-    //   }else if (selcValue.type == "Villa") {
-    //     dummyProds = dummyProds.filter((data)=>(data.keyDetails['Project Type'] == "Villa"));
-    //   };
-      
-    //   if (selcValue.location == "Chennai") {
-    //     dummyProds = dummyProds.filter((data)=>{
-    //       console.log(data);
-    //       return (data.location.main == "Chennai")
-    //     });
-    //   }else if (selcValue.location == "Thiruvallur") {
-    //     dummyProds = dummyProds.filter((data)=>(data.location.main == "Thiruvallur"));
-    //   }else if (selcValue.location == "Dindugal") {
-    //     dummyProds = dummyProds.filter((data)=>(data.location.main == "Dindugal"));
-    //   }else if (selcValue.location == "Trichy") {
-    //     dummyProds = dummyProds.filter((data)=>(data.location.main == "Trichy"));
-    //   };
-      
-
-    //   setProjData(()=>dummyProds);      
-    // };
-    
     async function handleFilter(){
       try {
         let data = await dispatch(fetchAllProjects(selcValue)).unwrap();

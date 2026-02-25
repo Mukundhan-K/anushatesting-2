@@ -22,37 +22,6 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
     ));
   };
 
-  // async function onSubmitt(e) {
-  //   console.log("form data");
-    
-  //   e.preventDefault();
-  //   const formDatas = new FormData(e.target);
-  //   console.log(e.target, formDatas);
-
-  //       //     formData.append("name", data.name);
-  //       // formData.append("description", data.description);
-  //       // formData.append("category", data.category);
-  //       // formData.append("subCategory", data.subCategory);
-  //       // formData.append("price", data.price);
-  //       // formData.append("bestSeller", data.bestSeller);
-  //       // formData.append("sizes", JSON.stringify(data.sizes));
-
-    
-  //   formDatas.append("access_key", "f91bffe5-a806-47ce-bf7c-f2e843ea0996");
-
-  //   const response = await fetch("https://api.web3forms.com/submit", {
-  //     method: "POST",
-  //     body: formDatas
-  //   });
-
-  //   const data = await response.json();
-  //   setResult(data.success ? "Success" : "Error");
-
-  //   setTimeout(() => {
-  //     setFormData({});
-  //     setResult(false);
-  //   }, 1500);
-  // };
   async function defaultSubmit(e) {
     try {
       console.log("form data");
@@ -117,7 +86,7 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
         const isVisible = showPassword[control.name];
         element = <div className={`bg-white border border-gray-400 px-4 py-0.5 rounded-2xl flex gap-3 items-center group focus-within:border-blue-500 focus-within:bg-blue-50 ${!isEdit && "bg-gray-100! cursor-not-allowed"}`}>
           {Icon && <img src={getImageSvg(Icon)} className="size-8 group-focus-within:stroke-blue-500"
-            loading='lazy' alt={`${Icon} icon`} title={`icon of ${Icon}`}
+             alt={`${Icon} icon`} title={`icon of ${Icon}`}
           />}
 
           <input 

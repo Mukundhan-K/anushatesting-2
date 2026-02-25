@@ -27,9 +27,9 @@ const Banner = ({
           className="sm:container mx-auto px-4 flex flex-col justify-end gap-5"
           style={{ height }}
         >
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold font-josefin capitalize text-white">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-semibold font-josefin capitalize text-white">
             {title}
-          </h1>
+          </h2>
 
           <div className="flex items-center gap-2 text-white text-xl pb-5 capitalize font-bold pl-4">
             <NavLink to={link1}>{text1}</NavLink> /

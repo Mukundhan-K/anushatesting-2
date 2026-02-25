@@ -55,7 +55,7 @@ app.use(
         objectSrc: ["'none'"],
         styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", process.env.CLIENT_URL].filter(Boolean),
+        connectSrc: ["'self'", process.env.CLIENT_URL, process.env.ADMIN_URL].filter(Boolean),
       },
     },
     crossOriginEmbedderPolicy: false, // ✅ Prevents some third-party issues

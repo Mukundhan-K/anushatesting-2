@@ -1,19 +1,18 @@
 import React from 'react';
 import Banner from '../components/common/Banner';
 import Marquee from '../components/ui/marquee';
-import Heading from '../components/common/Heading';
 import ContactUs from '../components/home/ContactUs';
 import { getImageSvg } from '../utility/getImage';
 import CommonSEO from '../utility/commonSeo';
 import ButtonArrow from '../components/ui/ButtonArrow';
 
-const contact = ({setOpenPop}) => {
+const cards = [
+  {img: "email", title: "Support email", text: "anushastructures02@gmail.com"},
+  {img: "call", title: "Phone number", text: "+91 76959 50724"},
+  {img: "location", title: "Location", text: "Chennai, Tamil Nadu"},
+];
 
-    const cards = [
-      {img: "email", title: "Support email", text: "anushastructures02@gmail.com"},
-      {img: "call", title: "Phone number", text: "+91 76959 50724"},
-      {img: "location", title: "Location", text: "No:58 A,Madison Street,El paso, texus, USA"},
-    ];
+const contact = ({setOpenPop}) => {
 
   return (<>
 
@@ -35,18 +34,48 @@ const contact = ({setOpenPop}) => {
         <section className={`pb-10 xl:p-10 rounded-3xl`}>
           <div className='sm:container mx-auto px-4 sm:px-0'>
               <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 items-center`}>
-                  {cards.map(({img, title,text})=>(
-                      <div key={title} className={`h-full rounded-3xl p-10 shadow-sm bg-bg-brown`}>
-                          <div className='flex items-center gap-5 pb-7 border-b'>
-                              <div className='size-16 aspect-square grid place-items-center bg-gray-300 rounded-full'>
-                                  <img src={getImageSvg(img)} className='size-10!' loading='lazy' alt={`${img} icon`} title={`icon of ${img}`} />
-                              </div>
-                              <div className='font-josefin text-2xl font-semibold'>{title}</div>
-                          </div>
-                          <h4 className='pt-7 font-outfit text-2xl text-wrap break-all'>{text}</h4>
+                {cards.map(({img, title,text}, index)=>(
+                  <div className="group relative h-[380px] rounded-sm p-1 shadow-2xl overflow-hidden">
+
+                    <div className="relative h-full w-full p-10 flex flex-col justify-between border border-white/5">
+                      
+                      {/* Top Section */}
+                      <div className="flex justify-between items-start">
+                        <div className="p-4 rounded-xl bg-a-royalsafforn/80 border border-white/10 group-hover:border-orange-500/50 transition-colors">
+                          <img src={getImageSvg(img)} className="size-8" alt={title} />
+                        </div>
+                        <span className="font-josefin text-sm font-bold tracking-widest text-orange-500/40 group-hover:text-orange-500">
+                          EST. 2019
+                        </span>
                       </div>
-                  )
-                  )}
+
+                      {/* Bottom Section */}
+                      <div className="space-y-4">
+                        <div className="overflow-hidden">
+                          <h3 className="font-josefin text-2xl font-bold text-white uppercase tracking-tighter translate-y-0 group-hover:-translate-y-full transition-transform duration-500 py-1">
+                            {title}
+                          </h3>
+                          <h3 className="font-josefin text-2xl font-bold text-orange-500 uppercase tracking-tighter translate-y-0 group-hover:-translate-y-full transition-transform duration-500 py-1">
+                            {title}
+                          </h3>
+                        </div>
+                        
+                        <p className="w-full font-outfit text-xl leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-orange-500 transition-colors">
+                          {(img == "email") ? <div className='w-fit flex flex-wrap'>
+                            <span>anushastructures02</span>
+                            <span>@gmail.com</span></div>
+                            : text
+                          }
+                        </p>
+                        
+                        <div className="pt-4 flex items-center gap-4 text-[10px] font-black tracking-[0.4em]">
+                          <div className="h-px text-black flex-1 bg-orange-500/50" />
+                            Contact us
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
 
           <div className='pt-10 lg:pt-16 text-center'>

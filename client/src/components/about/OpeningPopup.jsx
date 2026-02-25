@@ -41,7 +41,7 @@ const OpeningPopup = () => {
 
   return (
     <div className='h-full w-full flex flex-col md:flex-row gap-5'>
-      <div className='min-h-full! w-full rounded-2xl bg-center bg-cover bg-no-repeat' style={{backgroundImage : `url(${getImagewebp(`our-journey-1`)})`}}>
+      <div className='min-h-full! w-full rounded-2xl bg-center bg-cover bg-no-repeat' style={{backgroundImage : `url(https://res.cloudinary.com/djw3rcz4j/image/upload/v1771931040/nlffeuijqshfiwel1tj9_dzarbk.webp)`}}>
         <div className='min-h-[200px]'></div>
       </div>
 

@@ -23,7 +23,7 @@ function clientReplyTemplate({ name }) {
       <table width="100%">
         <tr>
           <td>
-            <img src="https://www.anushastructures.in/logo_construction2.png"
+            <img src="https://www.anushastructures.in/src/assets/logo.webp"
                  height="48" alt="Anusha Structures" style="display:block" />
           </td>
           <td align="right">

@@ -1,25 +1,56 @@
-import React from 'react';
+import React, {lazy, Suspense, memo} from 'react';
 import { getImageSvg } from '../../utility/getImage';
+import useMediaQuery from '../../utility/UseMediaQuery';
+const EmblaSlider = lazy(() => import("../ui/EmblaSlider"));
+
+const Card = memo(({img, title,text, crdcss})=>(
+  <div key={title} className={`h-full rounded-3xl p-10 shadow-sm ${crdcss ? crdcss : 'bg-white'}`}>
+    <div className='flex items-center gap-5 pb-7 border-b'>
+        <div className='size-16 aspect-square grid place-items-center bg-gray-300 rounded-full'>
+            <img src={getImageSvg(img)} className='size-10!' loading='lazy' alt={`${img} icon`} title={`icon of ${img}`} />
+        </div>
+        <div className='font-josefin text-2xl font-semibold'>{title}</div>
+    </div>
+    <p className='pt-7'>{text}</p>
+  </div>
+));
 
 const WhyChooseUs = ({data, css, outercss, crdcss}) => {
+  const isMdUp = useMediaQuery("(min-width: 768px)");
 
   return (<>
       <section className={`${outercss ? outercss : "pt-5 pb-16 bg-bg-brown"}`}>
         <div className='sm:container mx-auto px-4'>
-            <div className={`grid ${css ? css : 'sm:grid-cols-2 xl:grid-cols-4'} gap-4 sm:gap-8 items-center`}>
+          {isMdUp ?
+            (<div className={`grid ${css ? css : 'sm:grid-cols-2 xl:grid-cols-4'} gap-4 sm:gap-8 items-center`}>
                 {data.map(({img, title,text})=>(
-                    <div key={title} className={`h-full rounded-3xl p-10 shadow-sm ${crdcss ? crdcss : 'bg-white'}`}>
-                        <div className='flex items-center gap-5 pb-7 border-b'>
-                            <div className='size-16 aspect-square grid place-items-center bg-gray-300 rounded-full'>
-                                <img src={getImageSvg(img)} className='size-10!' loading='lazy' alt={`${img} icon`} title={`icon of ${img}`} />
-                            </div>
-                            <div className='font-josefin text-2xl font-semibold'>{title}</div>
-                        </div>
-                        <p className='pt-7'>{text}</p>
-                    </div>
-                 )
-                )}
-            </div>
+                  <Card key={title} title={title} img={img} text={text} crdcss={crdcss} />
+                ))}
+            </div>)
+          :
+            (<div>
+              <Suspense fallback={<div className="p-24 text-center">Loading...</div>}>
+                <EmblaSlider
+                  items={data}
+                  renderSlide={({img, title,text}) =><Card key={title} title={title} img={img} crdcss={crdcss} text={text} />}
+                  autoplay
+                  autoplayDelay={3000}
+                  loop = {true}
+                  arrows={true}
+                  arrowPosition="bottom-right"
+                  dots={true}
+                  dotsPosition='bottom-left'
+                  slidesPerView={{
+                    base: 1,
+                    sm: 2,
+                  }}
+                  viewportPadding='p-2'
+                  gap={20}
+                />
+              </Suspense>
+            </div>)
+          
+          }
         </div>
       </section>
     </> );

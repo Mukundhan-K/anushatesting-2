@@ -14,7 +14,7 @@ const CostEstimator = ({registeredFormControl, clsStyle, divCls}) => {
           formData={formData}
           setFormData={setFormData}
           defaultOnSubmit={true}
-          btnclass={"pt-12 justify-center"}
+          btnclass={"pt-6 justify-center"}
           formClass={`grid ${clsStyle ? clsStyle : "sm:grid-cols-2"} gap-8`}
           buttonText={"Estimate Construction Cost For Free"}
           btntype='submit'

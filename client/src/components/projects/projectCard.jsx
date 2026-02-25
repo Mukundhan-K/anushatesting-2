@@ -38,22 +38,32 @@ const ProjectCard = ({ id, images, location, title, status }) => {
       </div>
 
       {/* Content */}
-      <div className="h-[350px] p-12 flex flex-col justify-end gap-4">
-        <div className="w-full flex flex-col md:flex-row gap-2 md:items-end border-b-2 pb-4 border-gray-400">
-          <div className="size-9 rounded-full bg-a-royalsafforn grid place-items-center">
-            <img
-              src={getImageSvg("location")}
-              className="size-7"
-              loading="lazy"
-              alt="Location icon"
-            />
+      <div className="h-[250px] md:h-[350px] p-5 flex flex-col justify-end gap-4">
+        <div className="bg-white p-2 md:p-3 rounded-2xl">
+          <div className="w-full flex gap-2 items-end border-b pb-2 mb-2 border-gray-300">
+            <div className="size-6 rounded-full bg-a-royalsafforn grid place-items-center">
+              <img
+                src={getImageSvg("location")}
+                className="size-4 object-contain"
+                loading="lazy"
+                alt="Location icon"
+              />
+            </div>
+            <span className="text-sm">{location}</span>
           </div>
-          <span className="text-white text-xl">{location}</span>
-        </div>
 
-        <h2 className="text-3xl xl:text-4xl text-white">
-          {title}
-        </h2>
+          <h2 className="text-xl md:text-3xl xl:text-4xl flex justify-between items-end">
+            {title}
+            <div className="bg-a-royalsafforn p-2! rounded-full">
+              <img
+                src={getImageSvg("arrow-white")}
+                className="size-4 object-contain rotate-180"
+                loading="lazy"
+                alt="Location icon"
+              />
+            </div>
+          </h2>
+        </div>
       </div>
     </NavLink>
   );

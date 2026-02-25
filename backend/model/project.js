@@ -91,6 +91,9 @@ const projectSchema = new mongoose.Schema(
   }
 );
 
+projectSchema.index({ status: 1, projectType: 1, location: 1, createdAt: -1 });
+projectSchema.index({ title: "text", description: "text", location: "text" });
+
 const Project = mongoose.model("Project", projectSchema);
 
 module.exports = Project;

@@ -9,6 +9,29 @@ import Heading from "../common/Heading";
 import CommonSEO from '../../utility/commonSeo';
 import { viewProject } from '../../redux/shopSlice';
 import { toast } from 'sonner';
+import ImageLightbox from "../ui/ImageLightbox"
+
+const KeyFeat = React.memo(({ label, value, icon = "/cup", suffix = "" }) => {
+  if (!value) return null;
+
+  return (
+    <div className="py-2 md:py-8 flex flex-col xsl:flex-row items-center gap-5">
+      <div className="size-14 rounded-full aspect-square grid place-items-center border border-gray-400 shrink-0">
+        <img
+          src={getImageSvg(icon)}
+          className="size-9"
+          loading="lazy"
+          alt={label}
+        />
+      </div>
+
+      <div className="flex flex-col text-center xsl:text-left break-all">
+        <span className="text-xl text-gray-600 font-medium">{label}</span>
+        <span className="text-xl font-medium">{value} {suffix}</span>
+      </div>
+    </div>
+  );
+});
 
 const ProjectView = () => {
 
@@ -17,30 +40,37 @@ const ProjectView = () => {
   const {projectDetail:projData, loading} = useSelector((state)=>state.shopProductReducer);
 
   const [prodImg, setProdImg] = useState("");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const fetchedRef = useRef(false);
 
-   const getProject = useCallback(async() => {
-     try {
-      const data = await dispatch(viewProject(projId)).unwrap();
-      if (data?.success  && data?.project?.images?.length) {
-        setProdImg(data.project.images?.[0] || ""); // first image
-        console.log("proj cr : ",data);
-        return { success: true };
-      };
+  const handleOpen = (index) => {
+    setCurrentIndex(index);
+    setLightboxOpen(true);
+  };
+  const getProject = useCallback(async() => {
+    try {
+    const data = await dispatch(viewProject(projId)).unwrap();
+    if (data?.success  && data?.project?.images?.length) {
+      setProdImg(data.project.images?.[0] || ""); // first image
+      console.log("proj cr : ",data);
+      return { success: true };
+    };
 
-      toast.error("Failed", {
-        description: data?.message || "Something went wrong",
-      });
-      return { success: false };
-      } catch (error) {
-          console.error(error);
-          toast.error("Failed", {
-            description: error?.message || "Network error",
-          });
-          return { success: false };
-      };
-   }
-   ,[projId])
+    toast.error("Failed", {
+      description: data?.message || "Something went wrong",
+    });
+    return { success: false };
+    } catch (error) {
+        console.error(error);
+        toast.error("Failed", {
+          description: error?.message || "Network error",
+        });
+        return { success: false };
+    };
+  }
+  ,[projId])
 
   useEffect(() => {
     if (!projId || fetchedRef.current) return;
@@ -50,11 +80,27 @@ const ProjectView = () => {
      getProject();
      
   }, [projId, dispatch]);
+  
+  const infoItems = [
+    { label: "Location", value: projData?.location },
+    { 
+      label: "Commencement Date", 
+      value: projData?.commencementDate 
+        ? new Date(projData.commencementDate).toLocaleDateString() 
+        : null 
+    },
+    { 
+      label: "Total Built-Up Area", 
+      value: projData?.projectArea ? `${projData.projectArea} Sq.Ft` : null 
+    },
+    { label: "Number of Floors", value: projData?.numberOfFloors },
+    { label: "Special Features", value: projData?.specialFeatures },
+    { label: "Amenities", value: projData?.amenities },
+  ];
 
   if (loading || !projData?._id) {
     return <div className="min-h-[60vh] grid place-items-center">Loading...</div>;
-  }
-  
+  };
 
   return (<>
 
@@ -84,64 +130,60 @@ const ProjectView = () => {
       {/* product key feat --------------------------- */}
         <div className='py-4 grid grid-cols-2  xl:grid-cols-4 items-center gap-x-8'>
 
-          <div className='py-2 md:py-8 flex flex-col xsl:flex-row items-center gap-5'>
-            <div className='size-14 rounded-full aspect-square grid place-items-center border border-gray-400'>
-                <img src={getImageSvg("/cup")} className="size-9" loading='lazy' alt={`status icon`} title={`status icon`} />
-            </div>
-            <div className='flex flex-col text-center xsl:text-left'>
-                <span className='text-xl text-gray-600 font-medium font-outfit!'>Status</span>
-                <span className='text-xl font-medium font-outfit!'>{projData?.status}</span>
-            </div>
-          </div>
-
+          <KeyFeat label="Status" value={projData?.status} />
           {(projData?.projectType) && 
-            <div className='py-2 md:py-8 flex flex-col xsl:flex-row items-center gap-5'>
-              <div className='size-14 rounded-full aspect-square grid place-items-center border border-gray-400'>
-                  <img src={getImageSvg("/cup")} className="size-9" loading='lazy' alt={`icon`} title={`icon`}  />
-              </div>
-              <div className='flex flex-col text-center xsl:text-left break-all'>
-                  <span className='text-xl text-gray-600 font-medium '>Project Type</span>
-                  <span className='text-xl font-medium '>{projData.projectType}</span>
-              </div>
-            </div>}  
-
+             <KeyFeat
+              label="Project Type"
+              value={projData?.projectType}
+            />
+          }  
           {(projData?.projectArea) && 
-            <div className='py-2 md:py-8 flex flex-col xsl:flex-row items-center gap-5'>
-              <div className='size-14 rounded-full aspect-square grid place-items-center border border-gray-400'>
-                  <img src={getImageSvg("/cup")} className="size-9" loading='lazy' alt={`icon`} title={`icon`}  />
-              </div>
-              <div className='flex flex-col text-center xsl:text-left break-all'>
-                  <span className='text-xl text-gray-600 font-medium '>Total Area</span>
-                  <span className='text-xl font-medium '>{projData.projectArea}  Sq.Ft</span>
-              </div>
-            </div>}
-
+            <KeyFeat
+              label="Total Area"
+              value={projData?.projectArea}
+              suffix="Sq.Ft"
+            />
+          }
           {(projData?.numberOfFloors) && 
-            <div className='py-2 md:py-8 flex flex-col xsl:flex-row items-center gap-5'>
-              <div className='size-14 rounded-full aspect-square grid place-items-center border border-gray-400'>
-                  <img src={getImageSvg("/cup")} className="size-9" loading='lazy' alt={`icon`} title={`icon`}  />
-              </div>
-              <div className='flex flex-col text-center xsl:text-left break-all'>
-                  <span className='text-xl text-gray-600 font-medium '>Floors</span>
-                  <span className='text-xl font-medium '>{projData.numberOfFloors}</span>
-              </div>
-            </div>}
-
+           <KeyFeat
+              label="Floors"
+              value={projData?.numberOfFloors}
+            />
+          }
         </div>
 
       {/* product image --------------------------- */}
+
         <div className='py-8 max-h-[700px] flex flex-col-reverse md:flex-row gap-3'>
-          <div className={`grid grid-cols-4! md:flex md:flex-col md:w-1/6 no-scrollBar md:overflow-y-scroll justify-between sm:justify-normal gap-5`}>
-            {projData?.images.map((prodImg, i)=>(
-              <img onClick={()=>setProdImg(prodImg)} src={prodImg} className="w-32 h-auto md:w-full flex-shrink-0 object-contain block rounded-3xl
-                cursor-pointer" key={i}  loading='lazy' alt={`project image ${1} - anusha structures`} title={`project image ${i} - anusha structures`}  />
+          <div className='grid grid-cols-4 md:flex md:flex-col md:w-1/6 overflow-y-auto no-scrollBar gap-4'>
+            {projData?.images?.map((img, i) => (
+              <img 
+                key={i}
+                onClick={() => setProdImg(projData?.images[i])} 
+                src={img} 
+                className={`w-full aspect-square md:aspect-auto object-cover rounded-2xl cursor-pointer transition-all duration-300 ${prodImg === img ? 'border-2 border-a-royalsafforn' : 'opacity-70 hover:opacity-100'}`} 
+                alt={`Thumbnail ${i}`} 
+              />
             ))}
           </div>
 
-          <div className='h-[330px] md:h-[630px] overflow-hidden w-full'>
-            {prodImg && <img src={prodImg} className="h-full w-full object-cover object-center block rounded-3xl"  loading='lazy' alt={`Main project image - anusha structures`} title={`Main project image - anusha structures`}  />}
+          <div onClick={() => handleOpen(currentIndex)}
+            className='h-[330px] md:h-[630px] w-full overflow-hidden relative rounded-3xl'>
+            <img src={prodImg} className="h-full w-full object-cover transition-opacity duration-500 cursor-zoom-in" alt="Main View" />
+            <span className='size-14 text-5xl cursor-pointer
+                grid place-items-center rounded-full bg-white absolute right-5 md:right-10 bottom-5'>+</span>
           </div>
         </div>
+
+      {/* Lightbox */}
+        {lightboxOpen && (
+          <ImageLightbox
+            images={projData?.images}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            onClose={() => setLightboxOpen(false)}
+          />
+        )}
 
       {/* product description --------------------------- */}
         <div className='w-full py-8 flex flex-col lg:flex-row justify-between gap-12'>
@@ -154,56 +196,24 @@ const ProjectView = () => {
             <h3 className='text-2xl pb-3'>Key Details</h3>
 
             <div className='text-lg flex flex-col gap-4'>
-
-              <div className='flex gap-3'>
-                <div className='size-2 inline-block mt-2 aspect-square bg-a-royalsafforn rounded-full'></div>
-                <p>
-                  <span className='font-medium! text-nowrap pr-3'>Location :</span>
-                  <span className='text-gray-600'>{projData?.location}</span>
-                </p>
-              </div>
-
-
-              <div className='flex gap-3'>
-                <div className='size-2 inline-block mt-2 aspect-square bg-a-royalsafforn rounded-full'></div>
-                <p>
-                  <span className='font-medium! text-nowrap pr-3'>Commencement Date :</span>
-                  <span className='text-gray-600'>{new Date(projData.commencementDate).toLocaleDateString()}</span>
-                </p>
-              </div>
-
-              <div className='flex gap-3'>
-                <div className='size-2 inline-block mt-2 aspect-square bg-a-royalsafforn rounded-full'></div>
-                <p>
-                  <span className='font-medium! text-nowrap pr-3'>Total Built-Up Area :</span>
-                  <span className='text-gray-600'>{projData?.projectArea}  Sq.Ft</span>
-                </p>
-              </div>
-
-              <div className='flex gap-3'>
-                <div className='size-2 inline-block mt-2 aspect-square bg-a-royalsafforn rounded-full'></div>
-                <p>
-                  <span className='font-medium! text-nowrap pr-3'>Number of Floors :</span>
-                  <span className='text-gray-600'>{projData?.numberOfFloors} </span>
-                </p>
-              </div>
-
-              <div className='flex gap-3'>
-                <div className='size-2 inline-block mt-2 aspect-square bg-a-royalsafforn rounded-full'></div>
-                <p>
-                  <span className='font-medium! text-nowrap pr-3'>Special Features :</span>
-                  <span className='text-gray-600'>{projData?.specialFeatures} </span>
-                </p>
-              </div>
-
-              <div className='flex gap-3'>
-                <div className='size-2 inline-block mt-2 aspect-square bg-a-royalsafforn rounded-full'></div>
-                <p>
-                  <span className='font-medium! text-nowrap pr-3'>Amenities :</span>
-                  <span className='text-gray-600'>{projData?.amenities} </span>
-                </p>
-              </div>
-
+              {infoItems.map((item, index) => (
+                // 2. Only render if the value actually exists
+                item.value && (
+                  <div key={index} className='flex gap-3'>
+                    {/* The Bullet Point */}
+                    <div className='size-2 shrink-0 mt-2 aspect-square bg-a-royalsafforn rounded-full' />
+                    
+                    <p>
+                      <span className='font-medium! whitespace-nowrap pr-3'>
+                        {item.label} :
+                      </span>
+                      <span className='text-gray-600'>
+                        {item.value}
+                      </span>
+                    </p>
+                  </div>
+                )
+              ))}
             </div>
           </div>
         </div>
@@ -214,7 +224,7 @@ const ProjectView = () => {
         <div className='pt-5 pb-16'>
           <Heading align='left' text={"Features & amenities"} />
 
-          <div className='pt-16 grid xsl:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16 sm:gap-y-28'>
+          <div className='pt-16 grid xsl:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16 lg:gap-y-28'>
             {projData?.features?.map((item, i)=>(
               <div key={i} className='rounded-3xl px-5 text-center flex flex-col items-center gap-4' style={{backgroundColor: 'transparent',backgroundImage: `linear-gradient(180deg, #F6F3EC 0%, #F6F3EC00 100%)`}}>
                 <div>

@@ -3,22 +3,26 @@ import Marquee from '../ui/marquee';
 import Heading from '../common/Heading';
 import ButtonArrow from '../ui/ButtonArrow';
 import { Link } from 'react-router-dom';
+import useMediaQuery from '../../utility/UseMediaQuery';
+
+const counterData = [
+  {count:"25+", text:"Completed Projects"},
+  {count:"55+", text:"Trusted Partners"},
+  {count:"15+", text:"Happy Clients"},
+  {count:"35+", text:"Works Delivered"},
+];
 
 const Counter = () => {
 
-    const counterData = [
-        {count:"25+", text:"Completed Projects"},
-        {count:"55+", text:"Trusted Partners"},
-        {count:"15+", text:"Happy Clients"},
-        {count:"35+", text:"Works Delivered"},
-    ];
-
+  const isXl = useMediaQuery("(min-width: 1280px)");
+  
   return (<>
     <section className='h-full w-full py-8 lg:py-16 bg-bg-brown'>
       <div className='sm:container mx-auto px-4'>
         <div className='grid grid-cols-12 gap-8 lg:gap-16'>
 
-            <div id='count-2' className='h-96 md:h-full col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 rounded-3xl bg-cover bg-center bg-no-repeat'>
+            <div id='count-2' className="bg-[url('https://res.cloudinary.com/djw3rcz4j/image/upload/v1771931037/becp84bwc2kosmsx6ycx_famvah.webp')]
+            h-96 md:h-full col-span-12 md:col-span-6 lg:col-span-5 xl:col-span-4 rounded-3xl bg-cover bg-center bg-no-repeat">
 
             </div>
 
@@ -36,18 +40,19 @@ const Counter = () => {
                     </Link>
                   </div>
 
-                  <div id='count-1' className='xl:col-span-3 hidden xl:block h-full rounded-3xl bg-cover bg-center bg-no-repeat'>
-                  </div>
+                  {isXl && <div id='count-1' className='bg-[url("https://res.cloudinary.com/djw3rcz4j/image/upload/v1771931097/e0bwenrkyin8oxuqkt9b_tx1ayl.webp")]
+                  xl:col-span-3 hidden xl:block h-full rounded-3xl bg-cover bg-center bg-no-repeat'>
+                  </div>}
                 </div>
 
                 <div className='pt-10 lg:pt-20 grid grid-cols-2 gap-5 lg:gap-0 lg:flex lg:divide-x lg:divide-gray-400'>
-                    {counterData.map(({count,text}, i)=>(
-                        <div key={i} className={`lg:pr-5 xl:pr-10 ${(i != 0) && 'lg:pl-5 xl:pl-10'}`}>
-                            <h3 className='text-4xl md:text-5xl xl:text-6xl font-outfit pb-2'>{count}</h3>
-                            <p>{text}</p>
-                        </div>
-                      )
-                    )}
+                  {counterData.map(({count,text}, i)=>(
+                      <div key={i} className={`lg:pr-5 xl:pr-10 ${(i != 0) && 'lg:pl-5 xl:pl-10'}`}>
+                          <h3 className='text-4xl md:text-5xl xl:text-6xl font-outfit pb-2'>{count}</h3>
+                          <p>{text}</p>
+                      </div>
+                    )
+                  )}
                 </div>
             </div>
 

@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
 import Marquee from '../ui/marquee';
-import { getImageSvg, getImagewebp } from '../../utility/getImage';
+import { getImagewebp } from '../../utility/getImage';
 import CommonForm from '../common/CommonForm';
 import { Link } from 'react-router-dom';
+import useMediaQuery from '../../utility/UseMediaQuery';
 
-const Hero = () => {
-
-  const [formData, setFormData] = useState({});
-  
   const registeredFormControl = [
     {
       name : "name",
@@ -39,6 +36,35 @@ const Hero = () => {
     }
   ];
 
+const AppointmentForm = ({ formData, setFormData, isMobile = false }) => (
+  <div className={`bg-white rounded-2xl shadow-lg w-full p-6 mx-auto ${isMobile ? 'max-w-[500px]' : 'max-w-[400px]'}`}>
+    <div className="py-4 mb-3 border-b border-gray-300 text-center">
+      <h2 className="font-semibold text-xl pb-2 font-outfit">Book Free Appointment</h2>
+      <p className='text-sm text-gray-600'>Expert Construction Solutions by Anusha at the Right Price.</p>
+    </div>
+
+    <CommonForm
+      formControls={registeredFormControl}
+      formData={formData}
+      setFormData={setFormData}
+      defaultOnSubmit={true}
+      btnclass="pt-4 justify-center"
+      formClass="grid grid-cols-1 gap-3"
+      buttonText="Start your Construction"
+      btntype='submit'
+    />
+
+    <p className="py-3 text-xs text-gray-500">
+      * By submitting, I agree to Anusha's 
+      <Link to="/privacy-policy" className="text-orange-400 font-medium"> Privacy Policy</Link>
+    </p>
+  </div>
+);
+
+const Hero = () => {
+  const [formData, setFormData] = useState({});
+  const isMdUp = useMediaQuery("(min-width: 768px)");
+
   return (<>
     <section id='hero' className=''>
       <div className='container mx-auto px-4'>
@@ -53,7 +79,7 @@ const Hero = () => {
               </div>
 
               <div className='flex flex-col justify-center items-center gap-3'>
-                  <hr className='w-full border-gray-300 pb-5' />
+                  <hr className='w-full border-gray-300 pb-5 md:pb-10' />
 
                   <div className='w-full flex justify-between items-center gap-5'>
                       <div className='flex items-center gap-4'>
@@ -68,131 +94,39 @@ const Hero = () => {
 
                       </div>
 
-                      <div className='flex items-center gap-5'>
-                          <div className="img-pill border border-white">
-                              <img src={getImagewebp("hero-pill-1")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`} 
-                                onContextMenu={(e) => e.preventDefault()}
-                                draggable={false}
-                              />
+                      <div className='h-full flex items-center gap-5'>
+                        {["hero-pill-1", "hero-pill-2", "hero-pill-3"].map((id, index) => (
+                          <div key={id} className={`img-pill border border-white ${index == 1 ? 'hidden sm:inline-block md:hidden lg:inline-block' : (index > 0) ? "hidden lg:inline-block" : ""}`}>
+                            <img 
+                              src={getImagewebp(id)} 
+                              alt="Anusha Construction building" 
+                              loading='lazy' 
+                              onContextMenu={(e) => e.preventDefault()}
+                              draggable={false}
+                              className='min-h-20'
+                            />
                           </div>
-                          <div className="img-pill hidden sm:inline-block border border-white">
-                              <img src={getImagewebp("hero-pill-2")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`} 
-                                onContextMenu={(e) => e.preventDefault()}
-                                draggable={false}
-                              />
-                          </div>
-                          <div className="img-pill hidden sm:inline-block border border-white">  
-                              <img src={getImagewebp("hero-pill-3")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`} 
-                                onContextMenu={(e) => e.preventDefault()}
-                                draggable={false}
-                              />
-                          </div>
+                        ))}
                       </div>
                   </div>
               </div>
           </div>
 
-          <div className={`h-fit bg-white rounded-2xl shadow-lg w-full max-w-[400px] hidden md:block mx-auto p-6`}>
-
-            <div className="py-4 mb-3 border-b border-gray-300 text-center">
-              <h2 className="font-semibold text-xl pb-2 font-outfit">Book Free Appointment</h2>
-              <p className='text-sm'>Expert Construction Solutions by Anusha at the Right Price.</p>
-            </div>
-
-            <CommonForm
-                formControls={registeredFormControl}
-                formData={formData}
-                setFormData={setFormData}
-                defaultOnSubmit={true}
-                btnclass={"pt-3 justify-center"}
-                formClass={`grid grid-cols-1 gap-2`}
-                buttonText={"Start your Construction"}
-                btntype='submit'
-            />
-
-            <p className="py-3 text-xs text-gray-900">
-                * By submitting this form, I confirm that I have read and agreed to accept Anusha's 
-                <Link to={"/privacy-policy"} className="text-orange-400">&nbsp; &nbsp; Privacy Policy</Link>
-            </p>
-
-          </div>
-
+          {/* Desktop Form (Hidden on Mobile) */}
+           {isMdUp && <div className='hidden md:block w-full max-w-[400px]'>
+              <AppointmentForm formData={formData} setFormData={setFormData} />
+            </div>}
 
         </div>
       </div>
 
-      {/* <div className='container mx-auto px-4 sm:px-0'>
-        <div className='h-full w-full pt-48 pb-5 lg:pb-10 flex flex-col justify-between gap-10'>
-
-            <div className='text-center h-full flex-1 md:pb-20 flex flex-col justify-end items-center gap-5'>
-              <Marquee quotes={"Inspiring Lives"} color='white' />
-              <h1 className='md:w-2/3 text-5xl xs:text-6xl md:text-7xl lg:text-8xl py-10 sm:py-0 text-white font-extrabold [text-shadow:_2px_2px_4px_rgba(0,0,0,0.5)]'>Construct Your Dream Space With Us</h1>
-              <p className='text-white lg:w-1/2 font-medium hidden sm:block sm:font-bold text-xl'>We bring your dream spaces to life with expert construction and interior design services across India. delivering quality, precision, and timeless craftsmanship.</p>
-            </div>
-
-            <div className='flex flex-col justify-center items-center gap-3'>
-                <hr className='w-full border-gray-300 pb-5' />
-
-                <div className='w-full flex justify-between items-center gap-5'>
-                    <div className='flex items-center gap-4'>
-                        <div className='flex items-center'>
-                            <div className='size-20 bg-a-royalsafforn rounded-full'></div>
-                            <div className=' -ml-12 text-6xl font-bold text-white'>7</div>
-                        </div>
-                        <div className='w-2/3 border-l ml-4! pl-4 text-white font-medium border-l-gray-200 text-2xl'>
-                            Years of Expertise
-                        </div>
-
-                    </div>
-
-                    <div className='flex items-center gap-5'>
-                        <div className="img-pill border border-white">
-                            <img src={getImagewebp("hero-pill-1")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`}  />
-                        </div>
-                        <div className="img-pill hidden sm:inline-block border border-white">
-                            <img src={getImagewebp("hero-pill-2")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`}  />
-                        </div>
-                        <div className="img-pill hidden sm:inline-block border border-white">  
-                            <img src={getImagewebp("hero-pill-3")} alt="Anusha Contruction building" loading='lazy' title={`building of Anusha Contruction`}  />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div> */}
-
     </section>
 
-    <section className='h-full w-full block md:hidden'>
+    {!isMdUp && <section className='h-full w-full block md:hidden'>
         <div className='container mx-auto px-4'>
-          <div
-            className={`bg-white rounded-2xl shadow-lg w-full max-w-[500px] mx-auto my-10 p-6`}
-       >
-
-            <div className="py-4 mb-3 border-b border-gray-300 text-center">
-              <h2 className="font-semibold text-xl pb-2 font-outfit">Book Free Appointment</h2>
-              <p className='text-sm'>Expert Construction Solutions by Anusha at the Right Price.</p>
-            </div>
-
-            <CommonForm
-                formControls={registeredFormControl}
-                formData={formData}
-                setFormData={setFormData}
-                defaultOnSubmit={true}
-                btnclass={"pt-8 justify-center"}
-                formClass={`grid grid-cols-1 gap-5`}
-                buttonText={"Start your Construction"}
-                btntype='submit'
-            />
-
-            <p className="py-3 text-xs text-gray-500">
-                * By submitting this form, I confirm that I have read and agreed to accept Anusha's 
-                <Link to={"/privacy-policy"} className="text-a-royalsafforn">&nbsp; &nbsp; Privacy Policy</Link>
-            </p>
-
-          </div>
+          <AppointmentForm formData={formData} setFormData={setFormData} isMobile={true} />
         </div>
-    </section>
+    </section>}
   </>);
 };
 

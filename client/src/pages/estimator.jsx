@@ -10,9 +10,7 @@ import BankingPatners from '../components/home/BankingPatners';
 import Pricing from '../components/home/Pricing';
 import ButtonArrow from '../components/ui/ButtonArrow';
 
-const Estimator = ({setOpenPop}) => {
-
-  const registeredFormControl = [
+const registeredFormControl = [
     {
       name : "name",
       label : "Name",
@@ -66,13 +64,15 @@ const Estimator = ({setOpenPop}) => {
       icon : "ruler-l"
     },
   ];
+  
+const Estimator = ({setOpenPop}) => {
 
   return (<>
         
     <Banner title={"Cost Estimator"} link1={"/home"} text1={"Home"} text2={"Cost Estimator"} />
 
     <section className='h-full w-full'>
-      <div className='sm:container mx-auto py-10 px-4'>
+      <div className='sm:container mx-auto md:py-10 px-4'>
         <div className='pb-10'>
           <Marquee quotes={"Free Estimate"} />
           <div className='pt-10'></div>
@@ -100,7 +100,7 @@ const Estimator = ({setOpenPop}) => {
     <Pricing />
     <BankingPatners />
 
-    <div className='pt-5 text-center'>
+    <div className='pb-10 text-center'>
         <ButtonArrow btnonclick={() => setOpenPop(true)} text='Start Your Construction' />
     </div>
 

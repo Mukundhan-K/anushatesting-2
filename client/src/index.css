@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 @theme{
-    --color-a-royalsafforn : #E68900;
-    /* --color-a-royalsafforn : #026f41; */
+    /* --color-a-royalsafforn : #E68900; */
+    --color-a-royalsafforn : #FF8C00;
     --color-a-green : #026f41;
     --color-bg-brown : #F3F4F6;
 
@@ -57,6 +57,48 @@
   }
 
 }
+/* @layer utilities{
+  @keyframes opacity-anim {
+    80% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes draw-top {
+    100% { transform: rotate(0deg) scaleX(1); }
+  }
+
+  @keyframes draw-bottom {
+    100% { transform: rotate(0deg) scaleX(1); }
+  }
+
+  @keyframes draw-left {
+    100% { transform: rotate(0deg) scaleY(1); }
+  }
+
+  @keyframes draw-right {
+    100% { transform: rotate(0deg) scaleY(1); }
+  }
+
+  @keyframes move-tl {
+    90% { opacity: 0.6; }
+    100% { top: -4px; left: -4px; opacity: 1; }
+  }
+
+  @keyframes move-tr {
+    80% { opacity: 0.6; }
+    100% { top: -4px; right: -4px; opacity: 1; }
+  }
+
+  @keyframes move-br {
+    80% { opacity: 0.6; }
+    100% { bottom: -4px; right: -4px; opacity: 1; }
+  }
+
+  @keyframes move-bl {
+    80% { opacity: 0.6; }
+    100% { bottom: -4px; left: -4px; opacity: 1; }
+  }
+} */
 
 
 /* //////////////////////////////////////////////////////////////////////// */
@@ -66,7 +108,7 @@
 /* hero page  ---------------------------------------------- */
 
 #hero{
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url(./assets//hero.webp);
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url("https://res.cloudinary.com/djw3rcz4j/image/upload/v1771930228/n7ky9xds6ac9skdlzlwl_qakitu.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -78,47 +120,35 @@
 }
 
 #footer{
-  background-image: url(./assets/footer-1.webp);
+  /* background-image: url(./assets/footer-1.webp); */
 }
 #aboutCnt{
-  background-image: url(./assets/about/team.webp);
+  /* background-image: url(./assets/about/team.webp); */
 }
 #count-1{
-  background-image: url(./assets/about/counter-1.webp);
+  /* background-image: url(./assets/ourprojects/19.webp); */
 }
 #count-2{
-  background-image: url(./assets/about/counter.webp);
+  /* background-image: url(./assets/ourprojects/20.webp); */
 }
 #banner{
   background-image: url(./assets/banner.webp);
 }
 #costEst{
-  background-image: url(./assets/ourprojects/2.webp);
+  /* background-image: url(./assets/ourprojects/2.webp); */
 }
 #serAbt{
-  background-image: url(./assets/about/team-2.webp);
+  /* background-image: url(./assets/ourprojects/21.webp); */
 }
 #ourJour{
-  background-image: url(./assets/our-journey-1.webp);
+  /* background-image: url(./assets/ourprojects/9.webp); */
 }
-
-/* our process  ---------------------------------------------- */
-
-@media screen and (min-width: 1024px){
-  #ourProcess .cardGrp::before{
-    content: "";
-
-    height: 1px;
-    width: 150vw;
-    background-color: #0005;
-    
-    position: absolute;
-    top: 153px;
-    left: -50vw;
-    z-index: 10;
-  }
+#ourJour-2{
+  /* background-image: url(./assets/ourprojects/3.webp); */
 }
-
+#cta{
+  /* background-image: url(./assets/ourprojects/3.webp); */
+}
 /* home contact form  ---------------------------------------------- */
 
   .homeContact::before {
@@ -491,8 +521,27 @@
         - Minimum width of .marquee should be equal to: 3 li @ 100px + 4px for left and right border = 304px 
 */
 
+/* Container and basic setup */
+.m-paused {
+  animation-play-state: paused !important;
+}
 
-.marquee-wrapper {
+/* The Keyframes */
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
+/* Utility classes to apply the animation */
+.animate-scroll {
+  animation: scroll var(--speed) linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll var(--speed) linear infinite reverse;
+}
+
+/* .marquee-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
@@ -539,11 +588,11 @@
   100% {
     left: -100%;
   }
-}
+} */
 
 /* animation - marquee slider  ---------------------------------------------- */
 
-.stock-ticker {
+/* .stock-ticker {
   font-size: 15px;
   padding-block: 8px;
   overflow: hidden;
@@ -578,7 +627,7 @@
 
 .animation-forward{
   animation-direction: reverse !important;
-}
+} */
 
 /* animation - popup open/close  ---------------------------------------------- */
 
@@ -638,4 +687,28 @@
 
 
 
+@keyframes opacity-anim {
+  0% { opacity: 0; }
+  80% { opacity: 0; }
+  100% { opacity: 1; }
+}
 
+@keyframes draw-line {
+  to { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes move-top-left {
+  to { top: -4px; left: -4px; opacity: 1; }
+}
+
+@keyframes move-top-right {
+  to { top: -4px; right: -4px; opacity: 1; }
+}
+
+@keyframes move-bottom-right {
+  to { bottom: -4px; right: -4px; opacity: 1; }
+}
+
+@keyframes move-bottom-left {
+  to { bottom: -4px; left: -4px; opacity: 1; }
+}

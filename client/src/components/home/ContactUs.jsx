@@ -1,11 +1,7 @@
 import React from 'react';
 
 import Marquee from '../ui/marquee';
-import Heading from '../common/Heading';
-
-import CostEstimator from "../estimators/CostEstimator";
 import ButtonArrow from '../ui/ButtonArrow';
-import { getImagewebp } from '../../utility/getImage';
 import ContactForm from '../common/ContactForm';
 
 const ContactUs = ({setOpenPop}) => {
@@ -13,20 +9,13 @@ const ContactUs = ({setOpenPop}) => {
   return (<>
     <section className='h-full w-full bg-bg-brown'>
       <div className='sm:container mx-auto py-8 lg:py-16 px-4'>
-
-        <div className='pb-10 hidden lg:flex flex-col justify-center items-center'>
-            <Marquee quotes={"Enuire us"} />
-            <div className='pt-8'></div>
-            <Heading text={"Get specialist advice for residential, commercial or property"} classes={"md:w-2/3"} />
-        </div>
-
         <div className='pt-5 flex flex-col flex-col lg:flex-row justify-center gap-5'>
 
           <div className='w-full lg:w-1/2 rounded-3xl px-5 lg:py-10 '>
-            <Marquee quotes={"quick support"} />
+            <Marquee quotes={"Enuire us"} />
             <h3 className="py-5 text-4xl" >We're Ready to Help You Anytime</h3>
             <p className="max-w-2xl pb-8 text-lg leading-8 text-gray-600">Our team is always ready to support you at every stage of your project. We’re here to make your entire journey smooth, simple, and stress-free.</p>
-            <img src={getImagewebp("Contact-us-img")} loading='lazy' alt={`anusha structures building`} 
+            <img src={"https://res.cloudinary.com/djw3rcz4j/image/upload/v1771937862/Contact-us-img_hg0fq5.webp"} loading='lazy' alt={`anusha structures building`} 
               title={`building of anusha structures`}
               onContextMenu={(e) => e.preventDefault()}
               draggable={false}

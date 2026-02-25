@@ -10,7 +10,7 @@ const List = ({data}) => {
 
     <section className='h-full w-full py-8 md:py-16'>
       <div className='sm:container mx-auto px-4'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='grid xs:grid-cols-2 lg:grid-cols-3 gap-8'>
 
             {(data.length == 0) ? (<>
               <div className='col-span-full pt-8 lg:pt-0 text-center flex flex-col items-center'>

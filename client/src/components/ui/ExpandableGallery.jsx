@@ -5,17 +5,17 @@ import { getImageSvg, getImagewebp } from '../../utility/getImage';
 import ButtonArrow from './ButtonArrow';
 import { Link } from 'react-router-dom';
 
+const panels = [
+  { title: "Srm Hospital", loc : "Chennai", image: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771930228/n7ky9xds6ac9skdlzlwl_qakitu.webp" },                    
+  { title: "Quest Cafe", loc : "Chennai", image: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771933070/18_om0mvt.webp" },                    
+  { title: "Om vinayaka Hostel", loc : "Chennai", image: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771930853/mfbxqixvpeydanarf5sw_ef7ktl.webp" },                    
+  { title: "Library", loc : "Chennai", image: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771930956/um78aqawgkkbyqakxks2_bnfxy5.webp" },                    
+  { title: "Office Interior", loc : "Chennai", image: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771931760/vh3lhvc8twe2r1g8simf_tnqgio.webp" },                    
+  { title: "Office Interior 2", loc : "Chennai", image: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771931755/ebvjfod0qj5nygkibldm_xl9gpu.webp" },                    
+];
+
 function ExpandableGallery() {
   const [expandedIndex, setExpandedIndex] = useState(0);
-  
-  const panels = [
-    { title: "Srm Hospital", loc : "Chennai", image: "hero" },                    
-    { title: "Quest Cafe", loc : "Chennai", image: "ourprojects/17" },                    
-    { title: "Om vinayaka Hostel", loc : "Chennai", image: "our-journey-2" },                    
-    { title: "Library", loc : "Chennai", image: "our-journey-1" },                    
-    { title: "Office Interior", loc : "Chennai", image: "ourprojects/10" },                    
-    { title: "Office Interior 2", loc : "Chennai", image: "ourprojects/13" },                    
-  ];
 
   const handleClick = (index) => {
     setExpandedIndex(index);
@@ -25,9 +25,9 @@ function ExpandableGallery() {
     <section className='h-full w-full py-8 lg:py-16 bg-bg-brown'>
       <div className='sm:container mx-auto px-4'>
 
-        <div className='pb-12'>
+        <div className='pb-5 md:pb-12'>
           <Marquee quotes={"our projects"} />
-          <div className='pt-8'></div>
+          <div className='pt-5 md:pt-8'></div>
           <div className="xl:w-[800px]">
             <Heading text={"Elevate your lifestyle with affordable luxury homes."} align='left' />
           </div>
@@ -45,7 +45,7 @@ function ExpandableGallery() {
                 ${expandedIndex === index ? 'h-[300px] sm:h-full w-full sm:w-[60%]' : 'h-[75px] sm:h-full w-full sm:w-[16.6%]'}
                 min-w-[40px] block bg-cover bg-bottom-right
                 `}
-                style={{backgroundImage : `url(${getImagewebp(`${image}`)})`,backgroundColor: "#0009", backgroundBlendMode: "multiply"}}
+                style={{backgroundImage : `url(${image})`,backgroundColor: "#0009", backgroundBlendMode: "multiply"}}
             >                
                 <div className={`h-full p-5 md:p-12 flex flex-col justify-end gap-4`}>
                     { (expandedIndex == index) && <>

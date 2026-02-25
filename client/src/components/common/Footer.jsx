@@ -1,35 +1,31 @@
 import React, {memo} from 'react';
 import FooterComponent from './FooterComponent';
+import CallToAction from "./Cta"
 
 import { useLocation } from "react-router-dom";
 import { getPDF } from '../../utility/getImage';
 
-const Footer = () => {
+const Footer = ({setOpenPop}) => {
   
   const location = useLocation();
 
   return (<>
 
-    {((location.pathname == "/estimator") || (location.pathname == "/services") || (location.pathname == "/projects")) && <div className={`w-full h-20 rounded-b-[100px] relative z-10 bg-white`}> </div>}
-    {((location.pathname == "/") || (location.pathname == "/home") || (location.pathname == "/about") || (location.pathname == "/contact") || (location.pathname == "/floorplans") || (location.pathname == "/privacy-policy")) && <div className={`w-full h-20 rounded-b-[100px] relative z-10 bg-bg-brown`}> </div>}
+    {((location.pathname == "/contact")||(location.pathname == "/privacy-policy")) ?
+        <div className={`w-full h-20 rounded-b-[100px] relative z-10 bg-bg-brown`}> </div>
+      :
+        <CallToAction setOpenPop={setOpenPop} />
+    }
 
-    <section id='footer' className='h-full w-full pt-32 md:pt-44 pb-16 -mt-20 bg-cover bg-no-repeat ' style={{backgroundColor: "#0009", backgroundBlendMode: "multiply"}}>
+    <section id='footer' className='h-full w-full pt-32 md:pt-44 pb-16 -mt-20 bg-cover bg-no-repeat 
+      bg-[url("https://res.cloudinary.com/djw3rcz4j/image/upload/v1771935873/footer-1_dmn1c9.webp")]
+    ' style={{backgroundColor: "#0009", backgroundBlendMode: "multiply"}}>
 
       <div className='container mx-auto px-4 sm:px-0'>
 
-        <div className='pb-10 flex flex-col justify-center items-center gap-5'>
+        <div className='flex flex-col justify-center items-center gap-5'>
           <h2 className='text-5xl sm:text6xl lg:text-8xl  xl:w-1/2 text-white text-center'>Your dream home awaits</h2>
           <p className="lg:max-w-2xl pb-2 text-center text-2xl leading-8 text-white">We don’t just construct spaces 🏠. we create destinations where dreams live 👨‍👩‍👧‍👦.</p>
-        </div>
-
-        <div className='flex justify-center lg:-mb-42 relative z-[5]'>
-
-          <a href={getPDF("anusha-broucher-demo.pdf")} target='_blank'
-            className='bg-a-royalsafforn size-40 lg:size-52 p-4 text-center aspect-square rounded-full text-2xl lg:text-3xl text-white font-bold grid place-items-center'
-          >
-            Download our brochure
-          </a>
-
         </div>
 
         <div className='text-center overflow-hidden -mb-5 xsl:-mb-12 lg:-mb-28'>

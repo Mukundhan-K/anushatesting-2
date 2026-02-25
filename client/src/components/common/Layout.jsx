@@ -7,25 +7,27 @@ import { useSelector } from "react-redux";
 import Header from "./Header";
 import Footer from "./Footer";
 import Loader from './Loader';
+import useMediaQuery from '../../utility/UseMediaQuery';
 
-const Layout = () => {
-  const {isLoading} = useSelector((state)=>state.shopProductReducer);
+const Layout = ({ setOpenPop }) => {
+  
+  const { isLoading } = useSelector((state) => state.shopProductReducer);
   if (isLoading) {
-      return <Loader />; // or null
+    return <Loader />; // or null
   }
 
   return (<>
 
     <header>
-        <Header />
+      <Header />
     </header>
 
     <main>
-        <Outlet />
+      <Outlet />
     </main>
 
     <footer>
-        <Footer />
+      <Footer setOpenPop={setOpenPop} />
     </footer>
 
   </>);
