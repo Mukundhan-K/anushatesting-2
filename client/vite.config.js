@@ -31,7 +31,7 @@ export default defineConfig({
           react: ['react', 'react-dom'],
           router: ['react-router-dom'],
           redux: ['@reduxjs/toolkit', 'react-redux'],
-          ui: ['embla-carousel-react', 'embla-carousel-autoplay', 'react-photo-view', 'lucide-react']
+          ui: ['embla-carousel-react', 'embla-carousel-autoplay']
         }
       }
     }
