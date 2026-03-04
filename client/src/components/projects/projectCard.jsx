@@ -1,5 +1,5 @@
 import { memo, useMemo } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getImageSvg } from "../../utility/getImage";
 
 const ProjectCard = ({ id, images, location, title, status }) => {
@@ -18,7 +18,7 @@ const ProjectCard = ({ id, images, location, title, status }) => {
     status === "completed" ? "bg-green-400" : "bg-a-royalsafforn";
 
   return (
-    <NavLink
+    <Link
       to={id}
       className="
         h-full rounded-3xl bg-white cursor-pointer
@@ -65,7 +65,7 @@ const ProjectCard = ({ id, images, location, title, status }) => {
           </h2>
         </div>
       </div>
-    </NavLink>
+    </Link>
   );
 };
 

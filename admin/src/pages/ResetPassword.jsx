@@ -87,44 +87,6 @@ const ResetPassword = () => {
       </div>
     </section>
 
-    // <section className="min-h-screen flex items-center justify-center">
-    //   <form
-    //     onSubmit={}
-    //     className="bg-white p-8 rounded-xl shadow w-[320px]"
-    //   >
-    //     <h2 className="text-xl font-semibold mb-4">
-    //       Reset Password
-    //     </h2>
-
-    //     <input
-    //       type="password"
-    //       placeholder="Enter new password"
-    //       value={password.main}
-    //       name="main"
-    //       onChange={handlePasswordChange}
-    //       className="w-full border px-4 py-2 rounded mb-4"
-    //       required
-    //     />
-
-    //     <input
-    //       type="password"
-    //       placeholder="Enter Confirm password"
-    //       value={password.confirm}
-    //       name="confirm"
-    //       onChange={handlePasswordChange}
-    //       className="w-full border px-4 py-2 rounded mb-4"
-    //       required
-    //     />
-
-    //     <button
-    //       type="submit"
-    //       disabled={loading}
-    //       className="w-full bg-a-royalsafforn text-white py-2 rounded"
-    //     >
-    //       {loading ? "Updating..." : "Reset Password"}
-    //     </button>
-    //   </form>
-    // </section>
   );
 };
 

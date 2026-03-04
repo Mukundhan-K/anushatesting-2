@@ -37,7 +37,7 @@ router.get("/allusers", authMiddleware, verifyAdminUser, getAllUsers);
 //   loginValidator, validate,
 //   contactLimiter, signupLimiter,
 //   blockDisposable, checkMxMiddleware,
-//  authMiddleware, verifyAdminUser // use if needed otherwise uncomment it
+//  authMiddleware, verifyAdminUser, // use if needed otherwise uncomment it
 //   createUser
 // );
 

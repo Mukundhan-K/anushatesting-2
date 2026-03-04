@@ -99,7 +99,7 @@ const Hero = () => {
                           <div key={id} className={`img-pill border border-white ${index == 1 ? 'hidden sm:inline-block md:hidden lg:inline-block' : (index > 0) ? "hidden lg:inline-block" : ""}`}>
                             <img 
                               src={getImagewebp(id)} 
-                              alt="Anusha Construction building" 
+                              alt="Anusha Structures pvt ltd" 
                               loading='lazy' 
                               onContextMenu={(e) => e.preventDefault()}
                               draggable={false}
