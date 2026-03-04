@@ -56,6 +56,10 @@
     @apply object-contain size-10 md:size-20 lg:size-32;
   }
 
+/* chatbot icon  ---------------------------------------------- */
+  #zsiq_float{
+    @apply right-4! md:right-5! bottom-24! md:bottom-3!;
+  }
 }
 /* @layer utilities{
   @keyframes opacity-anim {
@@ -206,8 +210,8 @@
 
 /* From Uiverse.io by vinodjangid07 */ 
 #backtotop {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   background-color:  var(--color-a-green);
   border: none;
@@ -271,8 +275,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -506,21 +510,6 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 } */
 
-
-/* animation - marquee  ---------------------------------------------- */
-
-/* IMPORTANT NOTES */
-/* .marquee-wrapper must be at least 2x larger than combined widths of all li elements inside .marquee */
-/* .marquee must be at least 2x larger than .marquee-wrapper including the borders on .marquee-wrapper e.g. border-left: 2px and border-right: 2px in this codepen*/
-
-/* 
-  WIDTH CALCULATION EXAMPLE
-  ul and .marquee widths are dependent on the number of li and their widths.
-      For 3 li w/ 100px width and 2 ul:
-        - Fixed length of each ul should be equal to: 3 li @ 100px each * 2 ul = 600px 
-        - Minimum width of .marquee should be equal to: 3 li @ 100px + 4px for left and right border = 304px 
-*/
-
 /* Container and basic setup */
 .m-paused {
   animation-play-state: paused !important;
@@ -540,94 +529,6 @@
 .animate-scroll-reverse {
   animation: scroll var(--speed) linear infinite reverse;
 }
-
-/* .marquee-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 30px;
-  width: 152px;
-  border-radius: 50px;
-  overflow: hidden;
-  white-space: nowrap;
-  background: transparent;
-}
-
-.marquee {
-  position: absolute;
-  display: block;
-  width: 200%;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  animation: marquee-scrolling 4s linear infinite;
-  -webkit-animation: marquee-scrolling 4s linear infinite;
-}
-
-.marquee ul {
-  width: 300px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.marquee ul li {
-  float: left;
-  width: 150px;
-  background: transparent;
-  overflow: hidden;
-}
-
-@keyframes marquee-scrolling {
-  0% {
-    left: 0;
-  }
-
-  100% {
-    left: -100%;
-  }
-} */
-
-/* animation - marquee slider  ---------------------------------------------- */
-
-/* .stock-ticker {
-  font-size: 15px;
-  padding-block: 8px;
-  overflow: hidden;
-  user-select: none;
-
-  --gap: 20px;
-  display: flex;
-  gap: var(--gap);
-}
-
-.stock-ticker ul {
-  list-style: none;
-  flex-shrink: 0;
-  min-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--gap);
-
-  animation: scroll 30s linear infinite;
-}
-
-.stock-ticker:hover ul {
-  animation-play-state: paused;
-}
-
-@keyframes scroll {
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-  }
-}
-
-.animation-forward{
-  animation-direction: reverse !important;
-} */
 
 /* animation - popup open/close  ---------------------------------------------- */
 

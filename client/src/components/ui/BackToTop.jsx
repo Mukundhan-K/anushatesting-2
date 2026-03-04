@@ -44,7 +44,7 @@ const BackToTopButton = ({openPop, setOpenPop}) => {
 
   return (
     <>
-    <button id="whatsBtn" className={`fixed! ${(window.scrollY > 300) ? 'bottom-54 md:bottom-56' : 'bottom-28 md:bottom-32'} right-5`}
+    <button id="whatsBtn" className={`fixed! ${(window.scrollY > 300) ? 'bottom-54 md:bottom-38' : 'bottom-40 md:bottom-20'} right-5`}
               onClick={handleButtonClick}
     >
         <div className="sign">
@@ -58,22 +58,11 @@ const BackToTopButton = ({openPop, setOpenPop}) => {
         <div className="text">Whatsapp</div>
     </button>
 
-    <button id="whatsBtn" className={`bg-a-royalsafforn! fixed! ${(window.scrollY > 300) ? 'bottom-38 md:bottom-36' : 'bottom-10'} right-5 hover:w-[200px]!`}
-        onClick={() => setOpenPop(true)}
-        style={{boxShadow : "0px 0px 0px 4px rgba(230, 137, 0, 0.53)"}}
-    >
-        <div className="sign">
-          <img src={getImageSvg("builder_worker")} className='size-7 md:size-10'  loading='lazy' alt={`worker icon`} title={`icon of worker`}  />
-        </div>
-
-        <div className="text text-xs! md:text-base!">Start Construction</div>
-    </button>
-
     {isVisible && (
       <button
         onClick={scrollToTop}
         id='backtotop'
-        className={`fixed! bottom-22 md:bottom-16 right-5 text-xl`}
+        className={`fixed! ${(window.scrollY > 300) ? 'bottom-40 md:bottom-20' : 'bottom-10'} right-5 text-xl`}
         aria-label='back to top button'
       >
           <svg className="svgIcon" viewBox="0 0 384 512">
