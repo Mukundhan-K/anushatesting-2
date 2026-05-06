@@ -7,7 +7,7 @@ import Marquee from '../components/ui/marquee';
 import Heading from '../components/common/Heading';
 import LoanEstimator from "../components/estimators/LoanEstimator";
 import BankingPatners from '../components/home/BankingPatners';
-import Pricing from '../components/home/Pricing';
+import Pricing from '../components/home/price';
 import ButtonArrow from '../components/ui/ButtonArrow';
 
 const registeredFormControl = [
