@@ -9,17 +9,18 @@ const images = import.meta.glob('/src/assets/**/*.{svg,webp}', { eager: true });
 // };
 
 // ✅ Exported helpers
+export const getColdwebp = (pathURL) => {
+  return `https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943194/${pathURL}.webp`;  
+};
 export const getImagewebp = (pathURL) => {
   const cleanPath = pathURL.replace(/^\/+/, ''); // remove leading slash
   const key = `/src/assets/${cleanPath}.webp`;  
   return images[key]?.default || '';
 };
-
 export const getImageSvg = (pathURL) => {
   const cleanPath = pathURL.replace(/^\/+/, '');
   return `/svg/${cleanPath}.svg`;
 };
-
 export const getPDF = (pathURL) => {
   const cleanPath = pathURL.replace(/^\/+/, '');
   return `/src/assets/docs-pdf/${cleanPath}`;

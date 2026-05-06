@@ -42,7 +42,7 @@ export default function CursorFollower() {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-50 will-change-transform"
+      className="hidden sm:block fixed top-0 left-0 pointer-events-none z-50 will-change-transform"
     >
       <img
         src={getImageSvg("cap")}

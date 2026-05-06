@@ -1,14 +1,13 @@
 import React from 'react';
 
 const COMPARISON_DATA = [
-  { parameter: 'Online Project Tracking', brand: true, others: false },
   { parameter: '500+ Quality Checks', brand: true, others: false },
-  { parameter: 'Turnkey Construction', brand: true, others: false },
-  { parameter: 'Government Approved', brand: true, others: false },
-  { parameter: 'Vastu Based Option', brand: true, others: false },
-  { parameter: 'Direct Material Supply', brand: true, others: false },
   { parameter: '10 Years Structural Warranty', brand: true, others: false },
   { parameter: '1 Year Free Repair', brand: true, others: false },
+  { parameter: 'Direct Material Supply', brand: true, others: false },
+  { parameter: 'Government Approved', brand: true, others: false },
+  { parameter: 'Vastu Based Option', brand: true, others: false },
+  { parameter: 'Online Project Tracking', brand: true, others: false },
 ];
 
 const ComparisonTable = () => {

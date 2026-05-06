@@ -65,6 +65,7 @@ const CardDsn = memo(({icon, title, text, phase, i})=>(
               className="size-10 transition-all duration-500 group-hover:invert" 
               loading="lazy" 
               alt={title} 
+              title={title}
             />
           </div>
         </div>

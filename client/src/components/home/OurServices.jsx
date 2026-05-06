@@ -1,5 +1,5 @@
 import React, {lazy, Suspense, memo} from 'react';
-import { getImageSvg, getImagewebp } from '../../utility/getImage';
+import { getColdwebp, getImageSvg, getImagewebp } from '../../utility/getImage';
 import useMediaQuery from '../../utility/UseMediaQuery';
 import Marquee from '../ui/marquee';
 import Heading from '../common/Heading';
@@ -81,63 +81,6 @@ const ICON_MAP = {
   ),
 };
 
-const cards = [
-  {
-    icon: "home",
-    title: "Residential Construction",
-    text: "Custom-built homes crafted with precision, premium materials, and thoughtful design for lasting comfort and value.",
-    img :"https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943194/4_lbvvle.webp"
-  },
-  {
-    icon: "building",
-    title: "Commercial Construction",
-    text: "Modern commercial spaces engineered for performance, scalability, and long-term business growth.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943193/1_r2qvkn.webp"
-  },
-  {
-    icon: "key",
-    title: "Turnkey Construction",
-    text: "End-to-end project execution delivering fully completed spaces, ready for immediate occupancy.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943193/2_q55qek.webp"
-  },
-  {
-    icon: "interior_design",
-    title: "Interior Design",
-    text: "Bespoke interiors curated to reflect personality, functionality, and refined architectural elegance.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943195/5_zkaadd.webp"
-  },
-  {
-    icon: "renovation",
-    title: "Renovation & Remodeling",
-    text: "Transforming existing spaces with innovative upgrades that enhance aesthetics, efficiency, and value.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943196/6_re60t4.webp"
-  },
-  {
-    icon: "smart_home",
-    title: "Smart Homes",
-    text: "Integrated automation systems designed to elevate security, comfort, and energy efficiency.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943199/9_ochpsj.webp"
-  },
-  {
-    icon: "real_estate",
-    title: "Real Estate Development",
-    text: "Strategic property development creating high-value investments with sustainable long-term returns.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943198/8_gfcjiw.webp"
-  },
-  {
-    icon: "classical_home",
-    title: "Classical Homes",
-    text: "Timeless architectural residences inspired by heritage design, symmetry, and enduring craftsmanship.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943194/3_isthmb.webp"
-  },
-  {
-    icon: "themed_home",
-    title: "Themed Homes",
-    text: "Distinctive living environments designed around unique concepts, delivering immersive and personalized experiences.",
-    img: "https://res.cloudinary.com/djw3rcz4j/image/upload/v1771943197/7_pjl6rd.webp"
-  }
-];
-
 const Card = memo(({icon, title,text,img, index})=>(
   <div key={index} className="h-full relative group p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300">
     {/* Step Number Backdrop */}
@@ -148,7 +91,7 @@ const Card = memo(({icon, title,text,img, index})=>(
     {/* 1. Background Image with Zoom Effect */}
     <div className="absolute inset-0 z-0">
       <img 
-        src={img} 
+        src={getColdwebp(img)} 
         alt={title}
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-70"
       />
@@ -180,17 +123,14 @@ const Card = memo(({icon, title,text,img, index})=>(
       </div>
 
       {/* Content */}
-      <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-tight">
+      <h3 className="text-xl font-bold text-white uppercase tracking-tight whitespace-pre-line">
         {title}
       </h3>
-      <p className="text-gray-300 leading-relaxed text-sm lg:text-base w-full">
-        {text}
-      </p>
     </div>
   </div>
 ));
 
-const Services = () => {
+const Services = ({tit,data}) => {  
 
   return (<>
       <section className="h-full w-full py-10">
@@ -199,13 +139,13 @@ const Services = () => {
           <div className='pb-12 md:pb-16 flex flex-col justify-center items-center'>
             <Marquee quotes={"truested patners"} />
             <div className='pt-5 md:pt-10'></div>
-            <Heading text={"Find Out What We Offer"} />
+            <Heading text={`Our ${tit} Construction Services`} />
           </div>
 
           <div>
               <Suspense fallback={<div className="p-24 text-center">Loading...</div>}>
                 <EmblaSlider
-                  items={cards}
+                  items={data}
                   renderSlide={({icon,title,text, img}, index) =><Card key={title} img={img} title={title} icon={icon} text={text} index={index} />}
                   autoplay
                   autoplayDelay={3000}

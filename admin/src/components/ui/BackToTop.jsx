@@ -85,9 +85,9 @@ const BackToTopButton = ({openPop, setOpenPop}) => {
 
       {isVisible && (
         <div className='w-full bg-a-royalsafforn fixed! bottom-0 left-0 right-0 z-50' onClick={() => setOpenPop(true)}>
-          <Link className='w-full px-10 py-2! inline-block text-white font-outfit! text-2xl text-center font-medium'>
+          <div className='w-full px-10 py-2! inline-block text-white font-outfit! text-2xl text-center font-medium'>
             Start Construction
-          </Link>
+          </div>
         </div>
       )}
 

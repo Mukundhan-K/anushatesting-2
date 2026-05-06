@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Marquee from '../ui/marquee';
 import Heading from '../common/Heading';
@@ -83,12 +83,12 @@ const CostEstimation = ({ setOpenPop }) => {
                     <img src={getImageSvg("calculator")} className='size-8' alt="calc" />
                   </div>
                   <div>
-                    <NavLink 
+                    <Link 
                       to="/estimator" 
                       className="px-5 py-2 rounded-full bg-white border border-gray-300 text-sm font-medium text-gray-600 hover:border-a-green hover:text-a-green/80 transition-all shadow-sm"
                     >
                       Advanced Mode →
-                    </NavLink>
+                    </Link>
                     <p className="pt-2 pl-2 text-gray-600">Fill details to generate instant quote</p>
                   </div>
                 </div>

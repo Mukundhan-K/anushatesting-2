@@ -7,8 +7,8 @@ import useMediaQuery from '../../utility/UseMediaQuery';
 const EmblaSlider = lazy(() => import("../ui/EmblaSlider"));
 
 const review = [
-    {img:"review/1", rate:"star-5", name: "Arjun Rajesh " ,review:"Working with Anusha Structures was a great experience. the design they created was too good. They really know how to bring ideas to life."},
-    {img:"review/2", rate:"star-5", name: "Ruth Kane NZ" ,review:"We were amazed by how Anusha Structures's team refined our idea into a beautiful and eco-friendly design. It truly felt like they understood our vision from day one"},
+    {img:"review/1", rate:"star-5", name: "Ambujam Rajesh " ,review:"Working with Anusha Structures was a great experience. the design they created was too good. They really know how to bring ideas to life."},
+    {img:"review/2", rate:"star-5", name: "Ratheesh" ,review:"We were amazed by how Anusha Structures's team refined our idea into a beautiful and eco-friendly design. It truly felt like they understood our vision from day one"},
     {img:"review/3", rate:"star-4", name: "Karthikeyan" ,review:"Anusha Structures's architectural insight completely elevated our concept. The end result was elegant, sustainable, and far better than what we imagined."},
 ];
 

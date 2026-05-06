@@ -91,9 +91,7 @@ const contact = ({setOpenPop}) => {
     <ContactUs setOpenPop={setOpenPop} />
 
     <div className=''>
-    
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.397974781006!2d80.17995297359097!3d13.073945412629163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52616613ecf81d%3A0xf50543a112580f2f!2s%22O%22%20NATURALS!5e0!3m2!1sen!2sin!4v1761117560490!5m2!1sen!2sin" className='w-full h-[600px]' allowFullScreen="" loading="lazy" title="Google Map showing Anusha Structures office location" referrerPolicy="no-referrer-when-downgrade"></iframe>
-
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.2901379309933!2d80.24521797359102!3d13.080789512478022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267d9390dd78d%3A0x54e520bcc9b78b0b!2sAnusha%20structures%20private%20limited!5e0!3m2!1sen!2sin!4v1777988293338!5m2!1sen!2sin" className='w-full h-[600px]' allowfullscreen="" loading="lazy" title="Google Map showing Anusha Structures office location" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
 

@@ -1,59 +1,60 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { getColdwebp } from '../utility/getImage';
 
 const TABS = [
   { 
-    id: 'cost', 
-    label: 'NO COST OVERRUNS', 
+    id: 'cost',
+    label: 'NO COST OVERRUNS',
     emoji: '₹', 
     title: 'Transparent Cost Breakup',
     content: 'Detailed pricing from package costs to architecture fees with zero hidden surprises.',
-    bgImage: 'https://res.cloudinary.com/djw3rcz4j/image/upload/v1771999319/4_uv3pzv.webp',
+    bgImage: getColdwebp("2_ohvvmt"),
     dark: true 
   },
   { 
     id: 'safety', 
     label: 'MONEY SAFETY', 
     emoji: '🔒', 
-    title: 'Secure Payment Escrow',
+    title: 'Secure Payment',
     content: 'Your money is safe. We only release payments to contractors after quality milestones are met.',
-    bgImage: 'https://res.cloudinary.com/djw3rcz4j/image/upload/v1771999319/1_voicxc.webp',
+    bgImage: getColdwebp("4_eqmtxo"),
     dark: true 
   },
   { 
     id: 'delay', 
-    label: 'NO DELAY POLICY', 
+    label: 'NO DELAY POLICY',
     emoji: '📅', 
     title: 'On-Time Delivery',
     content: 'We track every milestone on the calendar. If we delay, we pay.',
-    bgImage: 'https://res.cloudinary.com/djw3rcz4j/image/upload/v1771999319/2_rqnud4.webp',
+    bgImage: getColdwebp("3_thbiiu"),
     dark: true
   },
-  { 
+  {
     id: 'team', 
     label: 'SOLID TEAM', 
     emoji: '🧑‍💼', 
     title: 'Expert Professionals',
     content: 'Our team includes top-tier architects, project managers, and verified site engineers.',
-    bgImage: 'https://res.cloudinary.com/djw3rcz4j/image/upload/v1771999319/6_ih6kiv.webp',
+    bgImage: getColdwebp("1_xsnzty"),
     dark: true
   },
   { 
     id: 'warranty', 
-    label: '10 YEAR WARRANTY', 
+    label: '10 YEAR WARRANTY',
     emoji: '🛡️', 
     title: 'Built to Last',
     content: 'Every project is quality checked and protected by a structural 10-year warranty.',
-    bgImage: 'https://res.cloudinary.com/djw3rcz4j/image/upload/v1771999319/3_eno709.webp',
+    bgImage: getColdwebp("5_wcvcfr"),
     dark: true
   },
   { 
     id: 'repair', 
-    label: '1 YR FREE REPAIR', 
+    label: '1 YR FREE REPAIR',
     emoji: '🛠️', 
     title: 'Maintenance Covered',
     content: 'Enjoy peace of mind with 1 year of free repairs and services after handover.',
-    bgImage: 'https://res.cloudinary.com/djw3rcz4j/image/upload/v1771999319/5_z8vsl0.webp',
+    bgImage: getColdwebp("6_gpum1p"),
     dark: true
   },
 ];
@@ -137,7 +138,7 @@ const PremiumTabs = () => {
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-[5000ms] ease-linear scale-110"
                   style={{ backgroundImage: `url(${tab.bgImage})` }}
                 >
-                  <div className={`absolute inset-0 ${tab.dark ? 'bg-black/50' : 'bg-white/20'}`} />
+                  <div className={`absolute inset-0 ${tab.dark ? 'bg-black/30' : 'bg-white/20'}`} />
                 </div>
 
                 {/* Text Content - Positioned at Top */}

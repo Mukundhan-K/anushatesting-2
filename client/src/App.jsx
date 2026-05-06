@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "./components/common/Layout";
 import Loader from "./components/common/Loader";
 import Home from './pages/home';
+// import HomeCons from './pages/homeCons';
 import CursorFollower from './components/ui/CursorFollower';
 const Projects = lazy(() => import("./pages/Projects"));
 const About = lazy(() => import("./pages/about"));
@@ -53,6 +54,8 @@ function App() {
     "/projects",
     "/estimator",
     "/contact",
+    "/home-construction",
+    "/commercial-construction",
   ];
 
   useEffect(() => {
@@ -73,18 +76,12 @@ function App() {
           <Popup
             isOpen={openPop}
             onClose={() => setOpenPop(false)}
+            width={"max-w-[700px]"}
+            otrcss={"p-6 md:p-8"}
           >
+            <OpeningPopup />
           </Popup>
         </>}
-
-        <Popup
-          isOpen={showPopup}
-          onClose={() => setShowPopup(false)}
-          width={"max-w-[700px]"}
-          otrcss={"p-8"}
-        >
-          <OpeningPopup />
-        </Popup>
 
         <CursorFollower />
         
@@ -92,11 +89,10 @@ function App() {
         <Routes>
 
           <Route path='/' element={<Layout setOpenPop={setOpenPop} />}>
-            <Route index element={<Home setOpenPop={setOpenPop} />}></Route>
-            <Route path='home' element={<Home setOpenPop={setOpenPop} />}></Route>
+            <Route index element={<Home url="default" setOpenPop={setOpenPop} />}></Route>
+            <Route path='home' element={<Home url="default" setOpenPop={setOpenPop} />}></Route>
             <Route path='services' element={<Service setOpenPop={setOpenPop} />}></Route>
             <Route path='about' element={<About setOpenPop={setOpenPop} />}></Route>
-            <Route path='floorplans' element={<About />}></Route>
             <Route path='projects' element={<Projects setOpenPop={setOpenPop} />}></Route>
             <Route path='projects/:projId' element={<ProjectView />}></Route>
             <Route path='estimator' element={<Estimator setOpenPop={setOpenPop} />}></Route>
@@ -105,6 +101,13 @@ function App() {
 
             <Route path='privacy-policy' element={<PrivacyPolicy />}></Route>
             <Route path='terms-and-conditions' element={<PrivacyPolicy />}></Route>
+
+          {/* Dynamic landing pages */}
+            <Route path="home-construction" element={<Home url="home" setOpenPop={setOpenPop} />} />
+            <Route path="commercial-construction" element={<Home url="default" setOpenPop={setOpenPop} />} />
+            {/* <Route path="hopital-construction" element={<Home url="commercial" setOpenPop={setOpenPop} />} /> */}
+            {/* <Route path="hotel-construction" element={<Home url="commercial" setOpenPop={setOpenPop} />} />
+            <Route path="education-construction" element={<Home url="commercial" setOpenPop={setOpenPop} />} /> */}
           </Route>
 
           <Route path='*' element={<PagenotFound />}></Route>
