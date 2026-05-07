@@ -2,6 +2,7 @@
 export const constructionData = {
   default: {
     main: "Commercial Construction",
+    city: "Tamil Nadu",
     seoTl: "Commercial, Home, House Construction Builders in Chennai",
     seoDes: 'Professional construction company in Chennai,offers home and building construction,villas,apartment,interior design in Chennai,renovation in Chennai.Trusted builder',
     keywords: 'turnkey construction in Chennai, building contractors in Chennai, builders near me, home construction, building construction, builders in Chennai, 2 BHK, 3 BHK, interior design in Chennai, and renovation services in Chennai, luxury apartments in Chennai, villas in Chennai, building construction cost in Chennai, gated community in Chennai, apartment developments',
@@ -43,10 +44,12 @@ export const constructionData = {
   },
   home: {
     main: "Home Construction",
+    city: "Chennai",
     seoTl: "Home Construction Builders in Chennai | Luxury Villas",
     seoDes: 'Professional construction company in Chennai,offers home and building construction,villas,apartment,interior design in Chennai,renovation in Chennai.Trusted builder',
     keywords: 'turnkey construction in Chennai, building contractors in Chennai, builders near me, home construction, building construction, builders in Chennai, 2 BHK, 3 BHK, interior design in Chennai, and renovation services in Chennai, luxury apartments in Chennai, villas in Chennai, building construction cost in Chennai, gated community in Chennai, apartment developments',
-    
+    canonical: "home-construction",
+
     heroTl: "Construct Your Dream Space With Us",
     heroImg: "home_hero_id",
 
@@ -82,10 +85,13 @@ export const constructionData = {
     ]
   },
   commercial: {
+    main: "Home Construction",
+    city: "Chennai",
     seoTl: "Commercial Construction Builders in Chennai | Luxury Villas",
     seoDes: 'Professional construction company in Chennai,offers home and building construction,villas,apartment,interior design in Chennai,renovation in Chennai.Trusted builder',
     keywords: 'turnkey construction in Chennai, building contractors in Chennai, builders near me, home construction, building construction, builders in Chennai, 2 BHK, 3 BHK, interior design in Chennai, and renovation services in Chennai, luxury apartments in Chennai, villas in Chennai, building construction cost in Chennai, gated community in Chennai, apartment developments',
-    
+    canonical: "commercial-construction",
+
     heroTl: "Construct Your Dream Space With Us",
     heroImg: "home_hero_id",
 
@@ -124,10 +130,12 @@ export const constructionData = {
   },
   hospital: {
     main: "Commercial Construction",
+    city: "Chennai",
     seoTl: "Hospital, Healthcare Construction Builders in Chennai",
     seoDes: 'Professional construction company in Chennai,offers home and building construction,villas,apartment,interior design in Chennai,renovation in Chennai.Trusted builder',
     keywords: 'turnkey construction in Chennai, building contractors in Chennai, builders near me, home construction, building construction, builders in Chennai, 2 BHK, 3 BHK, interior design in Chennai, and renovation services in Chennai, luxury apartments in Chennai, villas in Chennai, building construction cost in Chennai, gated community in Chennai, apartment developments',
-    
+    canonical: "hopital-construction",
+
     heroTl: "Construct Your Dream Space With Us",
     heroImg: "home_hero_id",
 

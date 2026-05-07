@@ -26,10 +26,15 @@ const PagenotFound = lazy(() => import("./pages/common/404"));
 
 function App() {
 
+  useEffect(() => {
+    // This tells the prerenderer that the JS has finished loading
+    // and the Helmet tags are injected so it can save the HTML.
+    document.dispatchEvent(new Event('render-event'));
+  }, []);
   const domlocation = useLocation();
   const dispatch = useDispatch();
 
-    const [openPop, setOpenPop] = useState(false);
+  const [openPop, setOpenPop] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   // useEffect(() => {
   //   if ((domlocation.pathname.includes("/home")) ||

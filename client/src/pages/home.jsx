@@ -37,7 +37,7 @@ const HomeCons = ({url="default", setOpenPop}) => {
   console.log("pg data ", url, pageData);
 
   return (<>
-    <CommonSEO title={pageData.seoTl} description={pageData.seoDes} keywords={pageData.keywords}/>
+    <CommonSEO title={pageData.seoTl} canonical={pageData.canonical} description={pageData.seoDes} keywords={pageData.keywords}/>
 
     <Hero />
     <HeroCard data={pageData.main} />
