@@ -105,7 +105,7 @@ function App() {
           {/* Dynamic landing pages */}
             <Route path="home-construction" element={<Home url="home" setOpenPop={setOpenPop} />} />
             <Route path="commercial-construction" element={<Home url="default" setOpenPop={setOpenPop} />} />
-            {/* <Route path="hopital-construction" element={<Home url="commercial" setOpenPop={setOpenPop} />} /> */}
+            <Route path="hopital-construction" element={<Home url="hospital" setOpenPop={setOpenPop} />} />
             {/* <Route path="hotel-construction" element={<Home url="commercial" setOpenPop={setOpenPop} />} />
             <Route path="education-construction" element={<Home url="commercial" setOpenPop={setOpenPop} />} /> */}
           </Route>
