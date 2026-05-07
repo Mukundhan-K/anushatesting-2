@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {lazy} from 'react';
 import Banner from '../components/common/Banner';
 import Marquee from '../components/ui/marquee';
-import ContactUs from '../components/home/ContactUs';
+// import ContactUs from '../components/home/ContactUs';
 import { getImageSvg } from '../utility/getImage';
 import CommonSEO from '../utility/commonSeo';
 import ButtonArrow from '../components/ui/ButtonArrow';
+const ContactUs = lazy(() => import("../components/home/ContactUs"));
 
 const cards = [
   {img: "email", title: "Support email", text: "anushastructures02@gmail.com"},

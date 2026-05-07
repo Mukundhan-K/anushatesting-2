@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {lazy} from 'react';
 
 import AboutUs from "../components/about/AboutUs";
 import Banner from '../components/common/Banner';
-import Counter from '../components/about/Counter';
 import Marquee from '../components/ui/marquee';
 import Heading from '../components/common/Heading';
-
-import WhyChooseUs from "../components/home/WhyChooseUs";
-import Awards from '../components/about/Awards';
-import Review from "../components/home/Review";
-import OurProjects from "../components/home/OurProjects";
 import CommonSEO from '../utility/commonSeo';
 import ButtonArrow from '../components/ui/ButtonArrow';
+
+const Counter = lazy(() => import("../components/about/Counter"));
+const WhyChooseUs = lazy(() => import("../components/home/WhyChooseUs"));
+const Awards = lazy(() => import("../components/about/Awards"));
+const Review = lazy(() => import("../components/home/Review"));
+const OurProjects = lazy(() => import("../components/home/OurProjects"));
+// import Counter from '../components/about/Counter';
+// import WhyChooseUs from "../components/home/WhyChooseUs";
+// import Awards from '../components/about/Awards';
+// import Review from "../components/home/Review";
+// import OurProjects from "../components/home/OurProjects";
 
 const cards = [
   {img: "triangle", title: "Strategic Design", text: "We provide innovative architecture services in India, shaping layouts that blend creativity, sustainability, and function."},

@@ -103,7 +103,7 @@ const Hero = () => {
                               loading='lazy' 
                               onContextMenu={(e) => e.preventDefault()}
                               draggable={false}
-                              className='min-h-20'
+                              className='h-20 w-full object-contain'
                             />
                           </div>
                         ))}

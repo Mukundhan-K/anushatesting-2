@@ -1,23 +1,35 @@
-import React from 'react';
+import React, {lazy} from 'react';
 import { constructionData } from '../data/contentConfig.js';
 
 // components
 import Hero from "../components/home-cons/hero.jsx";
-import Services from '../components/home/OurServices.jsx';
-import OurJourney from "../components/home/ourjourney.jsx";
-import OurProcess from '../components/home/OurProcess.jsx';
-import Pricing2 from '../components/home/price.jsx';
-import Review from '../components/home/Review.jsx';
-import BankingPatners from '../components/home/BankingPatners.jsx';
-import CostEstimation from '../components/home/CostEstimation.jsx';
-import CommonSEO from '../utility/commonSeo.jsx';
-import TabComponent from './WhyChoose.jsx';
-import ComparisonTable from '../components/home/CompTable.jsx';
-
-import OurProjects from '../components/home-cons/OurProjects.jsx';
 import HeroCard from '../components/home/HeroCard.jsx';
-import BeforeAfter from '../components/home/CompareImg.jsx';
-import ResponsiveFloorPlans from "../components/home/Layout.jsx";
+import Services from '../components/home/OurServices.jsx';
+// const Services = lazy(() => import("../components/home/OurServices.jsx"));
+const OurJourney = lazy(() => import("../components/home/ourjourney.jsx"));
+const OurProcess = lazy(() => import("../components/home/OurProcess.jsx"));
+const TabComponent = lazy(() => import("./WhyChoose.jsx"));
+const ComparisonTable = lazy(() => import("../components/home/CompTable.jsx"));
+const OurProjects = lazy(() => import("../components/home-cons/OurProjects.jsx"));
+const Pricing2 = lazy(() => import("../components/home/price.jsx"));
+const Review = lazy(() => import("../components/home/Review.jsx"));
+const BeforeAfter = lazy(() => import("../components/home/CompareImg.jsx"));
+const ResponsiveFloorPlans = lazy(() => import("../components/home/Layout.jsx"));
+const CostEstimation = lazy(() => import("../components/home/CostEstimation.jsx"));
+const BankingPatners = lazy(() => import("../components/home/BankingPatners.jsx"));
+const CommonSEO = lazy(() => import("../utility/commonSeo.jsx"));
+// import OurJourney from "../components/home/ourjourney.jsx";
+// import OurProcess from '../components/home/OurProcess.jsx';
+// import TabComponent from './WhyChoose.jsx';
+// import ComparisonTable from '../components/home/CompTable.jsx';
+// import OurProjects from '../components/home-cons/OurProjects.jsx';
+// import Pricing2 from '../components/home/price.jsx';
+// import Review from '../components/home/Review.jsx';
+// import BeforeAfter from '../components/home/CompareImg.jsx';
+// import ResponsiveFloorPlans from "../components/home/Layout.jsx";
+// import CostEstimation from '../components/home/CostEstimation.jsx';
+// import BankingPatners from '../components/home/BankingPatners.jsx';
+// import CommonSEO from '../utility/commonSeo.jsx';
 
 const HomeCons = ({url="default", setOpenPop}) => {
   // Extract the specific data for this niche

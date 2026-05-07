@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, lazy} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 import Banner from '../components/common/Banner';
-import List from '../components/projects/List';
+// import List from '../components/projects/List';
+const List = lazy(() => import("../components/projects/List"));
 import Filter from '../components/projects/Filter';
 import Marquee from '../components/ui/marquee';
 import CommonSEO from '../utility/commonSeo';
 import { toast } from 'sonner';
-
 import { fetchAllProjects } from "../redux/shopSlice";
 
 const Projects = () => {

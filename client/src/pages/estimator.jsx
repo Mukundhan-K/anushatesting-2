@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{lazy} from 'react';
 
 // components
 import Banner from "../components/common/Banner";
@@ -6,9 +6,11 @@ import CostEstimator from '../components/estimators/CostEstimator';
 import Marquee from '../components/ui/marquee';
 import Heading from '../components/common/Heading';
 import LoanEstimator from "../components/estimators/LoanEstimator";
-import BankingPatners from '../components/home/BankingPatners';
-import Pricing from '../components/home/price';
+// import BankingPatners from '../components/home/BankingPatners';
+// import Pricing from '../components/home/price';
 import ButtonArrow from '../components/ui/ButtonArrow';
+const BankingPatners = lazy(() => import("../components/home/BankingPatners"));
+const Pricing = lazy(() => import("../components/home/price"));
 
 const registeredFormControl = [
     {

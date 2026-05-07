@@ -336,8 +336,11 @@
   transform: translate(2px, 2px);
 }
 
-
 @media screen and (max-width: 750px){
+  #hero{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.8)), url("https://res.cloudinary.com/djw3rcz4j/image/upload/v1778132396/hero-mobile_bpa057.avif") !important;
+  }
+
   #whatsBtn,
   #backtotop{
     width: 40px;

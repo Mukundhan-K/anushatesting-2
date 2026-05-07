@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{lazy} from 'react';
 import Banner from '../components/common/Banner';
 import About from "../components/services/About";
-import ExpandableGallery from '../components/ui/ExpandableGallery';
-import OurServices from '../components/services/OurServices';
-
-import OurProcess from "../components/home/OurProcess";
+// import ExpandableGallery from '../components/ui/ExpandableGallery';
+// import OurServices from '../components/services/OurServices';
+// import OurProcess from "../components/home/OurProcess";
 import CommonSEO from '../utility/commonSeo';
+const ExpandableGallery = lazy(() => import("../components/home/price"));
+const OurServices = lazy(() => import("../components/services/OurServices"));
+const OurProcess = lazy(() => import("../components/home/OurProcess"));
 
 const Service = ({setOpenPop}) => {
   return (<>
