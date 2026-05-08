@@ -5,7 +5,7 @@ import About from "../components/services/About";
 // import OurServices from '../components/services/OurServices';
 // import OurProcess from "../components/home/OurProcess";
 import CommonSEO from '../utility/commonSeo';
-const ExpandableGallery = lazy(() => import("../components/home/price"));
+const ExpandableGallery = lazy(() => import("../components/ui/ExpandableGallery"));
 const OurServices = lazy(() => import("../components/services/OurServices"));
 const OurProcess = lazy(() => import("../components/home/OurProcess"));
 

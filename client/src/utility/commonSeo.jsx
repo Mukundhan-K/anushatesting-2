@@ -10,6 +10,7 @@ const CommonSEO = ({
   type = 'website',
   children,
 }) => {
+  // console.log("tit ", title);
   return (  
     <Helmet>
       <title>{title}</title>

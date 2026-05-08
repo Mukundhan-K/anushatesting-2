@@ -34,7 +34,7 @@ const CommonSEO = lazy(() => import("../utility/commonSeo.jsx"));
 const HomeCons = ({url="default", setOpenPop}) => {
   // Extract the specific data for this niche
   const pageData = constructionData?.[url];
-  console.log("pg data ", url, pageData);
+  // console.log("pg data ", url, pageData);
 
   return (<>
     <CommonSEO title={pageData.seoTl} canonical={pageData.canonical} description={pageData.seoDes} keywords={pageData.keywords}/>
