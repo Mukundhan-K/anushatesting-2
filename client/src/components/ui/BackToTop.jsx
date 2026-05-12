@@ -110,8 +110,8 @@ const BackToTopButton = () => {
               </div>
             </button>
           </div>
+          <NavItem icon="calculator" label="Estimator" link="/estimator" />
           <NavItem icon="call" label="Contact" link="/contact" />
-          <NavItem icon="user" label="About"link="/about" />
         </div>
       )}
 
@@ -126,6 +126,7 @@ const NavItem = ({ icon, label, link }) => (
     key={label}
     to={link}
     className="flex flex-col items-center gap-1 cursor-pointer"
+    onClick={()=>scrollToTop}
   >
     <img src={getImageSvg(icon)} className="size-6" />
     <span className="text-xs sm:text-base font-medium">{label}</span>
