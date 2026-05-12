@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 import Button from '../ui/Button';
 import { getImageSvg } from '../../utility/getImage';
@@ -7,11 +7,10 @@ import Api from '../../utility';
 import { toast } from 'sonner';
 
 const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSubmit=false, formClass, subject="Mail from Anusha Website",
-                      buttonText,btntype="button",btnonclick,btnclass, isEdit = true, btnHide=true
+                      buttonText,btntype="button",btnonclick,btnclass, btnHide=true
 }) => {
 
-  const [result, setResult] = useState("");
-  const [showPassword, setShowPassword] = useState({});
+  const navigate = useNavigate();
 
   function formDataHandler(e) {
     const {name, value} = e.target;
@@ -49,10 +48,11 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
       if (response?.data?.success) {
         toast.success(`${response?.data?.message}`);
 
-        setResult(response?.data.success ? "Success" : "Error");
+        if (response.status === 200) {
+          navigate('/mail-success-anusha');
+        };
         setTimeout(() => {
           setFormData({});
-          setResult(false);
         }, 1500);
 
         return { success: true };
@@ -60,12 +60,6 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
       toast.error("Failed", {
         description: response?.data?.message || "Something went wrong",
       });
-
-      setResult(response?.data.success ? "Success" : "Error");
-      setTimeout(() => {
-        setFormData({});
-        setResult(false);
-      }, 1500);
 
     } catch (error) {
       console.error(error);
@@ -81,20 +75,16 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
     const Icon  = control.icon || null;
 
     switch (control.componentType) {
-      case "input":
-        const isPassword = control?.type === "password";
-        const isVisible = showPassword[control.name];
-        element = <div className={`bg-white border border-gray-400 px-4 py-0.5 rounded-2xl flex gap-3 items-center group focus-within:border-blue-500 focus-within:bg-blue-50 ${!isEdit && "bg-gray-100! cursor-not-allowed"}`}>
-          {Icon && <img src={getImageSvg(Icon)} className="size-8 group-focus-within:stroke-blue-500"
-             alt={`${Icon} icon`} title={`icon of ${Icon}`}
-          />}
+      case "input":{
+        element = <div className={`bg-white border border-gray-400 px-4 py-0.5 rounded-2xl flex gap-3 items-center group focus-within:border-blue-500 focus-within:bg-blue-50`}>
+         
+         {Icon && <img src={getImageSvg(Icon)} className="size-8 group-focus-within:stroke-blue-500" alt={`${Icon} icon`} title={`icon of ${Icon}`}/>}
 
           <input 
-            type={isPassword && isVisible ? "text" : control?.type}
+            type={control?.type}
             name={control?.name}
             id={control?.name}
-            disabled={!isEdit}
-            className={(control?.style) || `${!isEdit && "bg-gray-100 cursor-not-allowed"} w-full border-none outline-none py-2 rounded-2xl group-focus:bg-blue-50 ` }
+            className={(control?.style) || `w-full border-none outline-none py-2 rounded-2xl group-focus:bg-blue-50 ` }
             placeholder={control?.placeholder}
             required
             value = {value}
@@ -102,47 +92,29 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
             autoComplete={control?.name}
             aria-label={control?.name}
           />
-
-        {/* 👁️ Eye Toggle */}
-          {isPassword && (
-            <button
-              type="button"
-              onClick={() =>
-                setShowPassword((prev) => ({
-                  ...prev,
-                  [control.name]: !prev[control.name],
-                }))
-              }
-              className="text-gray-500 hover:text-gray-700"
-            >
-              {isVisible ? "🙈" : "👁️"}
-            </button>
-          )}
         </div>
-        break;
+        break};
 
-      case "textarea":
+      case "textarea":{
         element = <textarea
           placeholder={control?.placeholder}
           name={control?.name}
           id={control?.name}
-          className={(control?.style) || `${!isEdit && "bg-gray-100! cursor-not-allowed"} w-full h-32 border rounded-3xl bg-white border-gray-400 px-4 py-2.5 focus-within:border-blue-500 focus-within:bg-blue-50` }
+          className={(control?.style) || `w-full h-32 border rounded-3xl bg-white border-gray-400 px-4 py-2.5 focus-within:border-blue-500 focus-within:bg-blue-50` }
           value = {value}
           onChange = {(e)=>formDataHandler(e)}
           autoComplete={control?.name}
           aria-label={control?.name}
-          disabled={!isEdit}
         />
-        break;
+        break};
 
-      case "select":
+      case "select":{
         element = (
             <select id={control?.name} name={control?.name} value={value} onChange={(e)=>formDataHandler(e)} 
               placeholder={control.placeholder} 
-              className={`${!isEdit && "bg-gray-100! cursor-not-allowed"} w-full border border-gray-400 px-4 py-2.5 bg-white rounded-2xl focus-within:border-blue-500 focus-within:bg-blue-50`}
+              className={`w-full border border-gray-400 px-4 py-2.5 bg-white rounded-2xl focus-within:border-blue-500 focus-within:bg-blue-50`}
               autoComplete={control?.name}
               aria-label={control?.name}
-              disabled={!isEdit}
             >
                 {(control?.options && control.options.length > 0) ?
                     control.options.map((option)=>(
@@ -154,99 +126,18 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
             </select>
 
         )
-        break;
+        break};
 
-      case "dynamicArray":
-        const transports = formData[control.name] || [];
-        const lastItem = transports[transports.length - 1];
-        const isLastRowFilled =
-          !lastItem || (lastItem.label?.trim() && lastItem.value?.trim());
-
-        element = (
-          <div className="space-y-4">
-
-            {transports.map((item, index) => (
-              <div key={index} className="flex gap-3 items-center">
-
-                {/* LABEL INPUT */}
-                <input
-                  type="text"
-                  placeholder="Label"
-                  className={`${!isEdit && "bg-gray-100! cursor-not-allowed"} border px-3 py-2 rounded-xl w-full`}
-                  value={item.label || ""}
-                  onChange={(e) => {
-                    const arr = [...transports];
-                    arr[index].label = e.target.value;
-                    setFormData(prev => ({ ...prev, [control.name]: arr }));
-                  }}
-                  disabled={!isEdit}
-                />
-
-                {/* VALUE INPUT */}
-                <input
-                  type="text"
-                  placeholder="Value"
-                  className={`${!isEdit && "bg-gray-100! cursor-not-allowed"} border px-3 py-2 rounded-xl w-full`}
-                  value={item.value || ""}
-                  onChange={(e) => {
-                    const arr = [...transports];
-                    arr[index].value = e.target.value;
-                    setFormData(prev => ({ ...prev, [control.name]: arr }));
-                  }}
-                  disabled={!isEdit}
-                />
-
-                {/* DELETE BUTTON */}
-                <button
-                  type="button"
-                  className="bg-red-500 text-white px-3 py-2 rounded-xl"
-                  onClick={() => {
-                    const arr = [...transports];
-                    arr.splice(index, 1);
-                    setFormData(prev => ({ ...prev, [control.name]: arr }));
-                  }}
-                  disabled={!isEdit}
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-
-            {/* ADD NEW ROW */}
-            <button
-              type="button"
-              disabled={(!isLastRowFilled) || (!isEdit)}
-              className={`bg-blue-600 text-white px-4 py-2 rounded-xl ${
-                isLastRowFilled ? "bg-blue-600" : "bg-gray-400 cursor-not-allowed"
-              }`}
-              onClick={() => {
-                console.log("arr : ", formData[control.name]);
-                
-                setFormData(prev => ({
-                  ...prev,
-                  [control.name]: [...transports, { label: "", value: "" }],
-                }));
-              }}
-            >
-              + Add
-            </button>
-
-          </div>
-        );
-        break;
-
-
-      default:
+      default:{
         element = <input
           type={control?.type}
           placeholder={control?.placeholder}
           name={control?.name}
           id={control?.name}
-          className={(control?.style) || `w-full border rounded-lg ${!isEdit && "bg-gray-100 cursor-not-allowed"}` }
-          onChange = {()=>formDataHandler(e)}
-          disabled={!isEdit}
+          className={(control?.style) || `w-full border rounded-lg` }
+          onChange = {(e)=>formDataHandler(e)}
         />
-        break;
+        break};
     };
 
     return element;
@@ -255,9 +146,6 @@ const CommonForm = ({formControls, formData, setFormData, onsubmit, defaultOnSub
   return (
 
     <form onSubmit={defaultOnSubmit ? defaultSubmit : onsubmit}>
-      {result && <div className='flex justify-end pb-5'>
-        <span className={`px-5 py-3 rounded-3xl text-white text-base ${(result == "Success") ? "bg-green-600" : "bg-red-500" }`}>{result}</span>
-      </div> }
       <div className={formClass}>
         {
           formControls.map((controlItem, i)=>(

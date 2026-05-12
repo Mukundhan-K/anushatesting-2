@@ -5,14 +5,6 @@ import IconBox from './IconBox'
 
 const FooterComponent = () => {
 
-  const handleButtonClick = (link) => {
-    window.open( // Redirect to an external URL
-      link,
-      '_blank',
-      'noopener,noreferrer'
-    );
-  };
-
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);

@@ -13,7 +13,7 @@ const image = [
 ];
 
 
-const BankingPatners = ({patner}) => {
+const BankingPatners = () => {
   // const Data = (Patner == "Bank") ? image : ;
 
   return (<>

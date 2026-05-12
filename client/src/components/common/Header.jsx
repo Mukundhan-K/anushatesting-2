@@ -9,13 +9,12 @@ import useMediaQuery from "../../utility/UseMediaQuery";
 const Header = () => {
 
   const isSm = useMediaQuery("(min-width: 640px)");
-  const isLg = useMediaQuery("(min-width: 1024px)");
+  // const isLg = useMediaQuery("(min-width: 1024px)");
   const isMd = useMediaQuery("(min-width: 768px)");
 
   const navigate = useNavigate();
 
   const [openNavDrawer, setOpenNavDrawer] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const navLinkContent = [
     {name : "Home", link:"home"},

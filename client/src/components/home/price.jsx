@@ -68,10 +68,10 @@ const PriceCalculator = ({data=[2200,2750,3150]}) => {
               title="Comfort"
               subtitle={`₹${houseRate} / sft`}
               price={houseTotal}
-              color="border-orange-400"
+              color="border-a-royalsafforn"
               badgeText="Best Price"
               bgclr = "bg-a-royalsafforn/10"
-              tclr="text-orange-600"
+              tclr="text-a-royalsafforn"
             />
             <PriceCard
               title="Premium"

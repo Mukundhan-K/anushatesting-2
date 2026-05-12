@@ -81,7 +81,7 @@ const PremiumTabs = () => {
     return () => clearInterval(timer);
   }, [isPaused, nextTab]);
 
-  const activeTab = TABS[activeIdx];
+  // const activeTab = TABS[activeIdx];
 
   return (
     <div className='w-full py-10 px-4 '>

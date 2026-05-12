@@ -1,6 +1,5 @@
 import React, {lazy, Suspense, memo} from 'react';
-import { getColdwebp, getImageSvg, getImagewebp } from '../../utility/getImage';
-import useMediaQuery from '../../utility/UseMediaQuery';
+import { getColdwebp } from '../../utility/getImage';
 import Marquee from '../ui/marquee';
 import Heading from '../common/Heading';
 const EmblaSlider = lazy(() => import("../ui/EmblaSlider"));
@@ -81,7 +80,7 @@ const ICON_MAP = {
   ),
 };
 
-const Card = memo(({icon, title,text,img, index})=>(
+const Card = memo(({icon, title,img, index})=>(
   <div key={index} className="h-full relative group p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300">
     {/* Step Number Backdrop */}
     <span className="absolute top-4 right-8 text-7xl font-black text-orange-100">

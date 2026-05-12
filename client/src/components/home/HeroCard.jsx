@@ -33,7 +33,7 @@ import ButtonArrow from '../ui/ButtonArrow';
 
 const ServiceCard = ({ item, data }) => {
   return (
-    <div className="relative aspect-video md:aspect-square rounded-xl overflow-hidden group">
+    <div className={`relative aspect-video md:aspect-square rounded-xl overflow-hidden group ${(data != item.title ) && " aspect-square!"}`}>
       {/* Image */}
       <img
         src={item.image}

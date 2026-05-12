@@ -1,5 +1,5 @@
 import React, {lazy, Suspense} from 'react';
-import { getColdwebp, getImageSvg, getImagewebp } from '../../utility/getImage';
+import { getColdwebp } from '../../utility/getImage';
 import Marquee from '../ui/marquee';
 import Heading from '../common/Heading';
 

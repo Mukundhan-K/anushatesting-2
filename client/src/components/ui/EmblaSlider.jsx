@@ -27,7 +27,7 @@ export default function EmblaSlider({
   controlsInside = false,
   dotbg,
 
-  slideWidth = "100%",
+  // slideWidth = "100%",
 
  /* scrollbar */
   scrollbar = false,

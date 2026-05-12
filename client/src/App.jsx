@@ -2,9 +2,9 @@ import { useState, useEffect, Suspense, lazy} from 'react';
 import './App.css';
 
 // packages
-import { toast, Toaster } from 'sonner';
+import { Toaster } from 'sonner';
 import {Routes, Route, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 // pages
 import Layout from "./components/common/Layout";
@@ -22,7 +22,10 @@ const BackToTopButton = lazy(() => import("./components/ui/BackToTop"));
 const PrivacyPolicy = lazy(() => import("./pages/privacyPolicy"));
 const Popup = lazy(() => import("./components/common/Popup"));
 const OpeningPopup = lazy(() => import("./components/about/OpeningPopup"));
+// import Popup from './components/common/Popup';
+// import OpeningPopup from './components/about/OpeningPopup';
 const PagenotFound = lazy(() => import("./pages/common/404"));
+const ThankYou = lazy(() => import("./components/common/ThankYou"));
 
 function App() {
 
@@ -32,10 +35,10 @@ function App() {
     document.dispatchEvent(new Event('render-event'));
   }, []);
   const domlocation = useLocation();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [openPop, setOpenPop] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
   // useEffect(() => {
   //   if ((domlocation.pathname.includes("/home")) ||
   //       (domlocation.pathname.includes("/services")) ||
@@ -64,13 +67,13 @@ function App() {
   ];
 
   useEffect(() => {
-    if ((domlocation.pathname == "/") || (domlocation.pathname.includes("/home"))) {
+    if ((domlocation.pathname == "/") || (domlocation.pathname.includes("/home")) || (domlocation.pathname.includes("/home-construction")) ) {
       const timer = setTimeout(() => {
-        setShowPopup(true);
+        setOpenPop(true);
       }, 15000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [domlocation.pathname]);
 
   return (
     <>
@@ -81,8 +84,8 @@ function App() {
           <Popup
             isOpen={openPop}
             onClose={() => setOpenPop(false)}
-            width={"max-w-[700px]"}
-            otrcss={"p-6 md:p-8"}
+            width={"max-w-[850px]"}
+            otrcss={"p-0 overflow-hidden"}
           >
             <OpeningPopup />
           </Popup>
@@ -104,6 +107,7 @@ function App() {
             <Route path='contact' element={<Contact setOpenPop={setOpenPop} />}></Route>
             <Route path='blogs' element={<Contact setOpenPop={setOpenPop} />}></Route>
 
+            <Route path='mail-success-anusha' element={<ThankYou />}></Route>
             <Route path='privacy-policy' element={<PrivacyPolicy />}></Route>
             <Route path='terms-and-conditions' element={<PrivacyPolicy />}></Route>
 

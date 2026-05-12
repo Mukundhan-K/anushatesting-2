@@ -21,7 +21,7 @@ const ComparisonTable = () => {
                 <th className="p-5 md:p-7 text-lg font-bold text-slate-800 w-1/2">
                   Parameter
                 </th>
-                <th className="p-5 md:p-7 text-center text-lg font-bold text-a-royalsafforn bg-orange-50/30">
+                <th className="p-5 md:p-7 text-center text-lg font-bold text-a-royalsafforn bg-orange-100">
                   Aspl
                 </th>
                 <th className="p-5 md:p-7 text-center text-lg font-bold text-gray-500">
@@ -38,7 +38,7 @@ const ComparisonTable = () => {
                   </td>
 
                   {/* Brand Value (Check) */}
-                  <td className="p-5 md:p-6 text-center bg-orange-50/30">
+                  <td className="p-5 md:p-6 text-center bg-orange-100">
                     <div className="flex justify-center">
                       <CheckIcon />
                     </div>

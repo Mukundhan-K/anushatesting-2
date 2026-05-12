@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import Header from "./Header";
 import Footer from "./Footer";
 import Loader from './Loader';
-import useMediaQuery from '../../utility/UseMediaQuery';
 
 const Layout = ({ setOpenPop }) => {
   

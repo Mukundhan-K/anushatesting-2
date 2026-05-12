@@ -9,6 +9,7 @@ import LoanEstimator from "../components/estimators/LoanEstimator";
 // import BankingPatners from '../components/home/BankingPatners';
 // import Pricing from '../components/home/price';
 import ButtonArrow from '../components/ui/ButtonArrow';
+import HouseCalculator from '../components/estimators/Calculator';
 const BankingPatners = lazy(() => import("../components/home/BankingPatners"));
 const Pricing = lazy(() => import("../components/home/price"));
 
@@ -73,31 +74,10 @@ const Estimator = ({setOpenPop}) => {
         
     <Banner title={"Cost Estimator"} link1={"/home"} text1={"Home"} text2={"Cost Estimator"} />
 
-    <section className='h-full w-full'>
-      <div className='sm:container mx-auto md:py-10 px-4'>
-        <div className='pb-10'>
-          <Marquee quotes={"Free Estimate"} />
-          <div className='pt-10'></div>
-          <h1 className='siteHeading text-3xl md:text-4xl lg:text-5xl font-semibold'>Estimate your Home Construction Cost</h1>
-          <p className="lg:pb-8 text-lg leading-8 text-gray-600">Building your dream home? Instantly calculate your construction cost and plan your budget with confidence</p>
-        </div>
+    {/* <HouseCalculator />  */}
 
-        <CostEstimator registeredFormControl={registeredFormControl} clsStyle={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}  />
-      </div>
-    </section>
-
-    <section className='h-full w-full'>
-      <div className='sm:container mx-auto py-10 px-4'>
-        <div className='pb-10'>
-          <Marquee quotes={"Free Estimate"} />
-          <div className='pt-10'></div>
-          <Heading text={"Estimate your Loan EMI"} align={"left"} />
-          <p className="lg:pb-8 text-lg leading-8 text-gray-600">Calculate your home loan EMI, total interest, and repayment schedule with precision to make smart financial decisions and secure your future.</p>
-        </div>
-
-        <LoanEstimator clsStyle={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}  />
-      </div>
-    </section>
+    <CostEstimator registeredFormControl={registeredFormControl} clsStyle={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}  />
+    <LoanEstimator clsStyle={"grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}  />
 
     <Pricing />
     <BankingPatners />

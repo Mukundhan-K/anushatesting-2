@@ -35,7 +35,7 @@ const contact = ({setOpenPop}) => {
         <section className={`pb-10 xl:p-10 rounded-3xl`}>
           <div className='sm:container mx-auto px-4 sm:px-0'>
               <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 items-center`}>
-                {cards.map(({img, title,text}, index)=>(
+                {cards.map(({img, title,text})=>(
                   <div className="group relative h-[380px] rounded-sm p-1 shadow-2xl overflow-hidden">
 
                     <div className="relative h-full w-full p-10 flex flex-col justify-between border border-white/5">

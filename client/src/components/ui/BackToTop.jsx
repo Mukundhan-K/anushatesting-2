@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import Popup from '../common/Popup';
+import { Link, NavLink } from "react-router-dom";
 import { getImageSvg } from '../../utility/getImage';
 import useMediaQuery from '../../utility/UseMediaQuery';
 
-const BackToTopButton = ({openPop, setOpenPop}) => {
+const BackToTopButton = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const isSmDwn = useMediaQuery("(max-width: 640px)");
   const [isVisible, setIsVisible] = useState(false);
 
@@ -127,7 +126,6 @@ const NavItem = ({ icon, label, link }) => (
     key={label}
     to={link}
     className="flex flex-col items-center gap-1 cursor-pointer"
-    onClick={() => scrollToTop()}
   >
     <img src={getImageSvg(icon)} className="size-6" />
     <span className="text-xs sm:text-base font-medium">{label}</span>

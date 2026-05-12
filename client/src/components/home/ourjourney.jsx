@@ -1,11 +1,10 @@
 import React from 'react';
 import Marquee from '../ui/marquee';
 import Heading from '../common/Heading';
-import { getColdwebp, getImageSvg, getImagewebp } from '../../utility/getImage';
+import { getColdwebp, getImageSvg } from '../../utility/getImage';
 import ButtonArrow from '../ui/ButtonArrow';
 import WhyChooseUs from './WhyChooseUs';
 import { Link } from 'react-router-dom';
-import useMediaQuery from '../../utility/UseMediaQuery';
 
   const icons = [
     {icon: "our-journey-icon-4", text:"enterprise"},
@@ -14,7 +13,7 @@ import useMediaQuery from '../../utility/UseMediaQuery';
     {icon: "our-journey-icon-3", text:"Interior"},
   ];
 
-const OurJourney = ({tit, img, data}) => {
+const OurJourney = ({tit, img}) => {
 
   return (<>
     <section id='ourJourney' className=' h-full w-full'>

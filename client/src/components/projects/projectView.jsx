@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 import Banner from "../common/Banner";
-import { getImageSvg, getImagewebp } from '../../utility/getImage';
+import { getImageSvg } from '../../utility/getImage';
 import Heading from "../common/Heading";
 import CommonSEO from '../../utility/commonSeo';
 import { viewProject } from '../../redux/shopSlice';

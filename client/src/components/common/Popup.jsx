@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import CommonForm from "./CommonForm";
-import { getImageSvg } from "../../utility/getImage";
 
-const Popup = ({ isOpen, onClose, title, children, otrcss, width }) => {
+const Popup = ({ isOpen, onClose, children, otrcss, width }) => {
   useEffect(() => {
     if (isOpen) {
       const originalStyle = window.getComputedStyle(document.body).overflow;
@@ -36,7 +35,7 @@ const Popup = ({ isOpen, onClose, title, children, otrcss, width }) => {
         {/* Close Icon - Improved hit area for mobile */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 text-gray-400 hover:text-gray-700 transition-colors rounded-full hover:bg-gray-100"
+          className="absolute top-4 right-4 z-100 p-2 text-white md:text-black! transition-colors rounded-full hover:bg-gray-100"
           aria-label="Close modal"
         >
           <span className="text-2xl leading-none">✕</span>

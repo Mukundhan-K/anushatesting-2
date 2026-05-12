@@ -3,7 +3,6 @@ import FooterComponent from './FooterComponent';
 import CallToAction from "./Cta"
 
 import { useLocation } from "react-router-dom";
-import { getPDF } from '../../utility/getImage';
 
 const Footer = ({setOpenPop}) => {
   

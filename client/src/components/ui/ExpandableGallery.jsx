@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Marquee from './marquee';
 import Heading from "../common/Heading";
-import { getImageSvg, getImagewebp } from '../../utility/getImage';
+import { getImageSvg } from '../../utility/getImage';
 import ButtonArrow from './ButtonArrow';
 import { Link } from 'react-router-dom';
 

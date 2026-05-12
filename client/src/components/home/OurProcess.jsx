@@ -1,7 +1,7 @@
-import React, { useState, useEffect, lazy,Suspense, memo } from "react";
+import React, { lazy,Suspense, memo } from "react";
 import Marquee from '../ui/marquee';
 import Heading from '../common/Heading';
-import { getImageSvg, getImagewebp } from '../../utility/getImage';
+import { getImageSvg } from '../../utility/getImage';
 const EmblaSlider = lazy(() => import("../ui/EmblaSlider"));
 
 const card = [

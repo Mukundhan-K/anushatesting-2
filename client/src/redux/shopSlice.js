@@ -72,13 +72,13 @@ const shopProductSlice = createSlice({
             state.isLoading = false;
             // console.log("list all proj shop : " ,action.payload);
             state.productList = (action?.payload?.success) ? action.payload?.projects : [];
-        }).addCase(fetchAllProjects.rejected, (state)=>{
+        }).addCase(fetchAllProjects.rejected, (state, action)=>{
             state.isLoading = false;
             state.productList = [];
             state.error = action.error.message;
         })
 
-        .addCase(viewProject.pending, (state)=>{
+        .addCase(viewProject.pending, ()=>{
             // state.isLoading = true;
         }).addCase(viewProject.fulfilled, (state, action)=>{
             // state.isLoading = false;
